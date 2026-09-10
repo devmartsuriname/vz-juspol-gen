@@ -1,0 +1,57 @@
+/*
+ * Devmart Admin — scoped resets that neutralise Tailwind Preflight leakage.
+ *
+ * Tailwind's global preflight (loaded via src/styles.css on every route)
+ * forces `img, svg, video { display: block }` and `button { background: transparent }`.
+ * Darkone (Bootstrap 5) relies on the browser defaults, so inside the admin
+ * subtree we restore them. Selectors are scoped to `.devmart-admin` so the
+ * public frontend is never affected.
+ *
+ * Load order: this file MUST come AFTER Tailwind's stylesheet so its
+ * declarations win. `admin.tsx` places it last in `head.links`.
+ */
+
+.devmart-admin img,
+.devmart-admin svg,
+.devmart-admin video,
+.devmart-admin canvas,
+.devmart-admin audio,
+.devmart-admin iframe,
+.devmart-admin embed,
+.devmart-admin object {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: none;
+  height: auto;
+}
+
+/* Bootstrap-style .img-fluid + explicit height="" attrs still work. */
+.devmart-admin img[height] {
+  height: attr(height px);
+}
+
+/* Tailwind preflight makes buttons transparent; Bootstrap components rely on
+   their own bg. Only reset the base — utility classes still win. */
+:where(.devmart-admin) button {
+  background-color: revert;
+  background-image: revert;
+  border: revert;
+  color: revert;
+  padding: revert;
+  font: revert;
+}
+
+/* Preflight sets hr borders to currentColor at 0 opacity; Bootstrap's own
+   .hr rules restore it, so nothing extra needed here. */
+
+/* Card-header action groups (e.g. Revenue / Sales By Category ALL/1M/6M/1Y)
+   must stay on a single line. The Darkone demo relies on inline-block button
+   widths + no wrapping; Tailwind preflight + our slightly narrower content
+   column can push them onto two rows. Force a single-line group. */
+.devmart-admin .card-header > div {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.devmart-admin .card-header .btn + .btn {
+  margin-left: 0.25rem;
+}

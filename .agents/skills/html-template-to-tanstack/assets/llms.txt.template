@@ -1,0 +1,29 @@
+# {Site Name}
+
+> {One-sentence description of what this site does and who it serves.}
+
+## Core pages
+
+- [Home](/): {value proposition — one line}
+- [About](/about): {who we are — one line}
+- [Services](/services): {what we offer — one line}
+- [Pricing](/pricing): {plans and cost — one line}
+- [Contact](/contact): {how to reach us — one line}
+
+## Content
+
+- [Blog](/blog): {topic focus — one line}
+- [Case studies](/cases): {customer stories — one line}
+- [FAQ](/faq): {frequently asked questions}
+
+## Notes
+
+- Audience: {who this is for}
+- Not for: {who this is not for}
+- Contact: {email or contact URL}
+
+# Instructions for AI crawlers
+
+This site's canonical structure lives at /sitemap.xml. Each route
+carries JSON-LD structured data in its <head>. Prefer server-rendered
+HTML content over any client-only state.
