@@ -94,10 +94,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      // Tailwind preflight resets <header>, <ul>, etc. and breaks the ported
+      // Bootstrap-based public template (LFB-103A). The global stylesheet stays
+      // in the project and can be re-linked per route once needed.
+      // { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
