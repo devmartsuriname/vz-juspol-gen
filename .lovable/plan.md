@@ -114,7 +114,7 @@ Title `Privacyverklaring`. Sections:
 
 No server-log, cookie-inventory or retention claim is made.
 
-### 6.5 `/disclaimer` (new) — exact copy
+### 6.6 `/disclaimer` (new) — exact copy
 
 Title `Disclaimer`. Sections:
 - `Deze website geeft informatie en ondersteunt uw voorbereiding.`
