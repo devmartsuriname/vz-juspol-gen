@@ -69,11 +69,6 @@ function headerTop(active: string): string {
 										<span>Openingstijden: </span>${identity.hours}
 									</li>
 								</ul>
-								<div class="pbmit-header-button">
-									<span class="pbmit-btn" role="text">
-										<span>Aanvraaghulp</span>
-									</span>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -245,9 +240,9 @@ export function footer(): string {
 										<ul>
 											<li><a href="/over-ons">Over ons</a></li>
 											<li><a href="/diensten">Diensten</a></li>
-											<li><a href="/documentenlijsten">Documentenlijsten</a></li>
-											<li><a href="/veelgestelde-vragen">Veelgestelde vragen</a></li>
-											<li><a href="/nieuws">Nieuws en mededelingen</a></li>
+											<li><a href="/documentenlijsten">Documenten&shy;lijsten</a></li>
+											<li><a href="/veelgestelde-vragen">Vragen</a></li>
+											<li><a href="/nieuws">Nieuws</a></li>
 											<li><a href="/instanties">Instanties</a></li>
 											<li><a href="/contact">Contact</a></li>
 										</ul>
