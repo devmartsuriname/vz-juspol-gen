@@ -341,4 +341,132 @@ Acceptable empty states: notices, optional imagery, optional per-service sub-blo
 
 - **States:** entry (`/aanvraaghulp`) → start (root question, nine branches + "Ik weet het niet zeker") → question steps → review → result; plus fallback (no exact mapping), error (invalid step id), and print view.
 - **Boundary:** a persistent, non-dismissible statement on every state that this is preparation guidance, not an application, and that nothing is submitted.
-- **Data:** in-memory React state only. No free text, no personal data, no upload, no storage, no cookie, no server function, no network request. Proof: no `fetch`/`createServerFn`/`localStorage`/`
+- **Data:** in-memory React state only. No free text, no personal data, no upload, no storage, no cookie, no server function, no network request. Proof: no `fetch`/`createServerFn`/`localStorage`/`<input type=text>` anywhere under `components/public/wizard/**` — grep evidence per batch.
+- **Navigation:** back and change links on every step; review links jump back to the exact question; no dead end; direct-URL entry to a step without prior answers redirects to start.
+- **Keyboard/SR:** each choice group is a labelled radiogroup, arrow-key navigable, one tab stop; progress announced via `aria-live="polite"`; step heading receives focus on change.
+- **Mobile:** single column from 320px, choice cards full width, sticky continue button, no horizontal scroll.
+- **Testing:** every branch traversed to a result or truthful fallback; screenshot per state at 320 and 1280.
+
+---
+
+## 8. News plan
+
+| Surface | Liviza reference | Plan |
+|---|---|---|
+| Home notice strip | `index.html` blog row (line 1007, `.section-lg`) | 3 cards desktop / 1 mobile, 8px radius, date + title + short summary, "Lees meer" link-btn; no image required |
+| Archive `/nieuws` | `blog-grid-view.html` | same card in a 3-col grid, simple pagination if count warrants it |
+| Category/filter | `blog-large-image.html` sidebar | **not planned** — no taxonomy authority; revisit only if notice records ship categories |
+| Detail `/nieuws/$slug` | `blog-single-view.html` | title, publication date, status, body, source links, back link; comments, share, author promo and newsletter removed |
+| States | — | published only; drafts never rendered; dated empty state "Er zijn op \<datum\> geen mededelingen" when the record set is empty |
+
+---
+
+## 9. Asset plan
+
+- **Excluded outright:** all people photography, team portraits, testimonials, country flags, partner logos, trust badges, Liviza brand logo, Slider Revolution assets, icon fonts (Flaticon, Themify, FontAwesome).
+- **Temporary private placeholders (development only, never handover):** neutral decorative background patterns and card aspect fillers, each visibly marked `TEMPORARY TEMPLATE PLACEHOLDER — REPLACE BEFORE HANDOVER`, listed in a tracking table with path, source, and removal owner.
+- **Icons:** inline SVG with accessible names, matched to Liviza optical size and accent colour.
+- **Replacement tracking:** every candidate asset carries id, path, provenance, creator/tool/date, public-use evidence, editorial approval, privacy/likeness outcome, alt rationale, component, review date, status — per the register. Generated ≠ licensed ≠ approved.
+- **Evidence:** desktop (1280) and mobile (375) screenshots per route showing the placeholder marking, plus a final pre-handover pass proving zero placeholders remain.
+- The ZIP is never extracted into the project, committed, or served.
+
+---
+
+## 10. Accessibility, responsive and isolation test plans
+
+**Keyboard/focus:** tab order per route; visible focus on every interactive element; mobile nav trap-free and Escape-closable; accordion and radiogroup keyboard maps; skip-to-content link.
+**Headings/landmarks:** exactly one h1 per route; no skipped levels; one `<main>` in the public shell; `header`/`nav`/`main`/`footer` present; breadcrumb `nav` labelled in Dutch.
+**Contrast:** measured pairs for body, muted, link, button, dark band, focus ring; every pair recorded with its ratio; failures darkened.
+**Reduced motion:** `prefers-reduced-motion: reduce` sets all transitions to 0ms; no autoplay, no parallax, no counters.
+**Responsive:** 320, 375, 480, 768, 1024, 1280, 1440 — no horizontal scroll, no clipped text, tap targets ≥44px.
+**Dutch copy expansion:** nav, buttons and card titles tested with the longest Dutch labels; no truncation or two-line button collapse.
+**Print:** `/aanvraaghulp/resultaat`, service detail and document lists print legibly in one column with URLs shown and chrome hidden.
+**Isolation (not one curl):** (a) `/` HTML contains zero `admin/assets` references; (b) network panel on every public route lists zero `/admin/*` requests; (c) `/admin` and `/admin/auth-signin` still return 200 and render unchanged; (d) grep proves no public file imports `lib/admin` or `routes/admin`; (e) `src/styles.css` contains no admin `@import`; (f) admin screenshots before/after each batch.
+
+---
+
+## 11. Proposed changed-file inventory (proposed only — nothing changed)
+
+| Batch | New | Modified |
+|---|---|---|
+| B1 tokens/base | `src/content/*`, `src/lib/public/*` | `src/styles.css`, `src/routes/__root.tsx` (lang nl + metadata), `src/routes/index.tsx` |
+| B2 shell | `components/public/layout/*` | `__root.tsx` |
+| B3 home | `components/public/home/*` | `routes/index.tsx` |
+| B4 services | `routes/diensten*`, `components/public/services/*` | `lib/public/routes-map.ts` |
+| B5 wizard | `routes/aanvraaghulp*`, `components/public/wizard/*` | routes-map |
+| B6 docs/instructies/faq | those routes + `components/public/{documents,faq}/*` | routes-map |
+| B7 news | `routes/nieuws*`, `components/public/news/*` | routes-map |
+| B8 static pages | `routes/{contact,over-ons,privacy,disclaimer,overzicht}.tsx` | `__root.tsx` 404 |
+| B9 SEO/GSO | `routes/sitemap[.]xml.ts`, `public/robots.txt`, `public/llms.txt` | leaf route `head()` |
+
+**Protected — must not change:** `src/routes/admin.tsx`, `src/routes/admin/**`, `src/lib/admin/**`, `public/admin/assets/**`, `src/routeTree.gen.ts` (generated), `docs/**` unless a batch names it, `.agents/skills/**`, `AGENTS.md`, `package.json` (no new dependency).
+
+---
+
+## 12. Proposed Frontend MTB (all rows PLANNED / NOT RELEASED)
+
+Executor: LOVABLE. Validator: ACT-CODEX (technical) / ACT-CHATGPT (governance). Evidence location: `07-Validation\` plus the released task's evidence path. Forbidden in every row: `/admin/*`, admin assets/styles, Cloud, Lovable Database, Supabase, backend/API/auth, GitHub, new dependencies, deployment/publication, full Liviza import, demo assets, invented official content. STOP in every row on: missing authority, protected-surface impact, requirement conflict, any data capture, or need for an unlisted path.
+
+| ID | Lane/batch | Outcome | Inputs | Depends on | Proposed paths | Gate | Acceptance evidence | Status |
+|---|---|---|---|---|---|---|---|---|
+| LFB-P02 | PLAN | Measure all nine selected Liviza pages | ZIP, matrix | — | none (read-only) | — | COMPLETED in Plan Mode: per-page tables in §2.2 and §2.4 | COMPLETED (planning evidence, not an execution dependency) |
+| LFB-101 | B1 | VZ tokens + base | brand decision, §5 | — | `styles.css`, `content/*`, `__root.tsx` | brand release | token list, contrast table, isolation proof | PLANNED / NOT RELEASED |
+| LFB-102 | B2 | Public shell | identity, contact, routes | LFB-101 | `components/public/layout/*` | identity release | screenshots, keyboard walk, no admin asset | PLANNED / NOT RELEASED |
+| LFB-103 | B3 | Home | identity, categories, notices | LFB-102 | `routes/index.tsx`, `home/*` | content release | 3-viewport screenshots, axe | PLANNED / NOT RELEASED |
+| LFB-104 | B4 | Services tree | service records | LFB-103 | `routes/diensten*`, `services/*` | service-record release | block-order proof, 404 case | PLANNED / NOT RELEASED |
+| LFB-105 | B5 | Wizard | decision model, services | LFB-104 | `routes/aanvraaghulp*`, `wizard/*` | wizard release | branch traversal, no-data grep, SR log | PLANNED / NOT RELEASED |
+| LFB-106 | B6 | Documents, instructies, FAQ | checklist + FAQ records | LFB-104 | those routes/components | content release | no-download grep, accordion keyboard | PLANNED / NOT RELEASED |
+| LFB-107 | B7 | News | notice authority | LFB-102 | `routes/nieuws*`, `news/*` | publication authority | both states screenshotted | PLANNED / NOT RELEASED |
+| LFB-108 | B8 | Static + legal + 404 | contact, legal, institutional text | LFB-102 | those routes | legal release | screenshots, no-input grep | PLANNED / NOT RELEASED |
+| LFB-109 | B9 | SEO/GSO + a11y sweep | SEO guide | all | sitemap, robots, llms, heads | final gate | per-route metadata table, axe report | PLANNED / NOT RELEASED |
+| LFB-110 | QA | Placeholder removal + handover check | asset register | all | asset paths only | handover gate | zero-placeholder proof | PLANNED / NOT RELEASED |
+| LFB-111 | GOV | Governed document retention (see §12.1) | the exact 13 approved Markdown inputs | separate Delroy release **and** a supported, safe upload method | `docs/vz-juspol-gen/governance-inputs/` only | Delroy retention release | filename + SHA-256 + byte-size manifest, byte-identical verification, README present | PLANNED / NOT RELEASED — currently BLOCKED (no verified safe upload path) |
+
+### 12.1 LFB-111 — governed document retention (PLANNED / NOT RELEASED, currently BLOCKED)
+
+Purpose: durable, private retention of the governed inputs. The current uploaded copies live in a temporary session upload area and are **not** durable storage; nothing is retained today.
+
+Preconditions (all required, none met): a separate explicit Delroy release for this task, and a supported upload method that can place the files in the repository without exposing them publicly. Agent execution is **not** coupled to the upload — the files being uploaded does not authorise this task.
+
+Scope when released:
+- Store exactly the 13 approved Markdown inputs — no more, no fewer — under a private, isolated documentation location such as `docs/vz-juspol-gen/governance-inputs/`.
+- Preserve contents **byte-identically**; no reformatting, renaming, translation, summarising or normalisation.
+- Record for each file: exact filename, SHA-256, byte size, and the date of retention, in a manifest stored alongside them.
+- Add a `README.md` in that directory stating that these are governed reference inputs, that they are not application content, and stating the Source-of-Truth precedence order that applies to them.
+
+Prohibited in this task: any application import of these files; any public serving, route, sitemap, `llms.txt` or asset exposure; storing the Liviza ZIP or any part of the purchased package; storing purchase evidence, licence keys, invoices or personal data; overwriting any existing file; any coupling of agent execution to the act of uploading.
+
+Blocked status: as planned today, there is no verified safe method available to place these files into the repository under the current constraints. This task therefore stays **BLOCKED** and must not be attempted until both preconditions are satisfied and the method is confirmed safe.
+
+---
+
+
+## 13. Risk and decisions
+
+**Content blockers:** identity, contact, categories, services (12 blocks), documents/forms, FAQ, legal texts, branch→service mapping. Notices may launch as a dated empty state.
+
+**Technical risks:** (1) reconstructing Bootstrap grid behaviour in Tailwind v4 can shift gutters — mitigated by pinning the 1200px band and 15px gutter as tokens; (2) `#0067da` may fail AA in some placements — measured and darkened where needed; (3) Liviza's 105px hero overlap is fragile below 768px — a documented deviation with a stacked fallback; (4) print output for the wizard result needs a dedicated stylesheet; (5) route-file/`createFileRoute` mismatches break the build — every link and its route file land in the same batch.
+
+**STOP conditions:** any request implying data capture, submission, account, upload, analytics, backend, Cloud, GitHub, publication, `/admin/*` change, a new dependency, or content not traceable to a governed record.
+
+**FACT:** §2.1 measurements, the 13-document inventory, the current route set, admin isolation mechanics.
+**INFERENCE:** section classifications in §2.2 beyond the measured geometry; the proposed batch order; the reduced breakpoint set.
+**OPEN DECISION:** VZ brand colour — whether `#0067da` is retained or replaced by an approved institutional colour; whether `/nieuws` launches as a dated empty state; whether Mulish/Roboto are approved for public use by VZ (see typography note below).
+
+**One weak assumption:** that Liviza's commercial visual language, once stripped of sales patterns, still reads as an appropriate public-service register. If Delroy judges it too commercial, §2 needs rework before B1.
+**One missing constraint (typography):** FACT — the purchased Liviza source technically references Mulish and Roboto (Google Fonts, loaded by URL reference, not shipped as files in the template's own `fonts/` directory) and technically bundles the icon fonts Flaticon, Themify, FontAwesome and `pbminfotech-base-icons` as font files inside the package. Technical inclusion or reference is not the same as public-use approval: no VZ decision record exists that approves these families for public deployment, states the licence basis relied on (Google Fonts terms, self-hosting versus CDN, ThemeForest coverage for the bundled icon fonts), or rules on their accessibility. This is an unresolved approval, not an evidenced absence of a licence — no claim is made that a licence does not exist. Icon fonts are in any case planned out (§2.6, replaced by inline SVG), so the open item concerns the two text families only.
+**One material failure risk:** building service and wizard routes against placeholder records, then having to rewrite block structure when the real service model arrives; mitigated by holding LFB-104/105 until the service records exist.
+
+---
+
+## 14. Plan-mode integrity
+
+Commit history: `f56782e` (Remixed with public template) → `1602291` → `b590d02` (Update plan). Both commits after `f56782e` touch **only `.lovable/plan.md`** (`git show --stat` reports `1 file changed` on each), and `git status` is clean. Those commits are plan-authoring artefacts — `.lovable/plan.md` is the one file Plan Mode may write. No application file, no `/admin/*` path, no dependency and no configuration was modified. This v0.3 revises `.lovable/plan.md` only: the archive was read in place with `unzip -p`, never extracted, never copied into the project, never committed; an attempted extraction to a temporary path was refused by Plan Mode and abandoned.
+
+---
+
+## Verdict
+
+**PLAN COMPLETE WITH CONTENT BLOCKERS**
+
+Stopping here. No implementation, no execution approval requested; every batch in §12 requires a separate explicit release.
