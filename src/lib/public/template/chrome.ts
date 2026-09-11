@@ -152,10 +152,10 @@ export function homeHeader(): string {
 									<div class="row">
 										<div class="col-md-7">
 											<div class="pbmit-slider-content">
-												<h5 class="pbmit-sub-title transform-left transform-delay-1">Informatie en voorbereiding</h5>
-												<h2 class="pbmit-title transform-right transform-delay-2">Voorbereid naar <span>Vreemdelingenzaken</span></h2>
-												<p class="transform-bottom transform-delay-3" style="color:#ffffff;">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
-												<div class="pbmit-button transform-bottom transform-delay-3">
+												<h5 class="pbmit-sub-title">Informatie en voorbereiding</h5>
+												<h2 class="pbmit-title">Voorbereid naar <span>Vreemdelingenzaken</span></h2>
+												<p style="color:#ffffff;">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
+												<div class="pbmit-button">
 													<a class="pbmit-button" href="/diensten">
 														<span class="pbmit-icon"><i class="fa fa-angle-right"></i></span>
 														<span class="pbmit-text">Bekijk diensten</span>
