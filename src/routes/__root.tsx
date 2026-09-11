@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+// import appCss from "../styles.css?url"; // disabled: Tailwind preflight breaks the ported template (LFB-103A)
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
