@@ -196,6 +196,15 @@
   --spacing-vz-card-gap: 2.1875rem;   /* 35px */
   --container-vz: 75rem;              /* 1200px content band */
 
+  /* Shell geometry (LFB-102, measured from the reference header/banner) */
+  --spacing-vz-nav-row: 6.5625rem;    /* 105px desktop navigation row */
+  --spacing-vz-nav-row-sm: 4.5rem;    /* 72px compact row below lg */
+  --spacing-vz-nav-item: 1.0625rem;   /* 17px nav item side rhythm */
+  --spacing-vz-logo: 3.125rem;        /* 50px logo optical cap */
+  --spacing-vz-preheader: 2.75rem;    /* 44px pre-header strip */
+  --spacing-vz-banner: 8.75rem;       /* 140px inner banner block padding */
+  --spacing-vz-banner-sm: 5rem;       /* 80px banner padding below md */
+
   /* Radii */
   --radius-vz-button: 4px;
   --radius-vz-accordion: 5px;

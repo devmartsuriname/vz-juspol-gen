@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { PublicShell } from "@/components/public/layout";
 import { buildMeta } from "@/lib/public/seo";
 
 export const Route = createFileRoute("/")({
@@ -15,8 +16,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="vz-public flex min-h-screen flex-col">
-      <main className="vz-section flex flex-1 items-center">
+    <PublicShell>
+      <section className="vz-section">
         <div className="vz-container">
           <div className="mx-auto max-w-[42rem] rounded-vz-card bg-vz-light p-8 shadow-vz-card sm:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-vz-primary">
@@ -34,7 +35,7 @@ function Index() {
             </p>
           </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </PublicShell>
   );
 }
