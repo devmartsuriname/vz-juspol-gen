@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { LIVIZA_CONTACT_HTML } from "@/lib/public/template/liviza-contact.html";
 import { publicHead } from "@/lib/public/seo";
+import { LIVIZA_INSTANTIES_HTML } from "@/lib/public/template/liviza-instanties.html";
 import {
   LivizaTemplatePage,
   livizaHead,
 } from "@/lib/public/template/LivizaTemplatePage";
 
-export const Route = createFileRoute("/contact")({
+export const Route = createFileRoute("/instanties")({
   head: () => ({
     ...publicHead(
-      "Contact",
-      "Adres, telefoonnummer, e-mailadres en openingstijden van Vreemdelingenzaken.",
+      "Instanties",
+      "Overheidsinstanties die betrokken kunnen zijn bij uw aanvraag of procedure.",
     ),
     ...livizaHead(),
   }),
@@ -19,5 +19,5 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Page() {
-  return <LivizaTemplatePage html={LIVIZA_CONTACT_HTML} />;
+  return <LivizaTemplatePage html={LIVIZA_INSTANTIES_HTML} />;
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LIVIZA_NEWS_DETAIL_HTML } from "@/lib/public/template/liviza-news-detail.html";
+import { publicHead } from "@/lib/public/seo";
 import {
   LivizaTemplatePage,
   livizaHead,
@@ -8,15 +9,10 @@ import {
 
 export const Route = createFileRoute("/nieuws/$slug")({
   head: () => ({
-    meta: [
-      { title: "Mededeling — VZ Juspol Gen" },
-      { name: "description", content: "Visuele basis van een mededelingpagina. Goedgekeurde inhoud volgt." },
-      { name: "robots", content: "noindex, follow" },
-      { property: "og:title", content: "Mededeling — VZ Juspol Gen" },
-      { property: "og:description", content: "Visuele basis van een mededelingpagina. Goedgekeurde inhoud volgt." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    ...publicHead(
+      "Mededeling",
+      "Officiële mededeling van Vreemdelingenzaken.",
+    ),
     ...livizaHead(),
   }),
   component: Page,

@@ -22,6 +22,7 @@ export const publicRoutes = {
   aanvraaghulp: "/aanvraaghulp",
   documents: "/documentenlijsten",
   faq: "/veelgestelde-vragen",
+  stakeholders: "/instanties",
   news: "/nieuws",
   newsDetail: "/nieuws/$slug",
   contact: "/contact",
@@ -64,13 +65,14 @@ export type PublicNavConfigItem = AvailableNavItem | PlannedNavItem;
  */
 export const primaryNav: readonly PublicNavConfigItem[] = [
   { key: "home", label: "Home", to: "/", available: true },
-  { key: "about", label: "Over ons", path: publicRoutes.about, available: false },
-  { key: "services", label: "Diensten", path: publicRoutes.services, available: false },
+  { key: "about", label: "Over ons", to: publicRoutes.about, available: true },
+  { key: "services", label: "Diensten", to: publicRoutes.services, available: true },
   { key: "aanvraaghulp", label: "Aanvraaghulp", path: publicRoutes.aanvraaghulp, available: false },
-  { key: "documents", label: "Documentenlijsten", path: publicRoutes.documents, available: false },
-  { key: "faq", label: "Veelgestelde vragen", path: publicRoutes.faq, available: false },
-  { key: "news", label: "Nieuws", path: publicRoutes.news, available: false },
-  { key: "contact", label: "Contact", path: publicRoutes.contact, available: false },
+  { key: "documents", label: "Documentenlijsten", to: publicRoutes.documents, available: true },
+  { key: "faq", label: "Veelgestelde vragen", to: publicRoutes.faq, available: true },
+  { key: "news", label: "Nieuws", to: publicRoutes.news, available: true },
+  { key: "contact", label: "Contact", to: publicRoutes.contact, available: true },
+  { key: "stakeholders", label: "Instanties", to: publicRoutes.stakeholders, available: true },
 ];
 
 /** Footer link groups, using the same availability rule as the primary nav. */
@@ -81,21 +83,21 @@ export const footerNav: readonly {
   {
     heading: "Informatie",
     items: [
-      { key: "about", label: "Over ons", path: publicRoutes.about, available: false },
-      { key: "news", label: "Nieuws en mededelingen", path: publicRoutes.news, available: false },
-      { key: "faq", label: "Veelgestelde vragen", path: publicRoutes.faq, available: false },
+      { key: "about", label: "Over ons", to: publicRoutes.about, available: true },
+      { key: "news", label: "Nieuws en mededelingen", to: publicRoutes.news, available: true },
+      { key: "faq", label: "Veelgestelde vragen", to: publicRoutes.faq, available: true },
     ],
   },
   {
     heading: "Voorbereiding",
     items: [
-      { key: "services", label: "Diensten", path: publicRoutes.services, available: false },
+      { key: "services", label: "Diensten", to: publicRoutes.services, available: true },
       { key: "aanvraaghulp", label: "Aanvraaghulp", path: publicRoutes.aanvraaghulp, available: false },
       {
         key: "documents",
         label: "Documentenlijsten",
-        path: publicRoutes.documents,
-        available: false,
+        to: publicRoutes.documents,
+        available: true,
       },
     ],
   },
@@ -103,8 +105,8 @@ export const footerNav: readonly {
 
 /** Legal links shown in the footer bottom bar. */
 export const legalNav: readonly PublicNavConfigItem[] = [
-  { key: "privacy", label: "Privacy", path: publicRoutes.privacy, available: false },
-  { key: "disclaimer", label: "Disclaimer", path: publicRoutes.disclaimer, available: false },
+  { key: "privacy", label: "Privacy", to: publicRoutes.privacy, available: true },
+  { key: "disclaimer", label: "Disclaimer", to: publicRoutes.disclaimer, available: true },
 ];
 
 export function availableItems(

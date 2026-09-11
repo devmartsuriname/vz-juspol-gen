@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LIVIZA_FAQ_HTML } from "@/lib/public/template/liviza-faq.html";
+import { publicHead } from "@/lib/public/seo";
 import {
   LivizaTemplatePage,
   livizaHead,
@@ -8,15 +9,10 @@ import {
 
 export const Route = createFileRoute("/veelgestelde-vragen")({
   head: () => ({
-    meta: [
-      { title: "Veelgestelde vragen — VZ Juspol Gen" },
-      { name: "description", content: "Visuele basis van de pagina met veelgestelde vragen. Goedgekeurde inhoud volgt." },
-      { name: "robots", content: "noindex, follow" },
-      { property: "og:title", content: "Veelgestelde vragen — VZ Juspol Gen" },
-      { property: "og:description", content: "Visuele basis van de pagina met veelgestelde vragen. Goedgekeurde inhoud volgt." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    ...publicHead(
+      "Veelgestelde vragen",
+      "Antwoorden op vragen over diensten en voorbereiding worden hier gepubliceerd.",
+    ),
     ...livizaHead(),
   }),
   component: Page,
