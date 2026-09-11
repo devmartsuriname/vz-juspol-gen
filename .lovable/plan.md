@@ -1,39 +1,75 @@
-## Goal
+# VZ Juspol Gen — Public Frontend Plan 001 (Plan Mode only)
 
-Bring back the Darkone auth login screen that was removed during cleanup, so `/admin` is preceded by a proper sign-in page (matching the Darkone demo). Then update the docs that reference the "clean state".
+Planning output only. No files change, no dependency is added, no Cloud/Database/backend/auth/GitHub/deployment is involved. Liviza is the approved visual reference; selected pages and sections are reconstructed, never imported.
 
-## Scope
+## 1. Verified current state
 
-Frontend/presentation only. No real auth logic — the form is a static Darkone-style page with a "Sign in" button that navigates to `/admin`. Backend/auth wiring is explicitly out of scope (workspace rule: no Cloud, no auth systems).
+Confirmed by reading the project and the supplied documents:
 
-## Changes
+- Routes present today: `/` (placeholder), `/admin` (layout), `/admin/`, `/admin/auth-signin`. No public portal routes exist yet.
+- `src/styles.css` is the placeholder Tailwind v4 + shadcn baseline; admin CSS is isolated via `src/routes/admin.tsx` and `public/admin/assets/**`.
+- `src/routes/__root.tsx` still carries the default "Lovable App" metadata and `lang="en"`.
+- The Liviza ZIP and all twelve governance documents are present as uploads; the selection matrix, component mapping, IA map, wizard model and asset register have been read.
+- No governed content records (identity, contact, services, documents, fees, FAQ, notices) exist anywhere in the project.
 
-1. **Recreate the Darkone auth-signin template**
-   - `src/lib/admin/pages/auth-signin.html` — the Darkone auth card markup (logo, email + password inputs, remember-me, "Sign In" button styled as `.btn-primary`, footer link). Asset URLs rewritten to `/admin/assets/...`. The `Sign In` button/link points to `/admin`.
-   - `src/lib/admin/pages/meta.ts` — add an `authSignin` entry (`title: "Sign in · Devmart Admin"`, `description`, `robots: noindex`).
+## 2. Baseline preparation (first executed batch, when released)
 
-2. **Add the route**
-   - `src/routes/admin/auth-signin.tsx` — uses `<AdminPage bodyHtml={...} bodyClass="authentication-bg" />` so the card centers exactly like the Darkone demo (this is the same pattern we validated earlier). `head()` sets title + `robots: noindex, nofollow`.
+Per the remix rule, before any public page is built:
 
-3. **Wire the landing CTA through auth**
-   - `src/routes/index.tsx` — change the "Open Devmart Admin" link's `to` from `/admin` to `/admin/auth-signin`. Copy stays the same.
+1. Replace `src/routes/index.tsx` with the VZ home route.
+2. Reduce `src/styles.css` to `@import "tailwindcss";` plus the approved VZ token block (no Liviza CSS, no Bootstrap, no icon fonts).
+3. Set `lang="nl"` and real default metadata in `src/routes/__root.tsx`.
+4. Add a typed, empty-by-default content-record layer under `src/content/` (identity, contact, services, categories, documents, faq, notices, wizard model). Every public block reads from it; a missing record renders a governed empty state, never invented text.
 
-4. **Sidebar/menu unchanged**
-   - The admin sidebar still shows only "Dashboard". Auth is reachable via the landing CTA and via direct URL; it is not a menu entry (matches Darkone, where auth pages live outside the app shell).
+`/admin/*`, `src/lib/admin/**` and `public/admin/assets/**` are never touched.
 
-5. **Docs refresh**
-   - `docs/DEVMART_ADMIN_PAGES.md` — add the `auth-signin` row to the page catalogue.
-   - `docs/DEVMART_ADMIN_MASTER_TASKS.md` — note that the auth-signin page is restored (kept as the single non-dashboard page, all other demo pages remain removed).
-   - `.agents/skills/devmart-admin/references/working-guide.md` — mention `auth-signin` as the reference example of a standalone (no sidebar/topbar) admin page using `bodyClass="authentication-bg"`.
-   - `docs/DEVMART_FRONTEND_REMIX_NOTE.md` — no change needed (auth-signin lives under `/admin/*` and is covered by existing CSS-isolation rules).
+## 3. Route set (mirrors the approved IA map)
 
-## Verification
+`/`, `/diensten`, `/diensten/$categorie`, `/diensten/$slug`, `/aanvraaghulp`, `/aanvraaghulp/$stap` (start, question, review, result), `/documentenlijsten`, `/documentenlijsten/$id`, `/instructies`, `/faq`, `/nieuws`, `/nieuws/$slug`, `/contact`, `/over-ons`, `/privacy`, `/disclaimer`, `/overzicht`, plus a custom Dutch 404.
 
-- `curl -sSL http://localhost:8080/admin/auth-signin` returns 200 and includes the `authentication-bg` class on `<body>` after mount.
-- `curl -sSL http://localhost:8080/` still shows zero references to `/admin/assets/*` (isolation intact).
-- Visual smoke via preview: card is centered, logo shows, no console errors, Sign In button navigates to `/admin`.
+Each leaf route gets its own `head()` with unique Dutch title, description and OG text. Every referenced route file is created in the same batch as the link that points to it.
 
-## Out of scope
+## 4. Build batches (each needs its own release)
 
-- Real authentication (no Cloud, no session, no form submission handling).
-- Signup / password-reset / lock-screen pages (can be re-added later per the same pattern if needed).
+| Batch | Scope | Liviza reference |
+|---|---|---|
+| B1 | Tokens, `styles.css`, root metadata, content-record layer | `index.html` rhythm and spacing only |
+| B2 | `PublicHeader`, `MobileNavigation`, `PublicFooter`, `Breadcrumbs`, `PageTitle` | header/footer REBUILT, not copied |
+| B3 | `/` home: hero, quick links, static service grid, guidance entry card, notices block | `index.html` ADAPT sections only |
+| B4 | `/diensten`, `/diensten/$categorie`, `/diensten/$slug` with the twelve required service blocks | `our-services.html`, `visa.html`, `visa-details.html` |
+| B5 | `/aanvraaghulp` wizard shell, question, review, result, print view | `#assessment-cta` REBUILD |
+| B6 | `/documentenlijsten`(+detail), `/instructies`, `/faq` | `faq.html` accordion rhythm |
+| B7 | `/nieuws`, `/nieuws/$slug`, dated empty state | `blog-grid-view.html`, `blog-single-view.html` |
+| B8 | `/contact`, `/over-ons`, `/privacy`, `/disclaimer`, `/overzicht`, 404 | `contacts.html`, `about-us.html` (composition only) |
+| B9 | SEO/GSO pass: canonicals, sitemap, `robots.txt`, `llms.txt`, JSON-LD, accessibility sweep | — |
+
+Rejected throughout: coaching, countries, team, testimonials, counters, newsletter, comments, sharing, lead capture, contact forms, map runtimes, downloads, analytics or any third-party tag.
+
+## 5. Technical notes
+
+- TanStack Start file routes, React 19, Tailwind v4 tokens in `src/styles.css` under `@theme`. Radix/shadcn primitives already in the project are used for the accordion and disclosure patterns; no new dependency is proposed.
+- Bootstrap, jQuery, Swiper, Slider Revolution, AOS, Magnific Popup, PHP and PHPMailer are inspected only and rebuilt as plain React and CSS.
+- The wizard is client-state only: labelled radio groups, keyboard operable, announced progress, back/change links, no free text, no personal data, no network call, no storage beyond in-memory session state.
+- Content is static typed data; TanStack Query stays unused until a separately approved data contract exists.
+- Liviza demo images are not shipped. Any temporary in-development image is marked `TEMPORARY TEMPLATE PLACEHOLDER — REPLACE BEFORE HANDOVER`; the ZIP is never committed or exposed publicly.
+- Verification per batch: `curl -s http://localhost:8080/ | grep -c admin/assets` → 0, `/admin` still 200, build log clean, keyboard and 320px checks, screenshots.
+
+## 6. Content blockers (execution cannot fully complete without these)
+
+1. Institutional identity: official department name, Dutch short name, logo file and usage approval.
+2. Contact record: address, hours, phone, e-mail, location description — one governed source.
+3. Service catalogue: category and service records with official names, legal basis, steps, requirements, fees, processing times.
+4. Document lists and form metadata.
+5. Approved FAQ answers with per-answer provenance.
+6. News and notices: publication authority plus initial items (a dated empty state is acceptable at launch).
+7. Approved `Privacy`, `Disclaimer` and `Over ons` texts.
+8. Wizard decision model final mapping from branch to exact service.
+9. Image provenance and four-part approval for any non-text asset.
+
+Until each is supplied, the corresponding block ships as a governed empty state — no value is invented.
+
+## 7. Verdict
+
+**PLAN COMPLETE WITH CONTENT BLOCKERS**
+
+No implementation follows this plan. Each batch in section 4 requires a separate explicit release.
