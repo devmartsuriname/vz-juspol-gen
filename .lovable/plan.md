@@ -392,7 +392,24 @@ Executor: LOVABLE. Validator: ACT-CODEX (technical) / ACT-CHATGPT (governance). 
 | LFB-110 | QA | Placeholder removal + handover check | asset register | all | asset paths only | handover gate | zero-placeholder proof | PLANNED / NOT RELEASED |
 | LFB-111 | GOV | Governed document retention (see §12.1) | the exact 13 approved Markdown inputs | separate Delroy release **and** a supported, safe upload method | `docs/vz-juspol-gen/governance-inputs/` only | Delroy retention release | filename + SHA-256 + byte-size manifest, byte-identical verification, README present | PLANNED / NOT RELEASED — currently BLOCKED (no verified safe upload path) |
 
+### 12.1 LFB-111 — governed document retention (PLANNED / NOT RELEASED, currently BLOCKED)
+
+Purpose: durable, private retention of the governed inputs. The current uploaded copies live in a temporary session upload area and are **not** durable storage; nothing is retained today.
+
+Preconditions (all required, none met): a separate explicit Delroy release for this task, and a supported upload method that can place the files in the repository without exposing them publicly. Agent execution is **not** coupled to the upload — the files being uploaded does not authorise this task.
+
+Scope when released:
+- Store exactly the 13 approved Markdown inputs — no more, no fewer — under a private, isolated documentation location such as `docs/vz-juspol-gen/governance-inputs/`.
+- Preserve contents **byte-identically**; no reformatting, renaming, translation, summarising or normalisation.
+- Record for each file: exact filename, SHA-256, byte size, and the date of retention, in a manifest stored alongside them.
+- Add a `README.md` in that directory stating that these are governed reference inputs, that they are not application content, and stating the Source-of-Truth precedence order that applies to them.
+
+Prohibited in this task: any application import of these files; any public serving, route, sitemap, `llms.txt` or asset exposure; storing the Liviza ZIP or any part of the purchased package; storing purchase evidence, licence keys, invoices or personal data; overwriting any existing file; any coupling of agent execution to the act of uploading.
+
+Blocked status: as planned today, there is no verified safe method available to place these files into the repository under the current constraints. This task therefore stays **BLOCKED** and must not be attempted until both preconditions are satisfied and the method is confirmed safe.
+
 ---
+
 
 ## 13. Risk and decisions
 
@@ -414,7 +431,7 @@ Executor: LOVABLE. Validator: ACT-CODEX (technical) / ACT-CHATGPT (governance). 
 
 ## 14. Plan-mode integrity
 
-Commit history: `f56782e` (Remixed with public template) → `1602291` → `b590d02` (Update plan). Both commits after `f56782e` touch **only `.lovable/plan.md`** (`git show --stat` reports `1 file changed` on each), and `git status` is clean. The change is the Plan 001 write and its revision — an artefact of plan authoring, which is the one file Plan Mode may write. No application file, no `/admin/*` path, no dependency and no configuration was modified. This v0.2 replaces `.lovable/plan.md` again and changes nothing else.
+Commit history: `f56782e` (Remixed with public template) → `1602291` → `b590d02` (Update plan). Both commits after `f56782e` touch **only `.lovable/plan.md`** (`git show --stat` reports `1 file changed` on each), and `git status` is clean. Those commits are plan-authoring artefacts — `.lovable/plan.md` is the one file Plan Mode may write. No application file, no `/admin/*` path, no dependency and no configuration was modified. This v0.3 revises `.lovable/plan.md` only: the archive was read in place with `unzip -p`, never extracted, never copied into the project, never committed; an attempted extraction to a temporary path was refused by Plan Mode and abandoned.
 
 ---
 
