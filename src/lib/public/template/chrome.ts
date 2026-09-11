@@ -227,8 +227,8 @@ export function footer(): string {
 							<div class="col-md-6 col-lg-4">
 								<div class="widget">
 									<div class="textwidget">
-										<p style="margin-bottom:6px;font-size:22px;font-weight:700;color:#ffffff;">${identity.name}</p>
-										<p style="margin-bottom:18px;">${identity.subline}</p>
+										<p class="vz-footer-name">${identity.name}</p>
+										<p class="vz-footer-sub">${identity.subline}</p>
 										<p>Informatie over diensten, documenten en voorbereiding. U dient via deze website niets in.</p>
 									</div>
 								</div>
