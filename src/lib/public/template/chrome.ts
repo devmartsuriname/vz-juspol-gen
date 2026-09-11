@@ -43,8 +43,8 @@ function navItems(active: string): string {
     )
     .join("\n\t\t\t\t\t\t\t\t\t\t\t\t");
 
-  const item = (href: string, label: string) =>
-    `<li class="${active === href ? "active" : ""}"><a href="${href}">${label}</a></li>`;
+  const item = (href: string, label: string, extra = "") =>
+    `<li class="${[active === href ? "active" : "", extra].filter(Boolean).join(" ")}"><a href="${href}">${label}</a></li>`;
 
   return `
 													<ul class="navigation clearfix">
@@ -59,7 +59,7 @@ function navItems(active: string): string {
 														${item("/aanvraaghulp", "Aanvraaghulp")}
 														${item("/documentenlijsten", "Documentenlijsten")}
 														${item("/nieuws", "Nieuws")}
-														${item("/contact", "Contact")}
+														${item("/contact", "Contact", "vz-nav-contact")}
 													</ul>`;
 }
 
@@ -91,6 +91,11 @@ function headerTop(active: string): string {
 									<li>
 										<i class="pbmit-base-icon-clock"></i>
 										<span>Openingstijden: </span>${identity.hours}
+									</li>
+									<li class="pbmit-header-button vz-header-cta">
+										<a class="pbmit-btn" href="/contact">
+											<span>Contact</span>
+										</a>
 									</li>
 								</ul>
 							</div>
@@ -219,15 +224,26 @@ function heroSlide(slide: HeroSlide): string {
 
 /**
  * Home header including the hero area. Three governed slides on the original
- * Liviza slider geometry. Autoplay stays off so the carousel never moves
- * without user action; dots and arrows provide pointer and keyboard control.
+ * Liviza slider geometry (LFB-104 REMEDIATION 001).
+ *
+ * No visible slider controls: dots and arrows are off and autoplay stays off.
+ * The carousel is drag/swipe operable and additionally exposes visually hidden
+ * but focusable previous/next buttons plus a polite "Dia X van 3" status, so
+ * every slide and CTA stays keyboard reachable.
  */
 export function homeHeader(): string {
   return `${headerTop("/")}
 			<div class="pbmit-slider-area pbmit-slider-one">
-				<div class="swiper-slider" data-autoplay="false" data-loop="true" data-dots="true" data-arrows="true" data-columns="1" data-margin="0" data-effect="fade" aria-roledescription="carrousel" aria-label="Uitgelichte informatie">
-					<div class="swiper-wrapper">
+				<div class="vz-hero-carousel">
+					<div class="swiper-slider" data-autoplay="false" data-loop="false" data-dots="false" data-arrows="false" data-columns="1" data-margin="0" data-effect="fade" aria-roledescription="carrousel" aria-label="Uitgelichte informatie">
+						<div class="swiper-wrapper">
 ${heroSlides.map(heroSlide).join("\n")}
+						</div>
+					</div>
+					<div class="vz-hero-controls">
+						<button type="button" class="vz-sr-button" data-vz-hero="prev">Vorige dia</button>
+						<button type="button" class="vz-sr-button" data-vz-hero="next">Volgende dia</button>
+						<p class="vz-sr-status" data-vz-hero-status role="status" aria-live="polite">Dia 1 van ${heroSlides.length}</p>
 					</div>
 				</div>
 			</div>

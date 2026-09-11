@@ -54,22 +54,22 @@ Approved visual source: the homepage services band
 Fix (CSS-only, no markup duplication), in `vz-polish.css`:
 
 - `.pbmit-title-bar-wrapper` → `background-color: var(--pbmit-blackish-color)`,
-  `background-image: none` (drop the SVG entirely).
+`background-image: none` (drop the SVG entirely).
 - Add the two Liviza corner patterns as the only decoration, using the existing
-  ported source assets
-  `/vz-public/liviza/assets/images/homepage-1/bg/bg-pattarn.png` (bottom-right) and
-  `bg-pattarn-left.png` (top-left), via two multiple-background layers on the
-  wrapper (not new pseudo-elements — `:before` is already used and must remain the
-  click-through overlay from POLISH-001-CORRECTION).
+ported source assets
+`/vz-public/liviza/assets/images/homepage-1/bg/bg-pattarn.png` (bottom-right) and
+`bg-pattarn-left.png` (top-left), via two multiple-background layers on the
+wrapper (not new pseudo-elements — `:before` is already used and must remain the
+click-through overlay from POLISH-001-CORRECTION).
 - Keep the existing `pointer-events:none` and `position:relative` containment rules.
 - Overlay `:before` becomes a flat, very light darkening only
-  (`rgba(8,20,40,0.25)`) — no gradient wedge, so the navigation zone is dark by base
-  colour rather than by illustration.
+(`rgba(8,20,40,0.25)`) — no gradient wedge, so the navigation zone is dark by base
+colour rather than by illustration.
 - Title, breadcrumb and header menu stay `#ffffff`; breadcrumb separators/inactive
-  links may use `#9faebe` to match the services band.
+links may use `#9faebe` to match the services band.
 - Keep the existing long-title wrapping rules (`overflow-wrap`, `word-break`).
 - Below 992px, hide the two corner patterns (they are 448px tall fixed art) so the
-  mobile page-top is a clean blackish field.
+mobile page-top is a clean blackish field.
 
 Contrast gate: measured white-on-base contrast must be ≥ 7:1 for the h1 and ≥ 4.5:1
 for breadcrumb/menu text at every tested viewport, sampled at the darkest and
@@ -107,19 +107,19 @@ Fix, binding solution:
 
 - Remove the `Contact` item from `navItems()` (6 items remain).
 - Restore the original Liviza top-right CTA slot inside `.pbmit-right-side`,
-  after the phone block, using the source markup
-  `<div class="pbmit-header-button"><a class="pbmit-btn" href="/contact">…</a></div>`
-  — styled by the existing `shortcode.css:1387-1396` rules
-  (`padding:0 40px 0 30px; height:64px`), so it is the original slot, not a new one.
+after the phone block, using the source markup
+`<div class="pbmit-header-button"><a class="pbmit-btn" href="/contact">…</a></div>`
+— styled by the existing `shortcode.css:1387-1396` rules
+(`padding:0 40px 0 30px; height:64px`), so it is the original slot, not a new one.
 - CTA label: `Contact`, target `/contact`, `aria-current` handled by the active
-  class logic.
+class logic.
 - `Aanvraaghulp` stays an ordinary menu item.
 - Mobile: `.pbmit-header-button` is hidden in the Liviza mobile header, so the
-  mobile menu must gain exactly one `Contact` entry. Implementation: keep the
-  Contact `<li>` in the navigation list but hide it at `xl` and up via
-  `vz-polish.css` (`@media (min-width:1200px){ .main-menu li.vz-nav-contact{display:none} }`),
-  and hide `.pbmit-header-button` below 1200px. Contact then appears exactly once at
-  every viewport and never disappears.
+mobile menu must gain exactly one `Contact` entry. Implementation: keep the
+Contact `<li>` in the navigation list but hide it at `xl` and up via
+`vz-polish.css` (`@media (min-width:1200px){ .main-menu li.vz-nav-contact{display:none} }`),
+and hide `.pbmit-header-button` below 1200px. Contact then appears exactly once at
+every viewport and never disappears.
 - Phone/"Heeft u vragen?" block and all mobile toggle behaviour unchanged.
 
 ### E. Category page sidebar
@@ -142,13 +142,15 @@ separately confirms all 15 `/diensten/$categorie/$slug` routes are sidebar-free.
 
 ## 2. Exact files and selectors
 
-| File | Change |
-|---|---|
-| `public/vz-public/css/vz-polish.css` | remove footer-pattern rule; replace page-top block with blackish + two Liviza corner patterns + flat overlay + <992px simplification; add hero control hide rules; add nav Contact visibility media queries |
-| `src/lib/public/template/chrome.ts` | hero `data-dots/arrows/loop=false`; remove Contact from desktop nav ordering (class `vz-nav-contact`); add `pbmit-header-button` CTA in `.pbmit-right-side`; hero live-region span |
-| `public/vz-public/js/vz-polish.js` | add hero `slideChange` → update visually hidden "Dia X van 3" status |
-| `src/lib/public/template/liviza-category.html.ts` | remove right sidebar, `col-12` content, `col-md-6 col-lg-4` cards |
-| `docs/vz-juspol-gen/execution-evidence/LFB-104-REMEDIATION-001/**` | REPORT.md, MANIFEST.md, `screenshots/` with route/viewport index |
+
+| File                                                               | Change                                                                                                                                                                                                      |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/vz-public/css/vz-polish.css`                               | remove footer-pattern rule; replace page-top block with blackish + two Liviza corner patterns + flat overlay + <992px simplification; add hero control hide rules; add nav Contact visibility media queries |
+| `src/lib/public/template/chrome.ts`                                | hero `data-dots/arrows/loop=false`; remove Contact from desktop nav ordering (class `vz-nav-contact`); add `pbmit-header-button` CTA in `.pbmit-right-side`; hero live-region span                          |
+| `public/vz-public/js/vz-polish.js`                                 | add hero `slideChange` → update visually hidden "Dia X van 3" status                                                                                                                                        |
+| `src/lib/public/template/liviza-category.html.ts`                  | remove right sidebar, `col-12` content, `col-md-6 col-lg-4` cards                                                                                                                                           |
+| `docs/vz-juspol-gen/execution-evidence/LFB-104-REMEDIATION-001/**` | REPORT.md, MANIFEST.md, `screenshots/` with route/viewport index                                                                                                                                            |
+
 
 No other file is touched. `vz-page-top.svg` and `vz-footer-pattern.svg` remain on
 disk but unreferenced (recorded as retired).
@@ -157,13 +159,15 @@ disk but unreferenced (recorded as retired).
 
 ## 3. Before / after behaviour
 
-| Area | Before | After |
-|---|---|---|
-| Footer | two stacked patterns | original Liviza `:before` pattern only, content identical |
-| Page-top | busy multi-facet illustration, light wedge behind menu | calm blackish field with the two restrained Liviza corner patterns; white title/breadcrumb/menu |
-| Hero | 3 slides + arrows (X glyphs) + dots, loop duplicates | 3 slides, no visible controls, no autoplay, drag/swipe + SR status |
-| Header | 7 items, Contact wraps to 2nd line | 6 items + top-right `Contact` CTA in the original Liviza slot; Contact once on mobile |
-| Category pages | content + right sidebar, 2 cards/row | full-width 3 cards/row, no sidebar |
+
+| Area           | Before                                                 | After                                                                                           |
+| -------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| Footer         | two stacked patterns                                   | original Liviza `:before` pattern only, content identical                                       |
+| Page-top       | busy multi-facet illustration, light wedge behind menu | calm blackish field with the two restrained Liviza corner patterns; white title/breadcrumb/menu |
+| Hero           | 3 slides + arrows (X glyphs) + dots, loop duplicates   | 3 slides, no visible controls, no autoplay, drag/swipe + SR status                              |
+| Header         | 7 items, Contact wraps to 2nd line                     | 6 items + top-right `Contact` CTA in the original Liviza slot; Contact once on mobile           |
+| Category pages | content + right sidebar, 2 cards/row                   | full-width 3 cards/row, no sidebar                                                              |
+
 
 ---
 
@@ -213,16 +217,16 @@ inside the listed files; or any scope expansion beyond A–E plus the audit.
 ## 6. Disclosures
 
 - Weak assumption: that hiding the header CTA below 1200px and the nav Contact item
-  above 1200px lands exactly on the Liviza mobile-menu breakpoint
-  (`navbar-expand-xl`). If the ported responsive CSS switches at a different width,
-  the media-query value is adjusted during execution and reported.
+above 1200px lands exactly on the Liviza mobile-menu breakpoint
+(`navbar-expand-xl`). If the ported responsive CSS switches at a different width,
+the media-query value is adjusted during execution and reported.
 - Missing constraint: no approved rule states whether the category pages may keep a
-  visible category switcher elsewhere on the page after the sidebar is removed. This
-  plan relies on the header dropdown and footer only.
+visible category switcher elsewhere on the page after the sidebar is removed. This
+plan relies on the header dropdown and footer only.
 - Material failure risk: the page-top rebuild uses Liviza raster corner patterns
-  designed for a 448px-tall band inside a 650px slot; at wide viewports they may
-  read as too small or mis-anchored, requiring one bounded CSS position/size
-  correction round after visual review.
+designed for a 448px-tall band inside a 650px slot; at wide viewports they may
+read as too small or mis-anchored, requiring one bounded CSS position/size
+correction round after visual review.
 
 ---
 
@@ -243,4 +247,77 @@ inside the listed files; or any scope expansion beyond A–E plus the audit.
 
 ---
 
+Note:APPROVED WITH BINDING FINAL CORRECTIONS
+
+Ik, Delroy, keur LFB-104 Visual Remediation Plan 001 goed en release één bounded Build Mode-remediation, uitsluitend met deze bindende correcties:
+
+1. CONTACT CTA — JUISTE LIVIZA-POSITIE
+
+De Contact-CTA mag NIET naast het telefoonblok in de hoofdheader worden geplaatst.
+
+Herstel de oorspronkelijke blauwe “Book A Consultation”-positie rechts in de bovenste pre-header/contactbalk.
+
+- Label: Contact
+
+- Route: /contact
+
+- Aanvraaghulp blijft een gewoon hoofdmenu-item.
+
+- Contact wordt uit het gewone desktopmenu verwijderd.
+
+- Op mobiel blijft Contact exact één keer bereikbaar via het mobiele menu wanneer de pre-header-CTA daar verborgen is.
+
+- Controleer dat adres, telefoon, openingstijden en Contact-CTA niet overlappen of afbreken.
+
+2. HERO — GEEN ZICHTBARE CONTROLS, WEL TOEGANKELIJK
+
+Verwijder alle zichtbare sliderpijlen/kruisjes en pagination dots.
+
+- Autoplay blijft uit.
+
+- Swipe en mouse-drag blijven toegestaan.
+
+- Voeg visueel verborgen maar focusbare Previous/Next-bediening met duidelijke screenreader-labels toe, of een gelijkwaardige keyboardbediening.
+
+- Alle drie slides en hun CTA’s moeten bewust via toetsenbord bereikbaar zijn.
+
+- Behoud “Dia X van 3” als toegankelijke live-status.
+
+- Geen zichtbare bediening mag opnieuw over de hero verschijnen.
+
+3. VISUELE EVIDENCE — BEGRENDSD
+
+Test alle routes programmatisch op alle zeven vastgelegde viewports.
+
+Bewaar duurzaam:
+
+- 1440- en 375-screenshots voor alle zes categoriepagina’s en alle 15 dienstendetailpagina’s;
+
+- desktop/mobile screenshots van iedere overige unieke layoutfamilie;
+
+- Aanvraaghulp stappen 1, 2 en representatieve resultaten;
+
+- extra viewports alleen bij afwijkingen of shared responsive checks.
+
+Maak geen onnodige 224 losse screenshots. Noteer screenshot-aantal en totale bytes in het manifest.
+
+4. OVERIGE BINDENDE CORRECTIES
+
+- Verwijder de sidebar van alle zes categoriepagina’s.
+
+- Alle 15 dienstendetailpagina’s blijven sidebar-vrij.
+
+- Gebruik voor page-tops de rustige donkere Liviza-stijl van de homepage-Dienstensectie.
+
+- Verwijder uitsluitend de extra nieuwe footerachtergrond die met het oorspronkelijke Liviza-footerpatroon stapelt.
+
+- Geen nieuwe images, content, backend, database, PDF-, admin- of publicatiewijzigingen.
+
+Rollbackpunt:
+
+bfabff6d291ba15ce62b3000e343b896d1b8ec74
+
+Stop na uitvoering, tests, [REPORT.md](http://REPORT.md), [MANIFEST.md](http://MANIFEST.md) en duurzame screenshots. Geen automatische vervolgtaak of publicatie.  
+  
+  
 REMEDIATION PLAN COMPLETE — AWAITING DELROY APPROVAL
