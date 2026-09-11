@@ -7,7 +7,7 @@
 import { categories, servicesInCategory } from "@/content/vz-content";
 
 import {
-  ASSETS,
+  categoryImage,
   contentClose,
   contentOpen,
   footer,
@@ -20,13 +20,13 @@ const icons = ["passport", "suitcase", "student", "open-book", "test", "placehol
 const cards = categories
   .map((category, index) => {
     const count = servicesInCategory(category.slug).length;
-    const image = `service-0${(index % 3) + 1}.jpg`;
+    const image = categoryImage[category.slug];
     return `						<div class="col-md-6 col-lg-4">
 							<article class="pbminfotech-servicebox-style-2">
 								<div class="pbminfotech-post-item">
 									<span class="pbminfotech-item-thumbnail">
 										<span class="pbminfotech-item-thumbnail-inner">
-											<img src="${ASSETS}/images/homepage-1/service/${image}" class="img-fluid" alt="">
+											<img src="${image}" class="img-fluid" width="800" height="535" loading="lazy" alt="">
 										</span>
 									</span>
 									<div class="pbminfotech-box-content">

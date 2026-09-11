@@ -11,7 +11,7 @@
 import { STAKEHOLDER_VERIFY_NOTE, stakeholders } from "@/content/vz-content";
 
 import {
-  ASSETS,
+  stakeholderImages,
   contentClose,
   contentOpen,
   footer,
@@ -25,7 +25,7 @@ const cards = stakeholders
 							<article class="pbminfotech-portfoliobox-style-2">
 								<div class="pbminfotech-post-item">
 									<div class="pbminfotech-featured-wrapper pbminfotech-pbminfotech-portfolio-featured-wrapper">
-										<img src="${ASSETS}/images/homepage-1/portfolio/portfolio-0${(index % 4) + 1}.jpg" class="img-fluid" alt="">
+										<img src="${stakeholderImages[index % stakeholderImages.length]}" class="img-fluid" width="800" height="650" loading="lazy" alt="">
 									</div>
 									<div class="pbminfotech-box-content">
 										<div class="pbminfotech-box-content-inner">

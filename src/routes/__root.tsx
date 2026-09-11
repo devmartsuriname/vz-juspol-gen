@@ -92,13 +92,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "nl_NL" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#0b1e3b" },
     ],
     links: [
       // Tailwind preflight resets <header>, <ul>, etc. and breaks the ported
       // Bootstrap-based public template (LFB-103A). The global stylesheet stays
       // in the project and can be re-linked per route once needed.
       // { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "64x64" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     ],
   }),
   shellComponent: RootShell,

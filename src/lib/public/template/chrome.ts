@@ -12,6 +12,29 @@ import { categories, identity } from "@/content/vz-content";
 
 export const ASSETS = "/vz-public/liviza/assets";
 
+/** Root of the VZ-owned generated imagery (LFB-104). */
+export const VZ_IMAGES = "/vz-public/images";
+
+/** Category card imagery, one distinct 800x535 WebP per governed category. */
+export const categoryImage: Record<string, string> = {
+  verblijf: `${VZ_IMAGES}/category/verblijf.webp`,
+  vestiging: `${VZ_IMAGES}/category/vestiging.webp`,
+  naturalisatie: `${VZ_IMAGES}/category/naturalisatie.webp`,
+  ingezetenschap: `${VZ_IMAGES}/category/ingezetenschap.webp`,
+  asiel: `${VZ_IMAGES}/category/asiel.webp`,
+  overig: `${VZ_IMAGES}/category/overig.webp`,
+};
+
+/** Stakeholder card imagery, one distinct 800x650 WebP per governed entry. */
+export const stakeholderImages: readonly string[] = [
+  `${VZ_IMAGES}/instantie/vreemdelingendienst.webp`,
+  `${VZ_IMAGES}/instantie/immigratiedienst.webp`,
+  `${VZ_IMAGES}/instantie/werkvergunningen.webp`,
+  `${VZ_IMAGES}/instantie/consulaire-zaken.webp`,
+  `${VZ_IMAGES}/instantie/burgerzaken.webp`,
+  `${VZ_IMAGES}/instantie/bedrijfsvergunningen.webp`,
+];
+
 function navItems(active: string): string {
   const categoryItems = categories
     .map(
@@ -33,6 +56,7 @@ function navItems(active: string): string {
 																${categoryItems}
 															</ul>
 														</li>
+														${item("/aanvraaghulp", "Aanvraaghulp")}
 														${item("/documentenlijsten", "Documentenlijsten")}
 														${item("/nieuws", "Nieuws")}
 														${item("/contact", "Contact")}
@@ -130,30 +154,58 @@ export function header(active: string): string {
 `;
 }
 
-/**
- * Home header including the hero area. One static composition is used instead
- * of the three-slide autoplay carousel — documented accessibility deviation.
- * TEMPORARY TEMPLATE PLACEHOLDER — REPLACE BEFORE HANDOVER (hero image).
- */
-export function homeHeader(): string {
-  return `${headerTop("/")}
-			<div class="pbmit-slider-area pbmit-slider-one">
-				<div class="swiper-slider" data-autoplay="false" data-loop="false" data-dots="false" data-arrows="false" data-columns="1" data-margin="0" data-effect="fade">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide">
+type HeroSlide = {
+  readonly slot: string;
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly lead: string;
+  readonly ctaHref: string;
+  readonly ctaLabel: string;
+};
+
+/** Three governed hero slides on the Liviza `pbmit-slider-one` geometry. */
+const heroSlides: readonly HeroSlide[] = [
+  {
+    slot: "vz-hero-slide-1",
+    eyebrow: "Informatie en voorbereiding",
+    title: "Voorbereid naar <span>Vreemdelingenzaken</span>",
+    lead: "Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.",
+    ctaHref: "/diensten",
+    ctaLabel: "Bekijk diensten",
+  },
+  {
+    slot: "vz-hero-slide-2",
+    eyebrow: "Documenten",
+    title: "Weet welke <span>documenten</span> u nodig heeft",
+    lead: "Open de officiële documentenlijsten per dienst voordat u naar het kantoor gaat.",
+    ctaHref: "/documentenlijsten",
+    ctaLabel: "Documentenlijsten",
+  },
+  {
+    slot: "vz-hero-slide-3",
+    eyebrow: "Aanvraaghulp",
+    title: "Bepaal uw <span>voorbereiding</span> stap voor stap",
+    lead: "Beantwoord enkele vragen en zie welke dienst en documenten bij uw situatie horen.",
+    ctaHref: "/aanvraaghulp",
+    ctaLabel: "Naar aanvraaghulp",
+  },
+];
+
+function heroSlide(slide: HeroSlide): string {
+  return `						<div class="swiper-slide">
 							<div class="pbmit-slider-item">
-								<div class="pbmit-slider-bg" style="background-image: url(${ASSETS}/images/banner-slider-img/slider-01-a.jpg);"></div>
+								<div class="pbmit-slider-bg ${slide.slot}"></div>
 								<div class="container">
 									<div class="row">
 										<div class="col-md-7">
 											<div class="pbmit-slider-content">
-												<h5 class="pbmit-sub-title">Informatie en voorbereiding</h5>
-												<h2 class="pbmit-title">Voorbereid naar <span>Vreemdelingenzaken</span></h2>
-												<p class="vz-hero-lead">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
+												<h5 class="pbmit-sub-title">${slide.eyebrow}</h5>
+												<h2 class="pbmit-title">${slide.title}</h2>
+												<p class="vz-hero-lead">${slide.lead}</p>
 												<div class="pbmit-button">
-													<a class="pbmit-button" href="/diensten">
+													<a class="pbmit-button" href="${slide.ctaHref}">
 														<span class="pbmit-icon"><i class="fa fa-angle-right"></i></span>
-														<span class="pbmit-text">Bekijk diensten</span>
+														<span class="pbmit-text">${slide.ctaLabel}</span>
 													</a>
 												</div>
 											</div>
@@ -162,7 +214,20 @@ export function homeHeader(): string {
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>`;
+}
+
+/**
+ * Home header including the hero area. Three governed slides on the original
+ * Liviza slider geometry. Autoplay stays off so the carousel never moves
+ * without user action; dots and arrows provide pointer and keyboard control.
+ */
+export function homeHeader(): string {
+  return `${headerTop("/")}
+			<div class="pbmit-slider-area pbmit-slider-one">
+				<div class="swiper-slider" data-autoplay="false" data-loop="true" data-dots="true" data-arrows="true" data-columns="1" data-margin="0" data-effect="fade" aria-roledescription="carrousel" aria-label="Uitgelichte informatie">
+					<div class="swiper-wrapper">
+${heroSlides.map(heroSlide).join("\n")}
 					</div>
 				</div>
 			</div>
@@ -240,6 +305,7 @@ export function footer(): string {
 										<ul>
 											<li><a href="/over-ons">Over ons</a></li>
 											<li><a href="/diensten">Diensten</a></li>
+											<li><a href="/aanvraaghulp">Aanvraaghulp</a></li>
 											<li><a href="/documentenlijsten">Documenten&shy;lijsten</a></li>
 											<li><a href="/veelgestelde-vragen">Vragen</a></li>
 											<li><a href="/nieuws">Nieuws</a></li>

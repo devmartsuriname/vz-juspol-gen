@@ -4,18 +4,19 @@
  * Structure, class names and nesting are the ported Liviza `index.html`
  * geometry from LFB-103A. Content is governed VZ content. Testimonials,
  * counters, newsletter, social links, country sales blocks and commercial
- * claims are removed. Images remain Liviza demo assets:
- * TEMPORARY TEMPLATE PLACEHOLDER — REPLACE BEFORE HANDOVER.
+ * claims are removed. Imagery is VZ-owned neutral illustration (LFB-104) in
+ * the original Liviza slots and aspect ratios.
  */
 
 import { services, stakeholders } from "@/content/vz-content";
 
 import {
-  ASSETS,
+  VZ_IMAGES,
   contentClose,
   contentOpen,
   footer,
   homeHeader,
+  stakeholderImages,
 } from "./chrome";
 
 const serviceIcons = [
@@ -70,7 +71,7 @@ const stakeholderSlides = stakeholders
 								<article class="pbminfotech-portfoliobox-style-2">
 									<div class="pbminfotech-post-item">
 										<div class="pbminfotech-featured-wrapper pbminfotech-pbminfotech-portfolio-featured-wrapper">
-											<img src="${ASSETS}/images/homepage-1/portfolio/portfolio-0${(index % 4) + 1}.jpg" class="img-fluid" alt="">
+											<img src="${stakeholderImages[index % stakeholderImages.length]}" class="img-fluid" width="800" height="650" loading="lazy" alt="">
 										</div>
 										<div class="pbminfotech-box-content">
 											<div class="pbminfotech-box-content-inner">
@@ -208,10 +209,11 @@ ${contentOpen("demo-one")}
 						<div class="col-md-12 col-lg-6">
 							<div class="about-one-left">
 								<div class="about-img-one">
-									<img src="${ASSETS}/images/homepage-1/img-01.jpg" class="img-fluid" alt="">
+									<img src="${VZ_IMAGES}/home/vz-home-01.webp" class="img-fluid" width="470" height="470" loading="lazy" alt="">
 								</div>
 								<div class="about-img-two">
-									<img src="${ASSETS}/images/homepage-1/img-02.jpg" class="img-fluid" alt="">
+									<img src="${VZ_IMAGES}/home/vz-home-02.webp" class="img-fluid" width="370" height="275" loading="lazy" alt="">
+
 								</div>
 								<div class="about-one-iconbox">
 									<div class="about-one-icon">
