@@ -326,3 +326,26 @@
 		line-height: 42px;
 	}
 }
+
+/* Wizard choice cards have no thumbnail, so the overlapping Liviza icon
+   needs room inside the card instead of hanging above it. */
+.vz-wizard-choice .pbminfotech-box-content {
+	padding-top: 45px;
+}
+.vz-wizard-choice .pbmit-ihbox-icon {
+	position: static;
+	margin: 0 auto 20px;
+}
+/* Step announcements are for assistive technology; the visible step label is
+   already in the heading block. */
+.vz-wizard-live {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
