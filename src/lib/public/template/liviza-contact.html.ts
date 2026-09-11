@@ -1,7 +1,8 @@
 /**
  * /contact — governed content on ported Liviza `contacts.html` geometry.
- * The PHP contact form and the third-party map embed are removed; the block
- * dimensions are preserved by a static "Hoe u ons bereikt" panel.
+ * The PHP contact form and the third-party map embed are removed; the
+ * information-box pattern of the source carries address, phone, e-mail,
+ * opening hours and visit guidance (LFB-103D POLISH 001).
  */
 
 import { identity } from "@/content/vz-content";
@@ -53,29 +54,10 @@ ${infoCard("placeholder", "Adres", `${identity.unit}<br>${identity.address}`)}
 ${infoCard("call", "Telefoon", identity.phone)}
 ${infoCard("envelope", "E-mail", identity.email)}
 					</div>
-				</div>
-			</section>
-
-			<section>
-				<div class="container">
-					<div class="contact-us-section">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="pbmit-heading-subheading">
-									<h4 class="pbmit-subtitle">Openingstijden</h4>
-									<h2 class="pbmit-title">Wanneer u <em>terechtkunt</em></h2>
-								</div>
-								<p>${identity.hours}<br>${identity.hoursClosed}</p>
-							</div>
-							<div class="col-md-6">
-								<div class="pbmit-heading-subheading">
-									<h4 class="pbmit-subtitle">Bezoek</h4>
-									<h2 class="pbmit-title">Hoe u ons <em>bereikt</em></h2>
-								</div>
-								<p>${identity.unit}<br>${identity.address}</p>
-								<p>Neem telefonisch of per e-mail contact op. Via deze website worden geen persoonsgegevens verzonden en kunt u geen aanvraag indienen.</p>
-							</div>
-						</div>
+					<div class="row">
+${infoCard("test", "Openingstijden", `${identity.hours}<br>${identity.hoursClosed}`)}
+${infoCard("suitcase", "Bezoek", `${identity.unit}<br>${identity.address}`)}
+${infoCard("open-book", "Voorbereiding", "Bekijk vooraf de dienst en de documentenlijst. Via deze website worden geen persoonsgegevens verzonden en kunt u geen aanvraag indienen.")}
 					</div>
 				</div>
 			</section>
