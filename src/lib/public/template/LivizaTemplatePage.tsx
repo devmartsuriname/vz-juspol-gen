@@ -37,10 +37,7 @@ export const LIVIZA_JS = [
   "jquery.magnific-popup.min.js",
   "circle-progress.js",
   "scripts.js",
-]
-  .map((file) => `${LIVIZA_ASSETS}/js/${file}`)
-  // Isolated public polish behaviour (document tabs), always loaded last.
-  .concat(["/vz-public/js/vz-polish.js"]);
+].map((file) => `${LIVIZA_ASSETS}/js/${file}`);
 
 export function livizaHead() {
   return {
