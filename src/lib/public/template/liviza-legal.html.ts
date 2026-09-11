@@ -1,6 +1,8 @@
 /**
- * /privacy and /disclaimer — governed exact copy on restrained Liviza
- * inner-page article geometry.
+ * /privacy and /disclaimer — governed exact copy on the ported Liviza
+ * `blog-single-view.html` article + sidebar geometry (LFB-103D POLISH 001).
+ * Comments, sharing, tags, author box, search and recent-post widgets are
+ * removed; the article/sidebar rhythm is preserved.
  */
 
 import {
@@ -11,28 +13,56 @@ import {
   titleBar,
 } from "./chrome";
 
-function article(active: string, title: string, paragraphs: readonly string[]): string {
+function article(
+  active: string,
+  title: string,
+  paragraphs: readonly string[],
+): string {
   const body = paragraphs
-    .map((paragraph) => `							<p>${paragraph}</p>`)
+    .map((paragraph) => `									<p>${paragraph}</p>`)
     .join("\n");
 
   return `${pageOpen(active)}
 ${titleBar(title, [{ label: title }])}
 ${contentOpen()}
-            <!-- Article -->
-            <section class="section-lg">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-lg-8">
-							<div class="pbmit-entry-content">
-								<h3>${title}</h3>
+		<!-- Article -->
+		<section class="section-lgb">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9 blog-details">
+						<article class="post blog-classic">
+							<div class="pbmit-blog-classic-inner">
+								<div class="pbmit-entry-content">
+									<h3 class="pbmit-post-title">${title}</h3>
 ${body}
+								</div>
 							</div>
-						</div>
+						</article>
+					</div>
+					<div class="col-lg-3 blog-left-col blog-details">
+						<aside class="sidebar vz-sidebar">
+							<aside class="widget">
+								<h3 class="widget-title">Juridische informatie</h3>
+								<ul>
+									<li><a href="/privacy">Privacyverklaring</a></li>
+									<li><a href="/disclaimer">Disclaimer</a></li>
+								</ul>
+							</aside>
+							<aside class="widget">
+								<h3 class="widget-title">Meer informatie</h3>
+								<ul>
+									<li><a href="/diensten">Diensten</a></li>
+									<li><a href="/documentenlijsten">Documentenlijsten</a></li>
+									<li><a href="/instanties">Instanties</a></li>
+									<li><a href="/contact">Contact</a></li>
+								</ul>
+							</aside>
+						</aside>
 					</div>
 				</div>
-            </section>
-            <!-- Article End -->
+			</div>
+		</section>
+		<!-- Article End -->
 ${contentClose()}
 ${footer()}
 `;
