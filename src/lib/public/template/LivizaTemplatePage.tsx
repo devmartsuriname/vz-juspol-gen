@@ -39,7 +39,7 @@ export const LIVIZA_JS = [
   "scripts.js",
 ]
   .map((file) => `${LIVIZA_ASSETS}/js/${file}`)
-  // Isolated public polish behaviour (document tabs), always loaded last.
+  // Isolated public polish behaviour (Home/End for Bootstrap tablists).
   .concat(["/vz-public/js/vz-polish.js"]);
 
 export function livizaHead() {

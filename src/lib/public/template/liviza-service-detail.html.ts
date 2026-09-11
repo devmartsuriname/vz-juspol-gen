@@ -71,25 +71,54 @@ export function buildServiceDetailHtml(service: ServiceRecord): string {
   if (service.processing)
     factCards.push(factCard("test", "Doorlooptijd", service.processing));
 
-  const related = servicesInCategory(service.category)
+  const relatedServices = servicesInCategory(service.category)
     .filter((item) => item.id !== service.id)
+    .slice(0, 3);
+
+  const relatedCards = relatedServices
     .map(
-      (item) =>
-        `											<li><a href="/diensten/${item.category}/${item.slug}">${item.title}</a></li>`,
+      (item) => `							<div class="col-md-6 col-lg-4">
+								<article class="pbminfotech-servicebox-style-2">
+									<div class="pbminfotech-post-item">
+										<div class="pbminfotech-box-content">
+											<div class="pbminfotech-box-content-inner">
+												<div class="pbminfotech-des">
+													<h3>${item.title}</h3>
+													<div class="pbminfotech-service-content">
+														<p>${item.summary}</p>
+													</div>
+													<div class="pbminfotech-box-link pbminfotech-vc_btn3">
+														<a class="pbminfotech-vc_general" href="/diensten/${item.category}/${item.slug}">
+															<span>Bekijk dienst</span>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</article>
+							</div>`,
     )
     .join("\n");
 
   const documentBlock = doc
-    ? `								<div class="widget">
-									<h3 class="widget-title">Officieel document</h3>
-									<div class="textwidget">
+    ? `						<div class="assessment-one">
+							<div class="row g-0">
+								<div class="col-md-5">
+									<div class="assessment-one-img"></div>
+								</div>
+								<div class="col-md-7">
+									<div class="assessment-one-content">
+										<h3>Officiële documentenlijst</h3>
 										<p>${doc.title}</p>
 										<p class="vz-meta">Bestandsnaam: ${doc.file}<br>Grootte: ${Math.round(doc.bytes / 1024)} kB<br>SHA-256: ${doc.sha256.slice(0, 16)}…<br>Status: geregistreerd brondocument</p>
 										<a class="pbmit-btn" href="/vz-public/documenten/${encodeURIComponent(doc.file)}" target="_blank" rel="noopener">
 											<span>Document openen</span>
 										</a>
 									</div>
-								</div>`
+								</div>
+							</div>
+						</div>`
     : "";
 
   return `${pageOpen("/diensten")}
@@ -103,10 +132,11 @@ ${contentOpen()}
             <section class="section-lg">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-12 col-lg-8">
+						<div class="col-md-12">
 							<div class="pbmit-entry-content">
 								<h3>${service.title}</h3>
 								<p>${service.summary}</p>
+								<p>Categorie: <a href="/diensten/${category.slug}">${category.label}</a></p>
 							</div>
 							${
                 factCards.length
@@ -121,9 +151,20 @@ ${factCards.join("\n")}
 ${conditions}
 								</ul>
 								<h3>Documenten</h3>
-								<p>Documenten en formulieren zijn verkrijgbaar via het kantoor van Vreemdelingenzaken.${doc ? " De officiële documentenlijst voor deze dienst kunt u hiernaast openen." : ""}</p>
+								<p>Documenten en formulieren zijn verkrijgbaar via het kantoor van Vreemdelingenzaken.${doc ? " De officiële documentenlijst voor deze dienst kunt u hieronder openen." : ""}</p>
 								<p>Controleer de actuele vereisten altijd bij Vreemdelingenzaken. Deze pagina is geen aanvraag en geen beslissing over uw situatie.</p>
 							</div>
+${documentBlock}
+							${
+                relatedCards
+                  ? `<div class="pbmit-entry-content">
+								<h3>Andere diensten in ${category.label}</h3>
+							</div>
+							<div class="row">
+${relatedCards}
+							</div>`
+                  : ""
+              }
 							<div class="assessment-one">
 								<div class="row g-0">
 									<div class="col-md-5">
@@ -132,42 +173,14 @@ ${conditions}
 									<div class="col-md-7">
 										<div class="assessment-one-content">
 											<h3>Uw bezoek voorbereiden</h3>
-											<p>Neem de voorwaarden en de documentenlijst door voordat u naar Vreemdelingenzaken gaat. U dient via deze website niets in.</p>
+											<p>Neem de voorwaarden en de documentenlijst door voordat u naar Vreemdelingenzaken gaat. U dient via deze website niets in. Heeft u een vraag over deze dienst? Neem contact op met Vreemdelingenzaken.</p>
 											<a href="/documentenlijsten" class="pbmit-btn">
 												<span>Documentenlijsten</span>
 											</a>
+											<a href="/contact" class="pbmit-btn">
+												<span>Naar contact</span>
+											</a>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-lg-4">
-							<div class="pbmit-sidebar vz-sidebar">
-								<div class="widget">
-									<h3 class="widget-title">Gegevens</h3>
-									<ul class="pbmit_contact_widget_wrapper">
-										<li class="pbmit-contact-address pbmit-base-icon-file"><strong>Dienstcode</strong><br>${service.id}</li>
-										<li class="pbmit-contact-address pbmit-base-icon-file"><strong>Categorie</strong><br><a href="/diensten/${category.slug}">${category.label}</a></li>
-									</ul>
-								</div>
-${documentBlock}
-								${
-                  related
-                    ? `<div class="widget">
-									<h3 class="widget-title">Andere diensten in ${category.label}</h3>
-									<div class="menu-visa">
-										<ul>
-${related}
-										</ul>
-									</div>
-								</div>`
-                    : ""
-                }
-								<div class="widget">
-									<h3 class="widget-title">Contact</h3>
-									<div class="textwidget">
-										<p>Vragen over deze dienst? Neem contact op met Vreemdelingenzaken.</p>
-										<a class="pbmit-btn" href="/contact"><span>Naar contact</span></a>
 									</div>
 								</div>
 							</div>

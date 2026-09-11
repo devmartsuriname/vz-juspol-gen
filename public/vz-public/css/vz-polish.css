@@ -95,7 +95,21 @@
   margin-top: 24px;
 }
 
-/* --- 5. Document category tabs ------------------------------------------ */
+/* --- 4b. Title bar overlay containment ----------------------------------
+ * The ported Liviza `.pbmit-title-bar-wrapper:before` overlay is absolutely
+ * positioned but the wrapper itself is not a containing block, so the
+ * overlay stretched over the whole page and intercepted every pointer event
+ * below the title bar. Restoring the containing block (and making the purely
+ * decorative overlay click-through) repairs interaction without changing any
+ * visual geometry. */
+.pbmit-title-bar-wrapper {
+  position: relative;
+}
+.pbmit-title-bar-wrapper:before {
+  pointer-events: none;
+}
+
+/* --- 5. Document category tabs (Bootstrap 5 nav-tabs) -------------------- */
 .vz-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -105,7 +119,10 @@
   list-style: none;
   border-bottom: 1px solid #eaebec;
 }
-.vz-tab {
+.vz-tabs .nav-item {
+  margin: 0;
+}
+.vz-tabs .nav-link.vz-tab {
   appearance: none;
   border: 1px solid #eaebec;
   border-bottom: none;
@@ -118,16 +135,18 @@
   font-weight: 600;
   cursor: pointer;
 }
-.vz-tab:hover {
+.vz-tabs .nav-link.vz-tab:hover {
   color: var(--pbmit-global-color);
+  border-color: #eaebec;
 }
-.vz-tab[aria-selected="true"] {
+.vz-tabs .nav-link.vz-tab.active,
+.vz-tabs .nav-link.vz-tab[aria-selected="true"] {
   background: var(--pbmit-global-color);
   border-color: var(--pbmit-global-color);
   color: #fff;
 }
 .vz-tab:focus-visible,
-.vz-tabpanel:focus-visible {
+.tab-pane:focus-visible {
   outline: 2px solid var(--pbmit-blackish-color);
   outline-offset: 2px;
 }

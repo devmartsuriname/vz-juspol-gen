@@ -1,56 +1,32 @@
 /*
- * VZ public polish behaviour (LFB-103D POLISH 001).
+ * VZ public polish behaviour (LFB-103D POLISH 001 CORRECTION).
  *
- * Isolated public-scope script. Adds keyboard-accessible tab behaviour for
- * the document category tabs. Delegated and idempotent so it survives the
- * template script rehydration on client-side navigation.
+ * The category switcher on /documentenlijsten uses the bundled Bootstrap 5
+ * tab component (pointer, touch, ArrowLeft/ArrowRight, Enter/Space).
+ * Bootstrap 5.2 does not implement Home/End for tablists, so this file adds
+ * only that: it delegates to the native Bootstrap behaviour by activating
+ * the first or last tab. No other behaviour is defined here.
  */
 (function () {
-  if (window.__vzPolishBound) return;
-  window.__vzPolishBound = true;
-
-  function tabsOf(tab) {
-    var list = tab.closest('[role="tablist"]');
-    return list ? Array.prototype.slice.call(list.querySelectorAll('[role="tab"]')) : [];
-  }
-
-  function select(tab) {
-    var tabs = tabsOf(tab);
-    tabs.forEach(function (item) {
-      var selected = item === tab;
-      item.setAttribute("aria-selected", selected ? "true" : "false");
-      item.setAttribute("tabindex", selected ? "0" : "-1");
-      var panel = document.getElementById(item.getAttribute("aria-controls") || "");
-      if (panel) panel.hidden = !selected;
-    });
-    tab.focus();
-  }
-
-  document.addEventListener("click", function (event) {
-    var target = event.target;
-    var tab = target && target.closest ? target.closest('[role="tab"]') : null;
-    if (!tab) return;
-    event.preventDefault();
-    select(tab);
-  });
+  if (window.__vzTabHomeEnd) return;
+  window.__vzTabHomeEnd = true;
 
   document.addEventListener("keydown", function (event) {
+    if (event.key !== "Home" && event.key !== "End") return;
+
     var target = event.target;
     var tab = target && target.closest ? target.closest('[role="tab"]') : null;
     if (!tab) return;
 
-    var tabs = tabsOf(tab);
-    var index = tabs.indexOf(tab);
-    var next = null;
+    var list = tab.closest('[role="tablist"]');
+    if (!list) return;
 
-    if (event.key === "ArrowRight") next = tabs[(index + 1) % tabs.length];
-    else if (event.key === "ArrowLeft") next = tabs[(index - 1 + tabs.length) % tabs.length];
-    else if (event.key === "Home") next = tabs[0];
-    else if (event.key === "End") next = tabs[tabs.length - 1];
+    var tabs = list.querySelectorAll('[role="tab"]');
+    if (!tabs.length) return;
 
-    if (next) {
-      event.preventDefault();
-      select(next);
-    }
+    var next = event.key === "Home" ? tabs[0] : tabs[tabs.length - 1];
+    event.preventDefault();
+    next.click();
+    next.focus();
   });
 })();
