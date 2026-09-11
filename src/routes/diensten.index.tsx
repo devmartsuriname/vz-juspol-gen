@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { LIVIZA_SERVICES_HTML } from "@/lib/public/template/liviza-services.html";
+import { publicHead } from "@/lib/public/seo";
 import {
   LivizaTemplatePage,
   livizaHead,
@@ -8,15 +9,10 @@ import {
 
 export const Route = createFileRoute("/diensten/")({
   head: () => ({
-    meta: [
-      { title: "Diensten — VZ Juspol Gen" },
-      { name: "description", content: "Visuele basis van het dienstenoverzicht. Goedgekeurde inhoud volgt." },
-      { name: "robots", content: "noindex, follow" },
-      { property: "og:title", content: "Diensten — VZ Juspol Gen" },
-      { property: "og:description", content: "Visuele basis van het dienstenoverzicht. Goedgekeurde inhoud volgt." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+    ...publicHead(
+      "Diensten",
+      "Overzicht van de diensten en categorieën van Vreemdelingenzaken.",
+    ),
     ...livizaHead(),
   }),
   component: Page,

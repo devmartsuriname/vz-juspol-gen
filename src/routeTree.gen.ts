@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VeelgesteldeVragenRouteImport } from './routes/veelgestelde-vragen'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as NieuwsRouteImport } from './routes/nieuws'
+import { Route as InstantiesRouteImport } from './routes/instanties'
+import { Route as DocumentenlijstenRouteImport } from './routes/documentenlijsten'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -29,6 +33,11 @@ const VeelgesteldeVragenRoute = VeelgesteldeVragenRouteImport.update({
   path: '/veelgestelde-vragen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OverOnsRoute = OverOnsRouteImport.update({
   id: '/over-ons',
   path: '/over-ons',
@@ -37,6 +46,21 @@ const OverOnsRoute = OverOnsRouteImport.update({
 const NieuwsRoute = NieuwsRouteImport.update({
   id: '/nieuws',
   path: '/nieuws',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstantiesRoute = InstantiesRouteImport.update({
+  id: '/instanties',
+  path: '/instanties',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentenlijstenRoute = DocumentenlijstenRouteImport.update({
+  id: '/documentenlijsten',
+  path: '/documentenlijsten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DienstenRoute = DienstenRouteImport.update({
@@ -100,8 +124,12 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRouteWithChildren
+  '/disclaimer': typeof DisclaimerRoute
+  '/documentenlijsten': typeof DocumentenlijstenRoute
+  '/instanties': typeof InstantiesRoute
   '/nieuws': typeof NieuwsRouteWithChildren
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/veelgestelde-vragen': typeof VeelgesteldeVragenRoute
   '/admin/auth-signin': typeof AdminAuthSigninRoute
   '/nieuws/$slug': typeof NieuwsSlugRoute
@@ -114,7 +142,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/documentenlijsten': typeof DocumentenlijstenRoute
+  '/instanties': typeof InstantiesRoute
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/veelgestelde-vragen': typeof VeelgesteldeVragenRoute
   '/admin/auth-signin': typeof AdminAuthSigninRoute
   '/nieuws/$slug': typeof NieuwsSlugRoute
@@ -130,8 +162,12 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRouteWithChildren
+  '/disclaimer': typeof DisclaimerRoute
+  '/documentenlijsten': typeof DocumentenlijstenRoute
+  '/instanties': typeof InstantiesRoute
   '/nieuws': typeof NieuwsRouteWithChildren
   '/over-ons': typeof OverOnsRoute
+  '/privacy': typeof PrivacyRoute
   '/veelgestelde-vragen': typeof VeelgesteldeVragenRoute
   '/admin/auth-signin': typeof AdminAuthSigninRoute
   '/nieuws/$slug': typeof NieuwsSlugRoute
@@ -148,8 +184,12 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/diensten'
+    | '/disclaimer'
+    | '/documentenlijsten'
+    | '/instanties'
     | '/nieuws'
     | '/over-ons'
+    | '/privacy'
     | '/veelgestelde-vragen'
     | '/admin/auth-signin'
     | '/nieuws/$slug'
@@ -162,7 +202,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/disclaimer'
+    | '/documentenlijsten'
+    | '/instanties'
     | '/over-ons'
+    | '/privacy'
     | '/veelgestelde-vragen'
     | '/admin/auth-signin'
     | '/nieuws/$slug'
@@ -177,8 +221,12 @@ export interface FileRouteTypes {
     | '/admin'
     | '/contact'
     | '/diensten'
+    | '/disclaimer'
+    | '/documentenlijsten'
+    | '/instanties'
     | '/nieuws'
     | '/over-ons'
+    | '/privacy'
     | '/veelgestelde-vragen'
     | '/admin/auth-signin'
     | '/nieuws/$slug'
@@ -194,8 +242,12 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRouteWithChildren
+  DisclaimerRoute: typeof DisclaimerRoute
+  DocumentenlijstenRoute: typeof DocumentenlijstenRoute
+  InstantiesRoute: typeof InstantiesRoute
   NieuwsRoute: typeof NieuwsRouteWithChildren
   OverOnsRoute: typeof OverOnsRoute
+  PrivacyRoute: typeof PrivacyRoute
   VeelgesteldeVragenRoute: typeof VeelgesteldeVragenRoute
 }
 
@@ -206,6 +258,13 @@ declare module '@tanstack/react-router' {
       path: '/veelgestelde-vragen'
       fullPath: '/veelgestelde-vragen'
       preLoaderRoute: typeof VeelgesteldeVragenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/over-ons': {
@@ -220,6 +279,27 @@ declare module '@tanstack/react-router' {
       path: '/nieuws'
       fullPath: '/nieuws'
       preLoaderRoute: typeof NieuwsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instanties': {
+      id: '/instanties'
+      path: '/instanties'
+      fullPath: '/instanties'
+      preLoaderRoute: typeof InstantiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentenlijsten': {
+      id: '/documentenlijsten'
+      path: '/documentenlijsten'
+      fullPath: '/documentenlijsten'
+      preLoaderRoute: typeof DocumentenlijstenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diensten': {
@@ -348,8 +428,12 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRouteWithChildren,
+  DisclaimerRoute: DisclaimerRoute,
+  DocumentenlijstenRoute: DocumentenlijstenRoute,
+  InstantiesRoute: InstantiesRoute,
   NieuwsRoute: NieuwsRouteWithChildren,
   OverOnsRoute: OverOnsRoute,
+  PrivacyRoute: PrivacyRoute,
   VeelgesteldeVragenRoute: VeelgesteldeVragenRoute,
 }
 export const routeTree = rootRouteImport
