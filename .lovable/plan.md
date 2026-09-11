@@ -271,18 +271,18 @@ Isolation: nothing under `src/components/public/**` or `src/content/**` imports 
 
 ## 5. Design-token reconstruction plan
 
-`src/styles.css` gets a `@theme` block. Values marked FACT are measured above; values marked INSPECT are not yet measured and must be read from the source before the token batch is released.
+`src/styles.css` gets a `@theme` block. All FACT values below are measured from the source in §2.1, §2.2 and §2.4. The right-hand column lists values that are VZ decisions or per-component assignments, not unread source values — the source audit is complete.
 
-| Group | FACT (measured) | INSPECT (still to measure) |
+| Group | FACT (measured) | Still to decide (VZ decision / assignment) |
 |---|---|---|
-| Colour | primary `#0067da`, secondary `#eea200`, light `#f5f8fb`, ink `#2d3845`, body `#5d6975`, white | hover/active shades, dark-band overlay opacities, focus-ring colour (VZ contrast decision) |
-| Type | Mulish 15/1.8 body; Roboto 500 headings; h1–h6 scale exact | responsive heading downscale per breakpoint in `responsive.css` |
-| Spacing | section 90/70, 90/150, 90/200, bottom 60; hero overlap −105px; inner banner 335/275 | intra-card padding table per component |
-| Width | content band 1200px, gutter 15px | Bootstrap container tier used per page |
-| Radius | 4 buttons, 6/8 cards, 3 chips, 32 pill | per-component assignment |
+| Colour | primary `#0067da`, secondary `#eea200`, light `#f5f8fb`, ink `#2d3845`, body `#5d6975`, white | hover/active shades, dark-band overlay opacity, focus-ring colour (VZ contrast decision) |
+| Type | Mulish 15/1.8 body; Roboto 500 headings; h1–h6 scale exact; breadcrumb 16/26; accordion header 15/500; card title h5 24/30 | responsive heading downscale values VZ adopts from `responsive.css` |
+| Spacing | section 90/70, 90/150, 90/200, bottom 60; hero overlap −105px; inner banner 335/275; detail sidebar +65 top / 40 bottom; detail main +65 top; sidebar list 30/25; accordion header 20, body 14/20, item gap 15; news card gap 35, chip −48, title −25 | which components take which spacing token |
+| Width | content band 1200px, gutter 15px; detail split 30/70; article split 75/25 (`col-lg-9`/`col-lg-3`) | — |
+| Radius | 4 buttons, 5 accordion, 6 media/cards, 8 service cards, 3 chips, 32 pill | per-component assignment |
 | Shadow | `0 9px 35px 0 rgba(0,0,0,.07)` | hover elevation variants |
 | Border | 1px hairlines on cards/dividers | exact hairline colour |
-| Breakpoint | 1400/1200/1024/991/767/575/479 | VZ-reduced set (proposed: 1280/1024/768/480/320) |
+| Breakpoint | 1400/1366/1280/1200/1199/1024/991/768/767/580/575/479/375/280 | VZ-reduced set (proposed: 1280/1024/768/480/320) |
 | Motion | link .5s, button .2–.3s | reduced-motion mapping (all → 0ms) |
 
 Colour-contrast note: `#0067da` on white is ≈4.6:1 (AA for normal text, checked at implementation), `#5d6975` on `#f5f8fb` must be verified; any pair failing AA is darkened and recorded as a deviation. No measurement is invented.
