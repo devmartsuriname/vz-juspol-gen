@@ -69,29 +69,10 @@ ${contentOpen()}
             <section class="section-lg service-section">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-12 col-lg-8">
+						<div class="col-12">
 							<p class="pb-2">${category.intro}</p>
 							<div class="row">
 ${cards}
-							</div>
-						</div>
-						<div class="col-md-12 col-lg-4">
-							<div class="widget">
-								<h3 class="widget-title">Categorieën</h3>
-								<div class="menu-visa">
-									<ul>
-${switcher}
-									</ul>
-								</div>
-							</div>
-							<div class="widget">
-								<h3 class="widget-title">Documenten</h3>
-								<div class="textwidget">
-									<p>Officiële documentenlijsten en formulieren van Vreemdelingenzaken.</p>
-									<a href="/documentenlijsten" class="pbmit-btn">
-										<span>Documentenlijsten</span>
-									</a>
-								</div>
 							</div>
 						</div>
 					</div>
