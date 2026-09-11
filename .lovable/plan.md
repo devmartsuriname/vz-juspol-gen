@@ -125,8 +125,8 @@ Title `Disclaimer`. Sections:
 
 ## 7. Source module / file impact (future batch)
 
-Edited: `src/lib/public/template/liviza-{home,about,services,category,service-detail,faq,news,news-detail,contact}.html.ts`; matching route files' `head()`; `src/lib/public/routes-map.ts` (nav labels + three new available routes).
-New: `src/routes/documentenlijsten.tsx`, `src/routes/privacy.tsx`, `src/routes/disclaimer.tsx`, three matching HTML modules, `src/content/` catalogue records for services/categories/document groups, and (at release) `public/vz-public/documenten/**`.
+Edited: `src/lib/public/template/liviza-{home,about,services,category,service-detail,faq,news,news-detail,contact}.html.ts`; matching route files' `head()`; `src/lib/public/routes-map.ts` (nav labels + four new available routes).
+New: `src/routes/documentenlijsten.tsx`, `src/routes/instanties.tsx`, `src/routes/privacy.tsx`, `src/routes/disclaimer.tsx`, four matching HTML modules, `src/content/` catalogue records for services/categories/document groups and the stakeholder roster, and (at release) `public/vz-public/documenten/**`.
 Untouched: `LivizaTemplatePage.tsx` behaviour, `public/vz-public/liviza/assets/**`, `src/styles.css`, `src/routes/__root.tsx`, everything under `/admin`.
 
 ## 8. Removal checklist and forbidden-value scan
