@@ -35,17 +35,6 @@ function Index() {
           </div>
         </div>
       </main>
-
-      <footer className="border-t border-vz-hairline py-6">
-        <div className="vz-container flex justify-end">
-          <Link
-            to="/admin/auth-signin"
-            className="inline-flex items-center justify-center rounded-vz-button bg-vz-primary px-5 py-2.5 text-sm font-medium text-vz-white transition-colors hover:bg-vz-primary-hover"
-          >
-            Beheeromgeving
-          </Link>
-        </div>
-      </footer>
     </div>
   );
 }
