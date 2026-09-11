@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+// import appCss from "../styles.css?url"; // disabled: Tailwind preflight breaks the ported template (LFB-103A)
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -94,10 +94,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      // Tailwind preflight resets <header>, <ul>, etc. and breaks the ported
+      // Bootstrap-based public template (LFB-103A). The global stylesheet stays
+      // in the project and can be re-linked per route once needed.
+      // { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),

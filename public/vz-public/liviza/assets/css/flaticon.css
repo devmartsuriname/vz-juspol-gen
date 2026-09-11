@@ -1,0 +1,66 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 10/12/2019 06:29
+  	*/
+
+@font-face {
+  font-family: "flaticon";
+  src: url("../fonts/flaticon.eot");
+  src: url("../fonts/flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/flaticon.woff2") format("woff2"),
+       url("../fonts/flaticon.woff") format("woff"),
+       url("../fonts/flaticon.ttf") format("truetype"),
+       url("../fonts/flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+i[class^="pbmit-liviza-business-icon-"]:before, i[class*=" pbmit-liviza-business-icon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+}
+
+.pbmit-liviza-business-icon-placeholder:before { content: "\f100"; }
+.pbmit-liviza-business-icon-pdf:before { content: "\f101"; }
+.pbmit-liviza-business-icon-news:before { content: "\f102"; }
+.pbmit-liviza-business-icon-call:before { content: "\f103"; }
+.pbmit-liviza-business-icon-document:before { content: "\f104"; }
+.pbmit-liviza-business-icon-right-arrow:before { content: "\f105"; }
+.pbmit-liviza-business-icon-right-arrow-1:before { content: "\f106"; }
+.pbmit-liviza-business-icon-check:before { content: "\f107"; }
+.pbmit-liviza-business-icon-chat:before { content: "\f108"; }
+.pbmit-liviza-business-icon-search:before { content: "\f109"; }
+.pbmit-liviza-business-icon-student:before { content: "\f10a"; }
+.pbmit-liviza-business-icon-passport:before { content: "\f10b"; }
+.pbmit-liviza-business-icon-resume:before { content: "\f10c"; }
+.pbmit-liviza-business-icon-employee:before { content: "\f10d"; }
+.pbmit-liviza-business-icon-briefcase:before { content: "\f10e"; }
+.pbmit-liviza-business-icon-list:before { content: "\f10f"; }
+.pbmit-liviza-business-icon-envelope:before { content: "\f110"; }
+.pbmit-liviza-business-icon-newsletter:before { content: "\f111"; }
+.pbmit-liviza-business-icon-destination:before { content: "\f112"; }
+.pbmit-liviza-business-icon-airplane:before { content: "\f113"; }
+.pbmit-liviza-business-icon-walk:before { content: "\f114"; }
+.pbmit-liviza-business-icon-family:before { content: "\f115"; }
+.pbmit-liviza-business-icon-mechanic:before { content: "\f116"; }
+.pbmit-liviza-business-icon-suitcase:before { content: "\f117"; }
+.pbmit-liviza-business-icon-white-house:before { content: "\f118"; }
+.pbmit-liviza-business-icon-resident:before { content: "\f119"; }
+.pbmit-liviza-business-icon-consulting:before { content: "\f11a"; }
+.pbmit-liviza-business-icon-coaching:before { content: "\f11b"; }
+.pbmit-liviza-business-icon-open-book:before { content: "\f11c"; }
+.pbmit-liviza-business-icon-mortarboard:before { content: "\f11d"; }
+.pbmit-liviza-business-icon-meeting:before { content: "\f11e"; }
+.pbmit-liviza-business-icon-certificate:before { content: "\f11f"; }
+.pbmit-liviza-business-icon-user-interface:before { content: "\f120"; }
+.pbmit-liviza-business-icon-note:before { content: "\f121"; }
+.pbmit-liviza-business-icon-study:before { content: "\f122"; }
+.pbmit-liviza-business-icon-diploma:before { content: "\f123"; }
+.pbmit-liviza-business-icon-paper:before { content: "\f124"; }
+.pbmit-liviza-business-icon-calendar:before { content: "\f125"; }
+.pbmit-liviza-business-icon-board:before { content: "\f126"; }
+.pbmit-liviza-business-icon-worker:before { content: "\f127"; }
+.pbmit-liviza-business-icon-test:before { content: "\f128"; }
+.pbmit-liviza-business-icon-university:before { content: "\f129"; }
+.pbmit-liviza-business-icon-homework:before { content: "\f12a"; }
+.pbmit-liviza-business-icon-study-1:before { content: "\f12b"; }
+.pbmit-liviza-business-icon-flask:before { content: "\f12c"; }
