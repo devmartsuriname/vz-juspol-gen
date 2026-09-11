@@ -379,8 +379,8 @@ Executor: LOVABLE. Validator: ACT-CODEX (technical) / ACT-CHATGPT (governance). 
 
 | ID | Lane/batch | Outcome | Inputs | Depends on | Proposed paths | Gate | Acceptance evidence | Status |
 |---|---|---|---|---|---|---|---|---|
-| LFB-P02 | PLAN | Measure the eight remaining selected Liviza pages | ZIP, matrix | — | none (read-only) | Plan release | per-page geometry table | PLANNED / NOT RELEASED |
-| LFB-101 | B1 | VZ tokens + base | brand decision, §5 | LFB-P02 | `styles.css`, `content/*`, `__root.tsx` | brand release | token list, contrast table, isolation proof | PLANNED / NOT RELEASED |
+| LFB-P02 | PLAN | Measure all nine selected Liviza pages | ZIP, matrix | — | none (read-only) | — | COMPLETED in Plan Mode: per-page tables in §2.2 and §2.4 | COMPLETED (planning evidence, not an execution dependency) |
+| LFB-101 | B1 | VZ tokens + base | brand decision, §5 | — | `styles.css`, `content/*`, `__root.tsx` | brand release | token list, contrast table, isolation proof | PLANNED / NOT RELEASED |
 | LFB-102 | B2 | Public shell | identity, contact, routes | LFB-101 | `components/public/layout/*` | identity release | screenshots, keyboard walk, no admin asset | PLANNED / NOT RELEASED |
 | LFB-103 | B3 | Home | identity, categories, notices | LFB-102 | `routes/index.tsx`, `home/*` | content release | 3-viewport screenshots, axe | PLANNED / NOT RELEASED |
 | LFB-104 | B4 | Services tree | service records | LFB-103 | `routes/diensten*`, `services/*` | service-record release | block-order proof, 404 case | PLANNED / NOT RELEASED |
@@ -390,6 +390,7 @@ Executor: LOVABLE. Validator: ACT-CODEX (technical) / ACT-CHATGPT (governance). 
 | LFB-108 | B8 | Static + legal + 404 | contact, legal, institutional text | LFB-102 | those routes | legal release | screenshots, no-input grep | PLANNED / NOT RELEASED |
 | LFB-109 | B9 | SEO/GSO + a11y sweep | SEO guide | all | sitemap, robots, llms, heads | final gate | per-route metadata table, axe report | PLANNED / NOT RELEASED |
 | LFB-110 | QA | Placeholder removal + handover check | asset register | all | asset paths only | handover gate | zero-placeholder proof | PLANNED / NOT RELEASED |
+| LFB-111 | GOV | Governed document retention (see §12.1) | the exact 13 approved Markdown inputs | separate Delroy release **and** a supported, safe upload method | `docs/vz-juspol-gen/governance-inputs/` only | Delroy retention release | filename + SHA-256 + byte-size manifest, byte-identical verification, README present | PLANNED / NOT RELEASED — currently BLOCKED (no verified safe upload path) |
 
 ---
 
@@ -403,10 +404,10 @@ Executor: LOVABLE. Validator: ACT-CODEX (technical) / ACT-CHATGPT (governance). 
 
 **FACT:** §2.1 measurements, the 13-document inventory, the current route set, admin isolation mechanics.
 **INFERENCE:** section classifications in §2.2 beyond the measured geometry; the proposed batch order; the reduced breakpoint set.
-**OPEN DECISION:** VZ brand colour — whether `#0067da` is retained or replaced by an approved institutional colour; the eight unmeasured pages; whether `/nieuws` launches empty.
+**OPEN DECISION:** VZ brand colour — whether `#0067da` is retained or replaced by an approved institutional colour; whether `/nieuws` launches as a dated empty state; whether Mulish/Roboto are approved for public use by VZ (see typography note below).
 
 **One weak assumption:** that Liviza's commercial visual language, once stripped of sales patterns, still reads as an appropriate public-service register. If Delroy judges it too commercial, §2 needs rework before B1.
-**One missing constraint:** no approved typography decision — Mulish/Roboto are vendor fonts with no VZ licence or accessibility ruling recorded.
+**One missing constraint (typography):** FACT — the purchased Liviza source technically references Mulish and Roboto (Google Fonts, loaded by URL reference, not shipped as files in the template's own `fonts/` directory) and technically bundles the icon fonts Flaticon, Themify, FontAwesome and `pbminfotech-base-icons` as font files inside the package. Technical inclusion or reference is not the same as public-use approval: no VZ decision record exists that approves these families for public deployment, states the licence basis relied on (Google Fonts terms, self-hosting versus CDN, ThemeForest coverage for the bundled icon fonts), or rules on their accessibility. This is an unresolved approval, not an evidenced absence of a licence — no claim is made that a licence does not exist. Icon fonts are in any case planned out (§2.6, replaced by inline SVG), so the open item concerns the two text families only.
 **One material failure risk:** building service and wizard routes against placeholder records, then having to rewrite block structure when the real service model arrives; mitigated by holding LFB-104/105 until the service records exist.
 
 ---
