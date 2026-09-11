@@ -142,3 +142,142 @@
     color: var(--color-foreground);
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * VZ Juspol Gen — public design tokens (LFB-101)
+ *
+ * Provisional visual tokens reconstructed from the approved Liviza
+ * reference. These are provisional UI tokens, not an official VZ brand
+ * claim. They are additive: the shadcn tokens above are untouched so the
+ * isolated /admin subtree is unaffected.
+ * ------------------------------------------------------------------ */
+
+@theme {
+  /* Colour */
+  --color-vz-primary: #0067da;
+  --color-vz-primary-hover: #0055b5;
+  --color-vz-primary-active: #004592;
+  --color-vz-secondary: #eea200;
+  --color-vz-secondary-hover: #d18e00;
+  --color-vz-light: #f5f8fb;
+  --color-vz-ink: #2d3845;
+  --color-vz-body: #5d6975;
+  --color-vz-white: #ffffff;
+  --color-vz-hairline: #e3e9f0;
+  --color-vz-focus: #004592;
+
+  /* Typography families (see deviation D-101-2: no remote webfont loaded) */
+  --font-vz-body: "Mulish", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-vz-heading: "Roboto", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale (measured from the reference) */
+  --text-vz-body: 0.9375rem;          /* 15px */
+  --text-vz-body--line-height: 1.8;
+  --text-vz-h1: 2.625rem;             /* 42px */
+  --text-vz-h1--line-height: 3rem;    /* 48px */
+  --text-vz-h2: 2.25rem;              /* 36px */
+  --text-vz-h2--line-height: 2.625rem;
+  --text-vz-h3: 1.875rem;             /* 30px */
+  --text-vz-h3--line-height: 2.25rem;
+  --text-vz-h4: 1.625rem;             /* 26px */
+  --text-vz-h4--line-height: 2rem;
+  --text-vz-h5: 1.5rem;               /* 24px */
+  --text-vz-h5--line-height: 1.875rem;
+  --text-vz-h6: 1.25rem;              /* 20px */
+  --text-vz-h6--line-height: 1.625rem;
+  --text-vz-lead: 1rem;
+  --text-vz-lead--line-height: 1.625rem;
+
+  /* Layout */
+  --spacing-vz-gutter: 0.9375rem;     /* 15px */
+  --spacing-vz-section: 5.625rem;     /* 90px */
+  --spacing-vz-section-sm: 4.375rem;  /* 70px */
+  --spacing-vz-block: 3.75rem;        /* 60px */
+  --spacing-vz-card-gap: 2.1875rem;   /* 35px */
+  --container-vz: 75rem;              /* 1200px content band */
+
+  /* Radii */
+  --radius-vz-button: 4px;
+  --radius-vz-accordion: 5px;
+  --radius-vz-media: 6px;
+  --radius-vz-card: 8px;
+  --radius-vz-chip: 3px;
+  --radius-vz-pill: 32px;
+
+  /* Elevation + motion */
+  --shadow-vz-card: 0 9px 35px 0 rgb(0 0 0 / 0.07);
+  --shadow-vz-card-hover: 0 12px 40px 0 rgb(0 0 0 / 0.12);
+  --ease-vz: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Public content band: 1200px max with 15px gutters. */
+@utility vz-container {
+  width: 100%;
+  max-width: var(--container-vz);
+  margin-inline: auto;
+  padding-inline: var(--spacing-vz-gutter);
+}
+
+/* Standard public section rhythm, reduced on small screens. */
+@utility vz-section {
+  padding-block: var(--spacing-vz-section-sm);
+
+  @media (min-width: 768px) {
+    padding-block: var(--spacing-vz-section);
+  }
+}
+
+/* Base layer for public pages only. Scoped to .vz-public so nothing
+   reaches the isolated /admin subtree. */
+@layer base {
+  .vz-public {
+    background-color: var(--color-vz-white);
+    color: var(--color-vz-body);
+    font-family: var(--font-vz-body);
+    font-size: var(--text-vz-body);
+    line-height: 1.8;
+  }
+
+  .vz-public :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--color-vz-ink);
+    font-family: var(--font-vz-heading);
+    font-weight: 500;
+  }
+
+  .vz-public h1 { font-size: var(--text-vz-h1); line-height: 3rem; }
+  .vz-public h2 { font-size: var(--text-vz-h2); line-height: 2.625rem; }
+  .vz-public h3 { font-size: var(--text-vz-h3); line-height: 2.25rem; }
+  .vz-public h4 { font-size: var(--text-vz-h4); line-height: 2rem; }
+  .vz-public h5 { font-size: var(--text-vz-h5); line-height: 1.875rem; }
+  .vz-public h6 { font-size: var(--text-vz-h6); line-height: 1.625rem; }
+
+  @media (max-width: 767px) {
+    .vz-public h1 { font-size: 2rem; line-height: 2.375rem; }
+    .vz-public h2 { font-size: 1.75rem; line-height: 2.125rem; }
+    .vz-public h3 { font-size: 1.5rem; line-height: 1.875rem; }
+  }
+
+  .vz-public a {
+    color: var(--color-vz-primary);
+    transition: color 0.3s var(--ease-vz);
+  }
+
+  .vz-public a:hover {
+    color: var(--color-vz-primary-hover);
+  }
+
+  .vz-public :is(a, button, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-vz-focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vz-public *,
+    .vz-public *::before,
+    .vz-public *::after {
+      animation-duration: 0ms !important;
+      transition-duration: 0ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

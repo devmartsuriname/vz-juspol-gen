@@ -1,42 +1,51 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 
+import { buildMeta } from "@/lib/public/seo";
+
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Devmart — Admin platform" },
-      {
-        name: "description",
-        content:
-          "Devmart workspace. The admin backoffice lives at /admin; the public frontend for each project ships from its own template.",
-      },
-    ],
-  }),
+  head: () =>
+    buildMeta({
+      title: "Publieke omgeving in voorbereiding",
+      siteName: "VZ Juspol Gen",
+      description:
+        "De publieke pagina's van VZ Juspol Gen worden voorbereid. Er is nog geen goedgekeurde inhoud gepubliceerd.",
+    }),
   component: Index,
 });
 
 function Index() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background px-6 text-center">
-      <div className="max-w-xl space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-          Devmart workspace
-        </p>
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground">
-          Frontend template goes here.
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          This route is intentionally minimal so any public frontend template
-          can slot in cleanly. The admin backoffice (Devmart Admin, ported
-          from Darkone) lives on its own subtree with fully isolated CSS and
-          JS — nothing leaks between them.
-        </p>
-      </div>
-      <Link
-        to="/admin/auth-signin"
-        className="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-      >
-        Open Devmart Admin →
-      </Link>
+    <div className="vz-public flex min-h-screen flex-col">
+      <main className="vz-section flex flex-1 items-center">
+        <div className="vz-container">
+          <div className="mx-auto max-w-[42rem] rounded-vz-card bg-vz-light p-8 shadow-vz-card sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-vz-primary">
+              VZ Juspol Gen
+            </p>
+            <h1 className="mt-3">Publieke omgeving in voorbereiding</h1>
+            <p className="mt-4">
+              De publieke pagina's worden opgebouwd op een vastgestelde
+              visuele basis. Er is nog geen goedgekeurde inhoud beschikbaar,
+              daarom toont deze pagina bewust geen informatie over diensten,
+              contactgegevens of procedures.
+            </p>
+            <p className="mt-4">
+              Zodra inhoud is goedgekeurd en vrijgegeven, verschijnt deze hier.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <footer className="border-t border-vz-hairline py-6">
+        <div className="vz-container flex justify-end">
+          <Link
+            to="/admin/auth-signin"
+            className="inline-flex items-center justify-center rounded-vz-button bg-vz-primary px-5 py-2.5 text-sm font-medium text-vz-white transition-colors hover:bg-vz-primary-hover"
+          >
+            Beheeromgeving
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }
