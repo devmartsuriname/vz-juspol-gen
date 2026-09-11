@@ -1,150 +1,150 @@
-# VZ Juspol Gen — Frontend Completion Master Plan 001 (Plan Mode only)
+# VZ Juspol Gen — Frontend Completion Master Plan 001 — rev.001 (Plan Mode only)
 
-Baseline commit: `a3345ca888828c020e44f6e631233ba79ec4419a` ("Fixed tabs and service layout"), 11 Sep 2026. (FACT)
-Reference project inspected read-only: `vz-portal-niotech` (`438764f3-e6e9-4438-9264-d73d4963c64c`), snapshot commit `cb506522`. (FACT)
-No application file is changed by this document.
+Baseline reconfirmed: `21c5637b77c6585fdf73d7b1cc2b3325ab3e0331` (11 Sep 2026, "Update plan"); last application-code commit `a3345ca888828c020e44f6e631233ba79ec4419a`. (FACT)
+Reference read-only: `vz-portal-niotech` (`438764f3-e6e9-4438-9264-d73d4963c64c`, snapshot `cb506522`) — concept only, no content authority. (FACT)
+No application file is changed by this document. Liviza-pattern-first, contrast gate, preparation-only Aanvraaghulp, blog conflict classification, sidebar policy, evidence structure and the responsive/smoke matrix are retained from rev.000.
 
 ---
 
-## 1. Route inventory
+## 1. Decisions now closed
 
-| Route | File | Status |
+- **Generated imagery is APPROVED in principle** for this completion: professional, VZ-appropriate, rights-safe, no baked-in text, exact slot geometry preserved, WebP-first (SVG for the abstract page-top pattern). No identifiable government building, office, seal or documentary depiction may be generated; institutional imagery stays clearly neutral and non-documentary. No longer an open decision.
+- **Wizard persistence APPROVED**: 24-hour `localStorage` of categorical answers only (category/branch choices). Restart clears it. No names, identifiers, free text, uploads, analytics payload or backend sync. No longer an open decision.
+- **FAQ**: remains a governed empty state. No FAQ copy is authored in the released batch. It is filled only if authoritative Q&A already exists in the approved current VZ documents; none is present in project content today. (FACT)
+
+## 2. Exact route and fixture counts
+
+Static routes today: `/`, `/over-ons`, `/diensten`, `/documentenlijsten`, `/instanties`, `/contact`, `/privacy`, `/disclaimer`, `/veelgestelde-vragen`, `/nieuws` = **10**. Plus `/aanvraaghulp` after the batch = **11**.
+Dynamic fixtures: **6** categories (`verblijf`, `vestiging`, `naturalisatie`, `ingezetenschap`, `asiel`, `overig`), **15** service details (SRV-001…SRV-015), **0** news detail fixtures (empty state).
+Total renderable pages after the batch: **11 + 6 + 15 = 32**. PDFs: **17** (8,848,320 bytes, unchanged). Shared-header consumers: all 32 pages (`chrome.ts` header + title bar).
+Status: complete = 8 static + 21 dynamic; empty-state (governed) = `/veelgestelde-vragen`, `/nieuws`, `/nieuws/$slug`; missing = `/aanvraaghulp`.
+
+## 3. Complete image register (measured, exact)
+
+`A = public/vz-public/liviza/assets/images`. Every replacement keeps the source pixel ratio; no CSS geometry changes.
+
+| # | Slot | Current path | px | Ratio | Assets needed | Route consumers | Subject brief | Focal safe area | Format | Alt treatment |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Inner page-top background | `A/homepage-1/title-bg.jpg` (CSS `.pbmit-title-bar-wrapper`) | 1920×650 | 2.954:1 | 1 SVG (+1 WebP fallback) | all 12 inner static routes + 6 category + 15 detail = **31 pages** | continuous abstract: deep institutional blue at top flowing into off-white geometric planes | top 0–260px must stay dark; title/breadcrumb band left 60% | SVG, WebP 1920 | decorative (CSS background) |
+| 2 | Home hero slide 1 | `A/banner-slider-img/slider-01-a.jpg` | 1920×900 | 2.133:1 | 1 (×4 widths) | `/` | neutral public-service reception/counter, no identifiable building or signage | right 40% (text in `col-md-7`) | WebP + JPG, 1920/1280/768/480 | descriptive NL alt |
+| 3 | Home hero slide 2 | new (`slider-01-b` slot) | 1920×900 | 2.133:1 | 1 (×4) | `/` | documents being prepared on a desk, hands only | right 40% | as #2 | descriptive |
+| 4 | Home hero slide 3 | new (`slider-01-c` slot) | 1920×900 | 2.133:1 | 1 (×4) | `/` | calm modern civic interior, generic, non-documentary | right 40% | as #2 | descriptive |
+| 5 | Home about image 1 | `A/homepage-1/img-01.jpg` | 470×470 | 1:1 | 1 (×2) | `/` | document-preparation detail | centre | WebP 470/235 | descriptive |
+| 6 | Home about image 2 | `A/homepage-1/img-02.jpg` | 370×275 | 1.345:1 | 1 (×2) | `/` | information-desk detail | centre | WebP 370/185 | descriptive |
+| 7 | Home CTA band image | `.assessment-one-img` → `A/homepage-1/bg/img-01.jpg` | 500×280 | 1.786:1 | 1 (×2) | `/` | abstract blue/off-white pattern (block is padded, heavily cropped) | centre | WebP 1000/500 | decorative |
+| 8 | Service-detail document block | same `.assessment-one-img` (500×280) | 500×280 | 1.786:1 | shares #7 | **15** service detail pages, block 1 (document/PDF panel) | as #7 | centre | shared | decorative |
+| 9 | Service-detail preparation callout | same `.assessment-one-img` | 500×280 | 1.786:1 | shares #7 | **15** service detail pages, block 2 | as #7 | centre | shared | decorative |
+| 10 | Service cards | `A/homepage-1/service/service-01…09.jpg` | 800×535 | 1.495:1 | **6** (one per governed category) | `/diensten` (15 cards, mapped by category), `/diensten/$categorie` (6 pages) | one neutral motif per category: Verblijf, Vestiging, Naturalisatie, Ingezetenschap, Asiel, Overig | centre | WebP 800/400 | category-label alt |
+| 11 | About page image | `A/homepage-1/service/about-01.jpg` | 530×540 | 0.981:1 | 1 (×2) | `/over-ons` | neutral service-counter interior | centre | WebP 530/265 | descriptive |
+| 12 | Stakeholder cards | `A/homepage-1/portfolio/portfolio-01…04.jpg` | 800×650 | 1.231:1 | **6** (one per governed stakeholder record) | `/` carousel + `/instanties` (same 6 records) | neutral abstract institutional motifs, no logos, no buildings | centre | WebP 800/400 | institution-name alt |
+| 13 | Stakeholder band map | `A/homepage-1/bg/map.png` | 1170×619 | 1.890:1 | 1 SVG | `/` | replace with abstract blue field (no world map) | centre | SVG | decorative |
+| 14 | Section pattern (right) | `A/homepage-1/bg/bg-pattarn.png` | 474×448 | 1.058:1 | 1 SVG | `/`, `/over-ons` | recolour to VZ blue, keep shape | — | SVG | decorative |
+| 15 | Section pattern (left) | `A/homepage-1/bg/bg-pattarn-left.png` | 309×448 | 0.690:1 | 1 SVG | `/`, `/over-ons` | as #14 | — | SVG | decorative |
+| 16 | Border pattern | `A/homepage-1/bg/border-pattarn.png` | 68×135 | 0.504:1 | 1 SVG | `/` | as #14 | — | SVG | decorative |
+| 17 | Section bg image 2 | `A/homepage-1/bg/img-02.jpg` | 930×630 | 1.476:1 | 1 | `/` service band | abstract blue/off-white | centre | WebP 930/465 | decorative |
+| 18 | Footer pattern | `A/footer-pattern.png` | 1772×480 | 3.692:1 | 1 SVG | all 32 pages | recolour to VZ blue | bottom | SVG | decorative |
+| 19 | News list card image | template blog slot (`blogbox-style-2`) | 800×535 | 1.495:1 | **0 now** | `/nieuws` | not produced — news held (§7) | — | — | — |
+| 20 | News detail hero | `blog-single-view` slot | 1170×619 | 1.890:1 | **0 now** | `/nieuws/$slug` | not produced — news held | — | — | — |
+| 21 | Aanvraaghulp page-top | shares #1 | 1920×650 | 2.954:1 | 0 extra | `/aanvraaghulp` | shares #1 | — | — | decorative |
+| 22 | Favicon | `public/favicon.ico` (256×256) + `A/favicon.png` (300×300) | — | 1:1 | see §4 | all pages | VZ mark | — | ICO + PNG + SVG | — |
+| 23 | Header/footer wordmark | `A/logo-white.png` (521×157) present but **unused**; header renders text wordmark | 521×157 | 3.318:1 | see §4 | all 32 pages | see §4 | — | SVG/PNG | `alt="Vreemdelingenzaken"` |
+
+Total new assets in the released batch: **1 page-top SVG (+1 WebP) + 3 hero photos + 3 photo details (#5, #6, #11) + 1 CTA texture (#7) + 6 category images + 6 stakeholder images + 6 recoloured decorative SVGs (#13–#18) + logo/favicon set per §4**. Status of all: NOT GENERATED (generation happens inside the released batch, not in this Plan turn).
+
+## 4. Logo rule (audit result)
+
+Audit (FACT): the header renders the text wordmark "Vreemdelingenzaken / Juspol Gen" from `chrome.ts`; no VZ logo image file exists in `public/`; the only logo asset present is the template's `logo-white.png` (Liviza brand — must not be used); `public/favicon.ico` is the generic 256×256 default.
+Therefore, and only therefore: the current readable wordmark is **retained**, and the batch adds a restrained "VZ" monogram mark — no seal, no coat of arms, no invented emblem:
+
+| Asset | Size/format | Contrast state |
 |---|---|---|
-| `/` | `routes/index.tsx` + `liviza-home.html.ts` | Complete, hero is one static slide (needs 3-slide restore) |
-| `/over-ons` | `over-ons.tsx` | Complete, placeholder image |
-| `/diensten` | `diensten.index.tsx` | Complete, placeholder card images |
-| `/diensten/$categorie` | `diensten.$categorie.index.tsx` | Complete, placeholder card images |
-| `/diensten/$categorie/$slug` | `diensten.$categorie.$slug.tsx` | Complete (full-width, no sidebar) |
-| `/documentenlijsten` | `documentenlijsten.tsx` | Complete (Bootstrap tabs, 17 PDFs) |
-| `/instanties` | `instanties.tsx` | Complete, placeholder card images |
-| `/contact` | `contact.tsx` | Complete |
-| `/privacy`, `/disclaimer` | `privacy.tsx`, `disclaimer.tsx` | Complete |
-| `/veelgestelde-vragen` | `veelgestelde-vragen.tsx` | Governed empty state — BLOCKED on approved Q&A |
-| `/nieuws`, `/nieuws/$slug` | `nieuws.index.tsx`, `nieuws.$slug.tsx` | Governed empty state — blocked pending news disposition (§7) |
-| `/aanvraaghulp` | — | MISSING — built in Batch D |
+| `vz-mark.svg` | vector, 1:1 | source of all raster variants |
+| `favicon.ico` | 16/32/48 multi-size | on light and dark browser chrome |
+| `apple-touch-icon.png` | 180×180 | on light |
+| `vz-wordmark-light.svg` | height 40px, ~3.3:1 | dark header/page-top → white/off-white mark, ≥4.5:1 |
+| `vz-wordmark-dark.svg` | height 40px | light backgrounds/print → blue mark on white, ≥4.5:1 |
+| `og-image.png` | 1200×630 | social preview, no baked claims |
 
-All page-top areas use the ported Liviza `.pbmit-title-bar-wrapper`, background `images/homepage-1/title-bg.jpg`, measured **1920 × 650**, content box height 650px, `padding-top: 135px`, title 45/55px white, breadcrumb white. (FACT, `shortcode.css` §10)
+Creation happens inside the released batch, not in this turn.
 
-## 2. Liviza source-pattern mapping (unchanged, confirmation only)
+## 5. Page-top system and contrast gate
 
-home→`index.html`; over-ons→`about-us.html`; diensten→`our-services.html`; categorie→`visa.html`; service detail→`visa-details.html`; documentenlijsten→`visa.html` tabs; instanties→`countries.html`/team card; nieuws→`blog-grid-view.html`; nieuws detail + privacy/disclaimer→`blog-single-view.html`; faq→`faq.html`; contact→`contacts.html`; **aanvraaghulp→`faq.html` accordion + `visa-details.html` detail column + `our-services.html` card grid** (no new visual language).
+**One continuous composition**, not a band-on-image: a single 1920×650 SVG whose gradient runs from deep institutional blue (`#0f2346`-family) at the top edge, through a mid blue with restrained geometric planes, into an off-white lower-right field — the same quiet abstract direction Delroy approved. The upper navigation zone (0 → ~230px, covering pre-header + 105px nav row + the 135px title offset) is dark by composition, not by a pasted rectangle: the gradient stop keeps luminance low there while remaining visually continuous. Where the title/breadcrumb (white 45/55px) would otherwise sit over lighter tones, an **integrated** gradient scrim `linear-gradient(180deg, rgba(15,35,70,.72) 0%, rgba(15,35,70,.38) 55%, rgba(15,35,70,.20) 100%)` is applied on `.pbmit-title-bar-wrapper:after` in isolated public CSS — tuned visually, never a flat block, and never a change to the approved header markup.
 
-## 3. Image inventory (exact measured slots)
+Contrast gate (all must pass before the batch is reported complete): menu items, active menu item, wordmark, pre-header address/phone/e-mail/opening hours, "Heeft u vragen?" phone block, page title, breadcrumb links, current crumb — measured at 1440, 1280, 992, 768, 390/375, 320, in default and **open mobile-menu** state, and with a **long title** fixture (the longest governed page title, e.g. "Omzetten toelatingsbeschikking naar vestigingsvergunning" wrapping to two lines). Pass = ≥4.5:1 body text, ≥3:1 for ≥24px text. Failure → adjust composition/scrim only. STOP if unachievable without header change.
 
-| Slot | Current file | Source px / ratio | Proposed subject | Crop | Output | Responsive | Alt intent |
-|---|---|---|---|---|---|---|---|
-| Inner page-top (all 12 inner routes) | `homepage-1/title-bg.jpg` | 1920×650 (2.954:1) | Calm abstract: off-white field, institutional-blue geometric planes, dark-blue upper band | anchor top band, right-bottom fill (matches `background-position: right bottom`) | **SVG** primary, WebP fallback | single SVG scales; WebP 1920/1280/768 | decorative — `role="presentation"` (CSS background, no alt needed) |
-| Home hero A/B/C | `banner-slider-img/slider-01-a|b|c.jpg` | 1920×900 (2.133:1) | 3 real photos: (A) public service counter/queue-free reception, (B) person preparing documents at desk, (C) exterior civic/office architecture, Suriname-appropriate, no text baked in | centre-left safe zone (text sits in `col-md-7`) | WebP + JPG fallback | 1920 / 1280 / 768 / 480 | descriptive Dutch alt on each slide |
-| Over ons | `homepage-1/service/about-01.jpg` | 530×540 (0.981:1) | reception/desk detail | centre | WebP | 530 / 265 | descriptive |
-| Home about | `img-01.jpg` 470×470, `img-02.jpg` 370×275 | 1:1 / 1.345:1 | document preparation detail; counter detail | centre | WebP | 2 widths each | descriptive |
-| Service cards (`/diensten`, `/diensten/$categorie`) | `service/service-01…09.jpg` | 800×535 (1.495:1) | 6 category-neutral document/service motifs | centre | WebP | 800 / 400 | category label alt |
-| Instanties cards | `portfolio/portfolio-0N.jpg` | 800×650 (1.231:1) | neutral institutional building/desk motifs ×4–6 | centre | WebP | 800 / 400 | institution name alt |
-| Home stakeholder carousel | same portfolio set | 800×650 | as above (shared set) | centre | WebP | shared | shared |
-| World map behind stakeholder band | template asset | as ported | **remove or replace with abstract blue field** | — | SVG | — | decorative |
+## 6. Aanvraaghulp — source-of-truth mapping (all 15 outcomes)
 
-Status of every row: **NOT GENERATED — generation not released.** Every replacement keeps the exact source pixel ratio; no CSS geometry is touched. (OPEN DECISION: whether generated imagery is acceptable at all for handover, or whether photography must be supplied by VZ — see §12.)
+Route: `/aanvraaghulp`, step state in `?stap=`; intro → questions → result. Q1 "Wat wilt u regelen?" (6 governed categories) → Q2 branch per category → terminal service.
 
-## 4. Homepage three-slide hero specification
+| Path (Q1 → Q2) | Category | Service slug | ID | PDF record | Result CTA | Status |
+|---|---|---|---|---|---|---|
+| Verblijf → Surinaamse origine | verblijf | `verblijf-surinaamse-origine` | SRV-001 | ✔ | dienst + PDF + contact | OK |
+| Verblijf → overige vreemdeling | verblijf | `verblijf-overige` | SRV-002 | ✔ | idem | OK |
+| Verblijf → verlenging | verblijf | `verlenging-verblijf` | SRV-003 | ✔ | idem | OK |
+| Vestiging → overige | vestiging | `vestiging-overige` | SRV-004 | ✔ | idem | OK |
+| Vestiging → omzetten toelatingsbeschikking | vestiging | `omzetten-toelatingsbeschikking` | SRV-005 | ✘ | dienst + contact | OK, PDF link omitted (no governed record) |
+| Vestiging → Surinaamse origine | vestiging | `vestiging-surinaamse-origine` | SRV-014 | ✔ | dienst + PDF + contact | OK |
+| Naturalisatie → Surinaamse origine | naturalisatie | `naturalisatie-surinaamse-origine` | SRV-006 | ✘ | dienst + contact | OK, PDF omitted |
+| Naturalisatie → overige vreemdelingen | naturalisatie | `naturalisatie-overige-vreemdelingen` | SRV-007 | ✘ | dienst + contact | OK, PDF omitted |
+| Naturalisatie → optie Art. 5 | naturalisatie | `optie-art-5` | SRV-008 | ✘ | dienst + contact | OK, PDF omitted |
+| Naturalisatie → optie Art. 12 | naturalisatie | `optie-art-12` | SRV-009 | ✘ | dienst + contact | OK, PDF omitted |
+| Naturalisatie → verklaring van naturalisatie | naturalisatie | `verklaring-van-naturalisatie` | SRV-011 | ✔ | dienst + PDF + contact | OK |
+| Ingezetenschap → Art. 21 WNI | ingezetenschap | `ingezetenschap-art-21` | SRV-010 | ✘ | dienst + contact | OK, PDF omitted |
+| Asiel → asiel/vluchteling | asiel | `asiel-vluchteling` | SRV-015 | ✔ | dienst + PDF + contact | OK |
+| Overig → duplicaat | overig | `duplicaat` | SRV-012 | ✔ | dienst + PDF + contact | OK |
+| Overig → garantstelling | overig | `garantstelling` | SRV-013 | ✔ | dienst + PDF + contact | OK |
 
-Restore the template's `swiper-slider` with `data-autoplay="false"`, `data-loop="true"`, `data-dots="true"`, `data-arrows="true"`, fade effect — i.e. the original Liviza behaviour minus autoplay (reduced-motion and accessibility). Three slides, slot 1920×900, existing `pbmit-slider-content` markup reused verbatim:
+All 15 outcomes are mappable from current project content; **no branch is BLOCKED**. Six outcomes have no governed PDF record and therefore show no document link — an omission, never a substitute. Q2 wording is derived from the governed service titles only; no rule, question or answer is imported from the reference project's Supabase `wizard_rules`. (FACT: that table is the reference's only rule source and carries submission/personal-data phases — excluded.)
 
-| # | Eyebrow | Title | Lead | CTA |
-|---|---|---|---|---|
-| 1 | Informatie en voorbereiding | Voorbereid naar **Vreemdelingenzaken** | Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag. | Bekijk diensten → `/diensten` |
-| 2 | Documenten | Weet welke **documenten** u nodig heeft | Officiële documentenlijsten per categorie. | Documentenlijsten → `/documentenlijsten` |
-| 3 | Aanvraaghulp | Bereid uw **bezoek** voor | Beantwoord enkele vragen en zie welke dienst en documenten van toepassing zijn. | Start Aanvraaghulp → `/aanvraaghulp` |
+Boundaries and accessibility unchanged: no personal data, free text, upload, payment, account, submission, eligibility judgment, backend, database or e-mail. `fieldset`/`legend` per question, radio arrow-key navigation, focus moved to the new question heading, `aria-live="polite"` progress, visible focus, reduced-motion respected, Vorige / Opnieuw beginnen. Disclaimer on intro and result: "Aanvraaghulp is uitsluitend informatie en voorbereiding. Dit is geen aanvraag en geen beslissing over uw situatie. Aan deze uitkomst kunnen geen rechten worden ontleend."
 
-No invented claim, no fee, no submission wording. Slider arrows keyboard-focusable; `prefers-reduced-motion` disables the fade transition.
+## 7. News disposition (unchanged)
 
-## 5. Inner-page background + contrast acceptance
-
-One background family, one file, all inner routes (single `.pbmit-title-bar-wrapper` rule already shared). Composition top→bottom: solid institutional dark blue band covering the full header + navigation zone (≥ 240px at 1920 scale, i.e. beyond the 135px header offset), then a controlled gradient into a light off-white geometric field carrying the title/breadcrumb zone. If the title/breadcrumb (white, 45/55px) lands over the light field, a fixed dark scrim (`rgba(15,35,70,.55)`) is applied through isolated public CSS on the wrapper `:after`, never by changing header markup.
-
-Acceptance method: measured WCAG contrast (axe/manual sampling of rendered pixels behind each element) at 1440/1280/992/768/390/320 for: menu items, active menu item, logo wordmark, pre-header address/phone/e-mail/opening hours, "Heeft u vragen?" phone block, page title, breadcrumb links and current crumb. Pass = ≥ 4.5:1 for body-size text, ≥ 3:1 for ≥24px text. Any failure → adjust the background/scrim, never the header. STOP if not achievable without header change.
-
-## 6. Sidebar matrix
-
-| Route | Sidebar | Rationale |
+| # | Title | Status |
 |---|---|---|
-| `/`, `/over-ons`, `/diensten`, `/diensten/$categorie`, `/documentenlijsten`, `/instanties`, `/contact` | none | full-width Liviza patterns already accepted |
-| `/diensten/$categorie/$slug` | none | Delroy rejected it; no superior source pattern identified — keep full-width |
-| `/nieuws`, `/nieuws/$slug`, `/privacy`, `/disclaimer` | right column (existing `blog-single-view.html` widget cards) | already implemented and accepted |
-| `/aanvraaghulp` result view | right column, `blog-single-view.html` widget cards: relevante dienst, officiële documenten, contact | materially aids navigation to the governed destination |
+| 1 | Nieuwe richtlijnen voor verblijfsvergunningen (2024) | HOLD — unverified policy claim/date |
+| 2 | Wijzigingen in naturalisatieprocedure | HOLD |
+| 3 | Feestdagen: aangepaste openingstijden | REWRITE FROM GOVERNED SOURCE (not in this batch) |
+| 4 | Digitale indiening nu beschikbaar | **REJECT** — conflicts with preparation-only scope |
+| 5 | Verlenging van verblijfsvergunningen | HOLD |
+| 6 | Asielprocedure versneld | HOLD |
 
-Tablet/mobile (<992px): every sidebar stacks below main content, full width, no sticky, no overlap.
+Zero items are publishable, so news implementation is excluded from the released batch and `/nieuws` keeps its governed empty state.
 
-## 7. Aanvraaghulp (preparation-only wizard)
+## 8. Sidebar matrix (unchanged)
 
-Routes: `/aanvraaghulp` (intro + questions + result in one route, step state in URL search param `?stap=`), no sub-routes needed; deep-linkable and back-button safe.
+None on `/`, `/over-ons`, `/diensten`, `/diensten/$categorie`, `/documentenlijsten`, `/instanties`, `/contact`; **none on `/diensten/$categorie/$slug`** (no superior source pattern identified — the rejection stands); right column on `/nieuws`, `/nieuws/$slug`, `/privacy`, `/disclaimer`; right column on the `/aanvraaghulp` result view (relevante dienst, officieel document, contact) using `blog-single-view.html` widget cards. Below 992px every sidebar stacks below main content, full width, non-sticky.
 
-Flow: intro card with non-binding notice → question cards (single-select radio group, Liviza accordion/radio styling) → derived likely service → result view listing that service's governed conditions and its official document checklist, with links to `/diensten/$categorie/$slug`, `/documentenlijsten` and `/contact`.
+## 9. One consolidated execution batch — LFB-104
 
-Decision tree (drafted from the 6 governed categories and 15 governed service records only):
-1. Wat wilt u regelen? (verblijf / vestiging / naturalisatie / ingezetenschap / asiel / overig)
-2. Branch question per category (e.g. Surinaamse origine ja/nee; eerste aanvraag of verlenging; art. 5 / art. 12 / verklaring)
-3. Terminal → one `ServiceRecord`, or "meerdere mogelijk" → show the 2–3 candidate service cards.
+Single released batch containing, in this internal order: (1) page-top system + contrast gate; (2) logo/compact mark + favicon set; (3) all image generation and replacement per §3; (4) three-slide homepage hero; (5) Aanvraaghulp; (6) responsive corrections; (7) full smoke/regression tests; (8) evidence. FAQ and news content excluded.
 
-Boundaries: no personal data, no free-text, no upload, no payment, no account, no submission, no eligibility determination, no backend/database/Supabase/Edge Function/e-mail. Persistence: optional `localStorage` of *answers only* (category/branch choices, no personal data), 24-hour expiry, cleared by Restart — mirrors the reference concept without its submission phases. (OPEN DECISION: allow localStorage at all, or keep the wizard fully stateless.)
+**Why one batch is technically safe.** The work is layered, not entangled: page-top and decorative assets touch only `vz-polish.css` and new files under `public/vz-public/images/`; image swaps touch only `src` attributes and CSS `url()`s at unchanged ratios; the hero touches only the `homeHeader()` slider block in `chrome.ts`; the wizard is an entirely new route plus a new content module and two navigation entries. No step rewrites another step's output, and every step has an independent revert.
 
-Controls: Vorige (Back), Opnieuw beginnen (Restart), progress indicator "Vraag n van m". Accessibility: `fieldset`/`legend` per question, radio group arrow-key navigation, focus moved to the new question heading, `aria-live="polite"` progress, visible focus ring, reduced-motion respected.
+**Partial-failure isolation inside the one batch.** Seven internal checkpoints, each an evidence gate and a rollback commit: CP1 page-top + contrast pass, CP2 logo/favicon, CP3 images replaced (ratio diff clean), CP4 hero (3 slides, keyboard, reduced motion), CP5 wizard (all 15 paths), CP6 responsive sweep, CP7 full smoke + PDFs. A failing checkpoint is reverted to its own commit and reported as a bounded defect while the passed checkpoints stay; the batch is never abandoned wholesale and no extra release turn is consumed. A single correction round is permitted only if Delroy's post-batch visual review finds bounded defects.
 
-Disclaimer text on intro and result: "Aanvraaghulp is uitsluitend informatie en voorbereiding. Dit is geen aanvraag en geen beslissing over uw situatie. Aan deze uitkomst kunnen geen rechten worden ontleend."
+Allowed files: `public/vz-public/images/**` (new), `public/vz-public/css/vz-polish.css`, `public/favicon.ico`, `public/apple-touch-icon.png`, `src/lib/public/template/*.html.ts`, `chrome.ts`, `LivizaTemplatePage.tsx`, `src/routes/aanvraaghulp.tsx` (new), `src/content/vz-wizard.ts` (new), `src/lib/public/routes-map.ts`, `src/lib/public/seo.ts`, `docs/vz-juspol-gen/execution-evidence/LFB-104/**`.
 
-Source dependencies requiring verification against current authoritative VZ documentation before build (each is a STOP if unverified): exact branch questions per category, Dutch wording of each question and answer option, the mapping answer→service for every one of the 15 services, whether "overig" needs its own branch, and whether the condition/checklist text already in `vz-content.ts` is the current authoritative version. Reference-project wizard rules live in a Supabase `wizard_rules` table and are **not** reusable content — concept only. (FACT)
+STOP conditions: contrast unachievable without header change; a slot ratio unmatchable; a wizard branch unmappable; any need for personal data, upload, backend, dependency, database or config change; any protected-surface impact; any PDF byte change; any request to author FAQ/news copy.
 
-## 8. News disposition (6 legacy candidates)
+## 10. Test inventory and evidence
 
-| # | Title | Status | Reason |
-|---|---|---|---|
-| 1 | Nieuwe richtlijnen voor verblijfsvergunningen (2024) | HOLD | policy claim + 2024 date unverifiable against governed sources |
-| 2 | Wijzigingen in naturalisatieprocedure | HOLD | procedural change claim unverified |
-| 3 | Feestdagen: aangepaste openingstijden | REWRITE FROM GOVERNED SOURCE | pattern acceptable; needs current governed dates/hours |
-| 4 | Digitale indiening nu beschikbaar | **REJECT** | directly conflicts with the preparation-only / no-submission scope |
-| 5 | Verlenging van verblijfsvergunningen | HOLD | "nieuwe richtlijnen", deadlines unverified |
-| 6 | Asielprocedure versneld | HOLD | procedural claim unverified |
+Widths 1440, 1280, 1024/992, 768, 390/375, 320 across all 32 pages. Coverage: 6 categories, all 15 service details, all 17 PDF links (hash + `%PDF-` header re-verified, bytes unchanged), all 15 wizard terminal paths, all 32 shared-header consumers.
+Smoke: primary + mobile navigation, document tabs, service and stakeholder carousels, hero slider (next/prev/dots/keyboard/no autoplay), every CTA link, wizard Vorige/Opnieuw/result routing/deep link/localStorage expiry+clear, full keyboard traversal, visible focus, `prefers-reduced-motion`, no horizontal overflow (documenting the inherited 1440 `scrollWidth` 1470 Liviza artefact), zero console errors, zero 404, zero `/admin/*` diff, zero dependency/config change.
+Evidence: `docs/vz-juspol-gen/execution-evidence/LFB-104/` with `REPORT.md`, `MANIFEST.md`, `contrast-validation.md`, `image-register.md`, `logo-register.md`, `wizard-validation.md`, `responsive-validation.md`, `pdf-verification.md`, `protected-surface-validation.md`, `screenshots/`, plus `docs/vz-juspol-gen/FRONTEND-COMPLETION-HANDOVER.md`.
 
-Nothing is REUSE AS-IS. Zero items are publishable today, so `/nieuws` keeps its governed empty state until a separate release supplies verified copy. Legacy images are `picsum.photos` placeholders — not transferable. No replacement article is written in any batch of this plan.
+## 11. Labels, assumption, missing constraint, risk
 
-## 9. Implementation batches (ordered, credit-efficient)
+- **FACT**: baseline commit; every measured dimension in §3; no VZ logo asset exists and the header wordmark is text; 15 services / 6 categories / 17 PDFs; 6 services carry no PDF record; the reference wizard is Supabase-backed with submission phases.
+- **INFERENCE**: the Q2 branch set derivable from the governed service titles is sufficient for all 15 terminal outcomes.
+- **OPEN DECISION**: none remaining for imagery, persistence or FAQ. Remaining open only: whether category images (#10) may share one visual family or must be visually distinct per category.
+- **Weak assumption**: one shared page-top composition satisfies contrast on all 31 inner pages without a per-route variant.
+- **Missing constraint**: no approved provenance/licensing record format for generated public imagery has been issued, so `image-register.md` will record generation prompts and model as provisional provenance.
+- **Material failure risk**: the consolidated batch's largest risk is the hero — three real photos plus restored slider behaviour; a mis-sized or text-bearing image, or re-enabled autoplay, breaks fidelity and accessibility at once. Mitigated by exact-ratio enforcement, autoplay off, CP4 gating and baseline screenshot diffing.
 
-**Batch A — Shared page-top background + contrast** (needs image release)
-Files: `public/vz-public/images/*` (new), `public/vz-public/css/vz-polish.css`. Tests: contrast matrix §5, 6 widths, no overflow. Rollback: revert the one CSS rule + delete new asset. STOP: contrast unachievable. Accept: all §5 elements pass at all widths.
+## 12. Proposed consolidated release statement (not executed)
 
-**Batch B — Homepage hero (3 slides) + all remaining image replacements**
-Files: `src/lib/public/template/chrome.ts`, `liviza-home.html.ts`, `liviza-about.html.ts`, `liviza-services.html.ts`, `liviza-category.html.ts`, `liviza-instanties.html.ts`, new assets. Tests: slider next/prev/dots, keyboard, reduced motion, image ratios unchanged vs baseline screenshots, no layout drift, no 404. Rollback: restore static hero + template asset paths. STOP: a slot ratio cannot be matched. Accept: zero geometry delta vs baseline screenshots except intended imagery.
+> "Delroy releases exactly one consolidated Build Mode batch, LFB-104 FRONTEND COMPLETION, covering: the shared inner-page-top background system and contrast gate; the restrained VZ monogram, wordmark variants and favicon set; generation and replacement of every image listed in the register at the exact measured slot ratios; the three-slide homepage hero without autoplay; the preparation-only Aanvraaghulp at `/aanvraaghulp` with 24-hour categorical localStorage; responsive corrections; full smoke testing; and evidence under `docs/vz-juspol-gen/execution-evidence/LFB-104/`. Internal checkpoints CP1–CP7 act as rollback points; one correction round is permitted after visual review. FAQ and news content remain excluded. Forbidden and unreleased: database, Supabase/Lovable Cloud, authentication, personal-data intake, uploads, payments, e-mail, `/admin/*` and admin assets, publication or deployment, PDF modification, dependency changes, GitHub actions, and deletion of the old external VZ sites."
 
-**Batch C — Sidebar/responsive conformance sweep** (small; only if A/B reveal drift)
-Files: `vz-polish.css` only.
-
-**Batch D — Aanvraaghulp**
-Files: `src/routes/aanvraaghulp.tsx`, `src/lib/public/template/liviza-aanvraaghulp.html.ts` or a scoped React component inside `.vz-public`, `src/content/vz-wizard.ts` (governed question tree), `routes-map.ts`, `seo.ts`, `chrome.ts` nav entry. Tests: full tree traversal, Back, Restart, deep link, result routing to all 15 services, keyboard, focus, `aria-live`, no personal-data field present, no network call. STOP: any question/mapping unverified. Accept: every path terminates in a governed service or candidate list.
-
-**Batch E — News migration** (only if a separate release supplies verified copy)
-
-**Batch F — Final sitewide responsive QA + smoke tests + handover documentation**
-
-Each batch: one execution + at most one correction round. Rollback point = the commit preceding the batch.
-
-## 10. Final test matrices
-
-Widths: 1440, 1280, 1024/992, 768, 390/375, 320 — for all 14 routes (13 current + `/aanvraaghulp`).
-Smoke: primary/mobile navigation, document tabs, service + stakeholder carousels, hero slider, all 17 PDF links (hash + header re-verified, bytes unchanged), wizard Back/Restart/result routing, every CTA link, full keyboard traversal, visible focus, `prefers-reduced-motion`, no horizontal overflow (documenting the inherited 1440 `scrollWidth` 1470 Liviza artefact), zero console errors, zero 404, zero `/admin/*` diff.
-
-## 11. Evidence and handover
-
-Per batch: `docs/vz-juspol-gen/execution-evidence/LFB-104-<BATCH>/` containing `REPORT.md`, `MANIFEST.md`, `screenshots/`, plus `contrast-validation.md` (A), `image-register.md` (B), `wizard-validation.md` (D), `pdf-verification.md` and `protected-surface-validation.md` (F). Final handover: `docs/vz-juspol-gen/FRONTEND-COMPLETION-HANDOVER.md` summarising routes, patterns, image provenance, open blockers.
-
-## 12. Labels, assumptions, risks
-
-- **FACT**: baseline commit; 1920×650 title slot; 1920×900 hero slot; all other measured slot sizes; reference wizard is Supabase-backed with submission/personal-data/upload phases; reference blog.json holds exactly 6 items with picsum images.
-- **INFERENCE**: the wizard question tree can be derived entirely from the 6 categories and 15 governed service records without new legal content.
-- **OPEN DECISION**: (a) generated imagery vs VZ-supplied photography; (b) localStorage answer persistence vs stateless wizard; (c) whether FAQ content will ever be released.
-- **One weak assumption**: that a single shared page-top background can satisfy contrast on all 12 inner routes without any per-route variant.
-- **One missing constraint**: no approved image-provenance/licensing rule for generated public imagery has been issued, so §3 cannot leave "NOT GENERATED".
-- **One material failure risk**: replacing the hero with three real photos and simultaneously restoring slider behaviour is the highest-risk change; a mis-sized or text-baked image, or re-enabled autoplay, breaks both 1:1 fidelity and accessibility. Mitigated by exact-ratio enforcement, autoplay off, and baseline screenshot diffing.
-
-## 13. Proposed implementation release statement (not executed)
-
-> "Delroy releases Batch A and Batch B of Frontend Completion Master Plan 001, including generation of the shared inner-page background and the three homepage hero images plus the listed replacement images, at the exact measured slot ratios. Batches C–F remain NOT RELEASED."
-
-**PLAN COMPLETE — AWAITING DELROY APPROVAL**
+**REVISED PLAN COMPLETE — AWAITING DELROY APPROVAL**
