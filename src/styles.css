@@ -177,8 +177,8 @@
   --text-vz-h1--line-height: 3rem;    /* 48px */
   --text-vz-h2: 2.25rem;              /* 36px */
   --text-vz-h2--line-height: 2.625rem;
-  --text-vz-h3: 1.875rem;             /* 30px */
-  --text-vz-h3--line-height: 2.25rem;
+  --text-vz-h3: 2rem;                 /* 32px */
+  --text-vz-h3--line-height: 2.375rem; /* 38px */
   --text-vz-h4: 1.625rem;             /* 26px */
   --text-vz-h4--line-height: 2rem;
   --text-vz-h5: 1.5rem;               /* 24px */
