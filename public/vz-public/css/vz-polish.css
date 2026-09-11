@@ -174,20 +174,32 @@
    the image sources are replaced by VZ-owned neutral illustration.
    ===================================================================== */
 
-/* Shared inner-page top: one continuous blue/off-white composition behind
-   the absolute header menu and the 650px title/breadcrumb zone. */
+/* Shared inner-page top (LFB-104 REMEDIATION 001).
+ * Visual source: the homepage "Diensten van Vreemdelingenzaken" band
+ * (`.service-one-bg.pbmit-bg-color-blackish`): a calm blackish field with two
+ * restrained angular Liviza corner patterns. No illustration, photograph or
+ * light wedge behind the navigation. */
 .pbmit-title-bar-wrapper {
-	background-image: url("/vz-public/images/pattern/vz-page-top.svg");
-	background-position: center center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-color: #0b1e3b;
+	background-color: var(--pbmit-blackish-color);
+	background-image:
+		url("/vz-public/liviza/assets/images/homepage-1/bg/bg-pattarn.png"),
+		url("/vz-public/liviza/assets/images/homepage-1/bg/bg-pattarn-left.png");
+	background-position: right 100px bottom 0, left 0 top 0;
+	background-size: 474px 448px, 309px 448px;
+	background-repeat: no-repeat, no-repeat;
 }
 
-/* Keeps white title and breadcrumb text readable over the upper zone. */
+/* Flat, very light darkening only; the zone is dark by base colour. */
 .pbmit-title-bar-wrapper:before {
-	background: linear-gradient(180deg, rgba(8, 20, 40, 0.72) 0%, rgba(8, 20, 40, 0.42) 45%, rgba(8, 20, 40, 0.58) 100%);
+	background: rgba(8, 20, 40, 0.25);
 	opacity: 1;
+}
+
+/* Mobile/tablet: the corner art is fixed 448px-tall desktop decoration. */
+@media (max-width: 991px) {
+	.pbmit-title-bar-wrapper {
+		background-image: none;
+	}
 }
 
 .pbmit-title-bar-wrapper .pbmit-tbar-title,
