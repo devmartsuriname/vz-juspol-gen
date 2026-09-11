@@ -159,6 +159,6 @@ One combined Build Mode batch covering all thirteen routes plus PDF placement, t
 
 ## 14. MTB planning status
 
-LFB-103D — sitewide content swap + `/documentenlijsten`, `/privacy`, `/disclaimer`: `PLANNED / NOT RELEASED`. LFB-101, LFB-102, LFB-103A, LFB-103C complete. Image swap, `/aanvraaghulp` wizard, FAQ/news population: separately planned, not in this batch.
+LFB-103D — sitewide content swap + `/documentenlijsten`, `/instanties`, `/privacy`, `/disclaimer`: `PLANNED / NOT RELEASED`. LFB-101, LFB-102, LFB-103A, LFB-103C complete. Image swap (incl. world-map background), `/aanvraaghulp` wizard, FAQ/news population, stakeholder detail verification: separately planned, not in this batch.
 
 **Verdict:** PLAN COMPLETE WITH BLOCKED FAQ/NEWS FIELDS
