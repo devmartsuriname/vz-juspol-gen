@@ -21,7 +21,10 @@ export const LIVIZA_CSS = [
   "base.css",
   "style.css",
   "responsive.css",
-].map((file) => `${LIVIZA_ASSETS}/css/${file}`);
+]
+  .map((file) => `${LIVIZA_ASSETS}/css/${file}`)
+  // Isolated public polish layer, always loaded last.
+  .concat(["/vz-public/css/vz-polish.css"]);
 
 export const LIVIZA_JS = [
   "jquery.min.js",
