@@ -57,25 +57,32 @@ const serviceSlides = services
   })
   .join("\n");
 
-const stakeholderCards = stakeholders
+/**
+ * Stakeholder slides on the Liviza `countries.html` portfolio-box-style-2
+ * card pattern, presented in the Liviza carousel (4 desktop / 2 tablet /
+ * 1 mobile, autoplay off).
+ * Images remain Liviza demo assets:
+ * TEMPORARY TEMPLATE PLACEHOLDER — REPLACE BEFORE HANDOVER.
+ */
+const stakeholderSlides = stakeholders
   .map(
-    (item, index) => `							<div class="col-md-6 col-lg-3">
-								<article class="pbminfotech-portfoliobox-style-1">
+    (item, index) => `							<div class="swiper-slide">
+								<article class="pbminfotech-portfoliobox-style-2">
 									<div class="pbminfotech-post-item">
 										<div class="pbminfotech-featured-wrapper pbminfotech-pbminfotech-portfolio-featured-wrapper">
 											<img src="${ASSETS}/images/homepage-1/portfolio/portfolio-0${(index % 4) + 1}.jpg" class="img-fluid" alt="">
 										</div>
 										<div class="pbminfotech-box-content">
 											<div class="pbminfotech-box-content-inner">
-												<div class="pbminfotech-pf-box-title">
-													<h3><a href="/instanties">${item.name}</a></h3>
+												<div class="pbmit-ihbox-icon">
+													<i class="pbmit-liviza-business-icon pbmit-liviza-business-icon-placeholder"></i>
 												</div>
 												<div class="pbminfotech-des">
+													<div class="pbminfotech-pf-box-title">
+														<h3><a href="/instanties">${item.name}</a></h3>
+													</div>
 													<div class="pbminfotech-portfolio-content">
 														<p>${item.role}</p>
-													</div>
-													<div class="pbminfotech-box-link pbminfotech-vc_btn3">
-														<a href="/instanties">Meer informatie</a>
 													</div>
 												</div>
 											</div>
