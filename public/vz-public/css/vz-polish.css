@@ -1,0 +1,150 @@
+/*
+ * VZ public polish layer (LFB-103D POLISH 001).
+ *
+ * Isolated public-scope CSS loaded AFTER the ported Liviza stylesheets.
+ * It only repairs contrast, card equalisation and removes the need for
+ * inline presentation styles. It never overrides Liviza geometry,
+ * typography scale or spacing rhythm, and it never touches /admin/*.
+ */
+
+/* --- 1. Quick cards: keep Liviza white title/icon/link on coloured cards - */
+.pbminfotech-ihbox-style-3 h2.pbminfotech-custom-heading a,
+.pbminfotech-ihbox-style-3 .pbminfotech-custom-heading a {
+  color: #fff;
+}
+.pbminfotech-ihbox-style-3 h2.pbminfotech-custom-heading a:hover,
+.pbminfotech-ihbox-style-3 h2.pbminfotech-custom-heading a:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+.pbminfotech-ihbox-style-3.pbmit-col-bgcolor-white h2.pbminfotech-custom-heading a {
+  color: var(--pbmit-blackish-color);
+}
+.pbminfotech-ihbox-style-3.pbmit-col-bgcolor-white h2.pbminfotech-custom-heading a:hover,
+.pbminfotech-ihbox-style-3.pbmit-col-bgcolor-white h2.pbminfotech-custom-heading a:focus {
+  color: var(--pbmit-global-color);
+}
+
+/* --- 2. Equal-height slides for the service and stakeholder carousels ---- */
+.vz-equal-slides .swiper-wrapper {
+  align-items: stretch;
+}
+.vz-equal-slides .swiper-slide {
+  height: auto;
+  display: flex;
+}
+.vz-equal-slides .swiper-slide > article {
+  width: 100%;
+  display: flex;
+}
+.vz-equal-slides .swiper-slide > article > .pbminfotech-post-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.vz-equal-slides .swiper-slide .pbminfotech-box-content {
+  flex: 1 1 auto;
+}
+.vz-equal-slides .swiper-slide .pbminfotech-box-content-inner {
+  height: 100%;
+}
+
+/* --- 3. Chrome text that previously used inline styles ------------------- */
+.vz-brand-link {
+  display: block;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.vz-brand-name {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.vz-brand-sub {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: #fff;
+  opacity: 0.85;
+}
+.vz-hero-lead {
+  color: #fff;
+}
+.vz-footer-name {
+  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.vz-footer-sub {
+  margin-bottom: 18px;
+}
+
+/* --- 4. Governed meta text and action rows ------------------------------- */
+.vz-meta {
+  font-size: 13px;
+  line-height: 22px;
+}
+.vz-actions {
+  margin-top: 24px;
+}
+.vz-note {
+  font-size: 13px;
+  line-height: 22px;
+  margin-top: 24px;
+}
+
+/* --- 5. Document category tabs ------------------------------------------ */
+.vz-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0 0 30px;
+  list-style: none;
+  border-bottom: 1px solid #eaebec;
+}
+.vz-tab {
+  appearance: none;
+  border: 1px solid #eaebec;
+  border-bottom: none;
+  background: #f7f9fc;
+  color: var(--pbmit-blackish-color);
+  border-radius: 6px 6px 0 0;
+  padding: 10px 18px;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.vz-tab:hover {
+  color: var(--pbmit-global-color);
+}
+.vz-tab[aria-selected="true"] {
+  background: var(--pbmit-global-color);
+  border-color: var(--pbmit-global-color);
+  color: #fff;
+}
+.vz-tab:focus-visible,
+.vz-tabpanel:focus-visible {
+  outline: 2px solid var(--pbmit-blackish-color);
+  outline-offset: 2px;
+}
+
+/* --- 6. Article + sidebar pages ------------------------------------------ */
+.vz-sidebar .widget {
+  margin-bottom: 35px;
+}
+.vz-sidebar .widget ul {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+.vz-sidebar .widget ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eaebec;
+}
+.vz-sidebar .widget ul li:last-child {
+  border-bottom: none;
+}

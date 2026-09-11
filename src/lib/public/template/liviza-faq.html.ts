@@ -36,7 +36,7 @@ ${contentOpen()}
 									</div>
 								</div>
 							</div>
-							<p class="pb-2" style="margin-top:24px;">
+							<p class="vz-actions">
 								<a class="pbmit-btn" href="/diensten"><span>Bekijk diensten</span></a>
 							</p>
 						</div>

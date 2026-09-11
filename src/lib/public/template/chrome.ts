@@ -82,9 +82,9 @@ function headerTop(active: string): string {
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="site-branding">
 										<span class="site-title">
-											<a href="/" style="display:block;line-height:1.2;text-decoration:none;">
-												<span style="display:block;font-size:22px;font-weight:700;color:#ffffff;">${identity.name}</span>
-												<span style="display:block;font-size:12px;font-weight:400;color:#ffffff;opacity:.85;">${identity.subline}</span>
+											<a class="vz-brand-link" href="/">
+												<span class="vz-brand-name">${identity.name}</span>
+												<span class="vz-brand-sub">${identity.subline}</span>
 											</a>
 										</span>
 									</div>
@@ -149,7 +149,7 @@ export function homeHeader(): string {
 											<div class="pbmit-slider-content">
 												<h5 class="pbmit-sub-title">Informatie en voorbereiding</h5>
 												<h2 class="pbmit-title">Voorbereid naar <span>Vreemdelingenzaken</span></h2>
-												<p style="color:#ffffff;">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
+												<p class="vz-hero-lead">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
 												<div class="pbmit-button">
 													<a class="pbmit-button" href="/diensten">
 														<span class="pbmit-icon"><i class="fa fa-angle-right"></i></span>
@@ -227,8 +227,8 @@ export function footer(): string {
 							<div class="col-md-6 col-lg-4">
 								<div class="widget">
 									<div class="textwidget">
-										<p style="margin-bottom:6px;font-size:22px;font-weight:700;color:#ffffff;">${identity.name}</p>
-										<p style="margin-bottom:18px;">${identity.subline}</p>
+										<p class="vz-footer-name">${identity.name}</p>
+										<p class="vz-footer-sub">${identity.subline}</p>
 										<p>Informatie over diensten, documenten en voorbereiding. U dient via deze website niets in.</p>
 									</div>
 								</div>
