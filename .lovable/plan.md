@@ -137,7 +137,7 @@ Scan on release must return zero visible-text hits for: `liviza|lorem|testimonia
 
 ## 9. Fit method
 
-Per slot: UTF-16 count against the matrix maximum; over-length → documented fallback. After swap: screenshots at 1440/1280/992/768/375 for all twelve routes, DOM checks for `scrollWidth > clientWidth` and clipped text in every card/button. No CSS change as a fit remedy.
+Per slot: UTF-16 count against the matrix maximum; over-length → documented fallback. After swap: screenshots at 1440/1280/992/768/375 for all thirteen routes, DOM checks for `scrollWidth > clientWidth` and clipped text in every card/button. No CSS change as a fit remedy.
 
 ## 10. Metadata
 
@@ -145,11 +145,11 @@ Per the SEO deck, with `Vreemdelingenzaken` as the suffix once identity is appli
 
 ## 11. Acceptance evidence
 
-Before/after screenshots at five widths for all twelve routes; overflow, console, HTTP/404; PDF hash + header verification table for all 17 files; keyboard nav (menu, accordion, carousel), skip link, heading order, alt text; SPA navigation script integrity; forbidden-value scan output; `/admin/*` 200 with zero diff; typecheck; build. Evidence → `docs/vz-juspol-gen/execution-evidence/LFB-103D/` (`REPORT.md`, `MANIFEST.md`, `screenshots/`, `pdf-verification.md`, `image-register.md`).
+Before/after screenshots at five widths for all thirteen routes; overflow, console, HTTP/404; PDF hash + header verification table for all 17 files; keyboard nav (menu, accordion, carousel), skip link, heading order, alt text; SPA navigation script integrity; forbidden-value scan output; `/admin/*` 200 with zero diff; typecheck; build. Evidence → `docs/vz-juspol-gen/execution-evidence/LFB-103D/` (`REPORT.md`, `MANIFEST.md`, `screenshots/`, `pdf-verification.md`, `image-register.md`).
 
 ## 12. Execution shape
 
-One combined Build Mode batch covering all twelve routes plus PDF placement, then at most one material correction round. No microbatches. Requires separate explicit release; PDFs supplied at that time.
+One combined Build Mode batch covering all thirteen routes plus PDF placement, then at most one material correction round. No microbatches. Requires separate explicit release; PDFs supplied at that time.
 
 ## 13. Risk record
 
