@@ -183,9 +183,9 @@ Shared across all eight: identical header (`105px` nav row, `50px` logo cap), id
 - Route plan (§3): `/diensten` inherits the `visa.html` 3-up grid; `/diensten/$slug` inherits the 30/70 `service-left-col`/`service-right-col` split with mobile content-first order; `/nieuws` and `/nieuws/$slug` inherit `blog-grid-view` and the 9/3 `blog-single-view` split; `/veelgestelde-vragen` inherits the FAQ accordion; `/contact` inherits the 3× info-box row without form or map.
 - Component mapping (§4): adds `ServiceDetailLayout` (30/70), `SidebarNavList`, `AccordionItem`, `NewsCard` (meta chip offsets), `ArticleLayout` (9/3), `InfoBox` (icon/label/value).
 - Tokens (§5): adds sidebar rhythm 65px top offset / 40px bottom, sidebar list padding 30px 25px, accordion radius 5px, accordion header padding 20px, accordion body padding 14/20, news card bottom margin 35px, media radius 6px, meta-chip offsets −48/−25.
-- Deviation register (§2.3): extended below with the eight-page findings.
+- Deviation register (§2.6): extended below with the eight-page findings.
 
-### 2.3 Deviation register
+### 2.6 Deviation register
 
 | Source pattern | Deviation | Reason | Parity preservation |
 |---|---|---|---|
