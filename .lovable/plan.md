@@ -196,6 +196,12 @@ Shared across all eight: identical header (`105px` nav row, `50px` logo cap), id
 | Flaticon/Themify icon fonts | inline SVG, labelled | licence + a11y | same optical size and accent colour |
 | Demo photography | omitted or approved replacement | asset register | text-first blocks keep card aspect boxes so grid geometry is unchanged |
 | jQuery dropdown menu | React disclosure nav | no jQuery | same 105px row, 17px item spacing, same hover underline |
+| Bootstrap collapse accordion (`data-bs-toggle`) | native `<button aria-expanded>` + React state | no Bootstrap JS; keyboard/SR support | same 5px radius, 20px header padding, 14/20 body padding, brand-filled open state, 15px item gap |
+| Team member cards (`col-md-6 col-lg-3` ×4) | omitted unless persons are authorised | no invented institutional identity | if released, same 4-up grid, 6px radius, standard card shadow |
+| Contact form + map block (`col-md-6` ×2) | governed contact text + static info block | no inputs, no PHP/PHPMailer, no third-party map/tracker | same 6/6 row, same `section-lg` band, same info-box typography |
+| Blog sidebar search / tags / comments / share | recent-notice list only | no search theatre, no social, no comments | same `col-lg-3` sidebar width and widget rhythm |
+| Blog card image + author meta | date-only chip; image omitted or governed placeholder | asset provenance; no invented authors | same 6px media radius, −48px chip offset, −25px title offset, 35px card gap |
+| `visa-details` phone/CTA sidebar widget | governed contact card | no sales CTA | same `widget_media_image` card footprint and 30px 25px padding |
 
 ---
 
