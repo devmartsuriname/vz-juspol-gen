@@ -304,8 +304,10 @@ ${serviceSlides}
 							<h2 class="pbmit-title">Belangrijke instanties <em>voor uw aanvraag</em></h2>
 						</div>
 						<p class="text-center">Bekijk welke overheidsinstanties betrokken kunnen zijn bij uw aanvraag of procedure.</p>
-						<div class="row">
-${stakeholderCards}
+						<div class="swiper-slider swiper-btn-right-dots vz-equal-slides" data-loop="false" data-autoplay="false" data-dots="true" data-arrows="false" data-columns="4" data-margin="30" data-effect="slide">
+							<div class="swiper-wrapper">
+${stakeholderSlides}
+							</div>
 						</div>
 					</div>
 				</div>
