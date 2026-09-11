@@ -203,7 +203,7 @@ function heroSlide(slide: HeroSlide): string {
 												<h2 class="pbmit-title">${slide.title}</h2>
 												<p class="vz-hero-lead">${slide.lead}</p>
 												<div class="pbmit-button">
-													<a class="pbmit-button" href="${slide.ctaHref}">
+													<a class="pbmit-button" href="${slide.ctaHref}" aria-label="${slide.ctaLabel}">
 														<span class="pbmit-icon"><i class="fa fa-angle-right"></i></span>
 														<span class="pbmit-text">${slide.ctaLabel}</span>
 													</a>
