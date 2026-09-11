@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="309" height="448" viewBox="0 0 309 448" role="presentation">
+  <g stroke="#5b86b8" stroke-opacity="0.16" stroke-width="1" fill="none">
+    <path d="M-40 0 L200 448"/>
+    <path d="M0 0 L240 448"/>
+    <path d="M40 0 L280 448"/>
+    <path d="M80 0 L320 448"/>
+    <path d="M120 0 L360 448"/>
+    <path d="M160 0 L400 448"/>
+    <path d="M200 0 L440 448"/>
+    <path d="M240 0 L480 448"/>
+  </g>
+</svg>

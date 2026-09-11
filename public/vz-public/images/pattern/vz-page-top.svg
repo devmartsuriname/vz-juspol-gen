@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="650" viewBox="0 0 1920 650" preserveAspectRatio="xMidYMid slice" role="presentation">
+  <defs>
+    <linearGradient id="vzBase2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08172f"/>
+      <stop offset="0.55" stop-color="#123059"/>
+      <stop offset="1" stop-color="#1d4a80"/>
+    </linearGradient>
+    <linearGradient id="vzPlane" x1="0.2" y1="1" x2="1" y2="0.15">
+      <stop offset="0" stop-color="#f3f5f8" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#dfe5ec" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="vzTopShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#04101f" stop-opacity="0.85"/>
+      <stop offset="0.42" stop-color="#04101f" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#04101f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="vzFacet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="650" fill="#0f2346"/>
+  <rect width="1920" height="650" fill="url(#vzBase2)"/>
+
+  <!-- quiet off-white plane, confined to the lower-right corner -->
+  <path d="M1920 650 L1920 120 L1330 650 Z" fill="url(#vzPlane)"/>
+  <path d="M1920 650 L1920 300 L1560 650 Z" fill="#ffffff" opacity="0.35"/>
+
+  <!-- restrained geometric facets -->
+  <path d="M0 650 L520 650 L980 190 L740 190 Z" fill="url(#vzFacet)"/>
+  <path d="M1080 0 L1420 0 L900 650 L640 650 Z" fill="#ffffff" opacity="0.035"/>
+  <path d="M1500 0 L1920 0 L1920 120 L1330 650 L1230 650 Z" fill="#ffffff" opacity="0.05"/>
+
+  <!-- keeps the navigation zone dark by composition -->
+  <rect width="1920" height="650" fill="url(#vzTopShade)"/>
+</svg>

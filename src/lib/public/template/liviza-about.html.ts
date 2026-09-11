@@ -5,7 +5,7 @@
  */
 
 import {
-  ASSETS,
+  VZ_IMAGES,
   contentClose,
   contentOpen,
   footer,
@@ -22,7 +22,7 @@ ${contentOpen()}
 				<div class="row">
 					<div class="col-md-12 col-lg-6">
 						<div class="about-agency-img">
-							<img src="${ASSETS}/images/homepage-1/service/about-01.jpg" class="img-fluid" alt="">
+							<img src="${VZ_IMAGES}/about/vz-about-01.webp" class="img-fluid" width="530" height="540" alt="">
 						</div>
 					</div>
 					<div class="col-md-12 col-lg-6">

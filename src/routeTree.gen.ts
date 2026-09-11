@@ -19,6 +19,7 @@ import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as DienstenRouteImport } from './routes/diensten'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AanvraaghulpRouteImport } from './routes/aanvraaghulp'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NieuwsIndexRouteImport } from './routes/nieuws.index'
 import { Route as DienstenIndexRouteImport } from './routes/diensten.index'
@@ -78,6 +79,11 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AanvraaghulpRoute = AanvraaghulpRouteImport.update({
+  id: '/aanvraaghulp',
+  path: '/aanvraaghulp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -121,6 +127,7 @@ const DienstenCategorieSlugRoute = DienstenCategorieSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aanvraaghulp': typeof AanvraaghulpRoute
   '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRouteWithChildren
@@ -141,6 +148,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aanvraaghulp': typeof AanvraaghulpRoute
   '/contact': typeof ContactRoute
   '/disclaimer': typeof DisclaimerRoute
   '/documentenlijsten': typeof DocumentenlijstenRoute
@@ -159,6 +167,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aanvraaghulp': typeof AanvraaghulpRoute
   '/admin': typeof AdminRouteWithChildren
   '/contact': typeof ContactRoute
   '/diensten': typeof DienstenRouteWithChildren
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aanvraaghulp'
     | '/admin'
     | '/contact'
     | '/diensten'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/aanvraaghulp'
     | '/contact'
     | '/disclaimer'
     | '/documentenlijsten'
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/aanvraaghulp'
     | '/admin'
     | '/contact'
     | '/diensten'
@@ -239,6 +251,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AanvraaghulpRoute: typeof AanvraaghulpRoute
   AdminRoute: typeof AdminRouteWithChildren
   ContactRoute: typeof ContactRoute
   DienstenRoute: typeof DienstenRouteWithChildren
@@ -321,6 +334,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aanvraaghulp': {
+      id: '/aanvraaghulp'
+      path: '/aanvraaghulp'
+      fullPath: '/aanvraaghulp'
+      preLoaderRoute: typeof AanvraaghulpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -425,6 +445,7 @@ const NieuwsRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AanvraaghulpRoute: AanvraaghulpRoute,
   AdminRoute: AdminRouteWithChildren,
   ContactRoute: ContactRoute,
   DienstenRoute: DienstenRouteWithChildren,

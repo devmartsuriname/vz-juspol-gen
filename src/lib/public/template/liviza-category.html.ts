@@ -7,7 +7,7 @@
 import { categories, servicesInCategory, type CategorySlug } from "@/content/vz-content";
 
 import {
-  ASSETS,
+  categoryImage,
   contentClose,
   contentOpen,
   footer,
@@ -28,7 +28,7 @@ export function buildCategoryHtml(slug: CategorySlug): string {
 								<div class="pbminfotech-post-item">
 									<span class="pbminfotech-item-thumbnail">
 										<span class="pbminfotech-item-thumbnail-inner">
-											<img src="${ASSETS}/images/homepage-1/service/service-0${(index % 3) + 1}.jpg" class="img-fluid" alt="">
+											<img src="${categoryImage[slug]}" class="img-fluid" width="800" height="535" loading="lazy" alt="">
 										</span>
 									</span>
 									<div class="pbminfotech-box-content">

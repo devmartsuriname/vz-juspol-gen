@@ -67,7 +67,7 @@ export const primaryNav: readonly PublicNavConfigItem[] = [
   { key: "home", label: "Home", to: "/", available: true },
   { key: "about", label: "Over ons", to: publicRoutes.about, available: true },
   { key: "services", label: "Diensten", to: publicRoutes.services, available: true },
-  { key: "aanvraaghulp", label: "Aanvraaghulp", path: publicRoutes.aanvraaghulp, available: false },
+  { key: "aanvraaghulp", label: "Aanvraaghulp", to: publicRoutes.aanvraaghulp, available: true },
   { key: "documents", label: "Documentenlijsten", to: publicRoutes.documents, available: true },
   { key: "faq", label: "Veelgestelde vragen", to: publicRoutes.faq, available: true },
   { key: "news", label: "Nieuws", to: publicRoutes.news, available: true },
@@ -92,7 +92,7 @@ export const footerNav: readonly {
     heading: "Voorbereiding",
     items: [
       { key: "services", label: "Diensten", to: publicRoutes.services, available: true },
-      { key: "aanvraaghulp", label: "Aanvraaghulp", path: publicRoutes.aanvraaghulp, available: false },
+      { key: "aanvraaghulp", label: "Aanvraaghulp", to: publicRoutes.aanvraaghulp, available: true },
       {
         key: "documents",
         label: "Documentenlijsten",

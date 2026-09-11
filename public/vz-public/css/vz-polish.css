@@ -167,3 +167,185 @@
 .vz-sidebar .widget ul li:last-child {
   border-bottom: none;
 }
+
+/* =====================================================================
+   LFB-104 — VZ imagery and page-top system
+   Geometry, heights and spacing of the Liviza source are unchanged; only
+   the image sources are replaced by VZ-owned neutral illustration.
+   ===================================================================== */
+
+/* Shared inner-page top: one continuous blue/off-white composition behind
+   the absolute header menu and the 650px title/breadcrumb zone. */
+.pbmit-title-bar-wrapper {
+	background-image: url("/vz-public/images/pattern/vz-page-top.svg");
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #0b1e3b;
+}
+
+/* Keeps white title and breadcrumb text readable over the upper zone. */
+.pbmit-title-bar-wrapper:before {
+	background: linear-gradient(180deg, rgba(8, 20, 40, 0.72) 0%, rgba(8, 20, 40, 0.42) 45%, rgba(8, 20, 40, 0.58) 100%);
+	opacity: 1;
+}
+
+.pbmit-title-bar-wrapper .pbmit-tbar-title,
+.pbmit-title-bar-wrapper .pbmit-breadcrumb,
+.pbmit-title-bar-wrapper .pbmit-breadcrumb a,
+.pbmit-title-bar-wrapper .pbmit-breadcrumb span {
+	color: #ffffff;
+}
+
+/* Long titles must not clip inside the fixed-height title zone. */
+.pbmit-title-bar-wrapper .pbmit-tbar-title {
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+/* Homepage hero slides — original 1920x900 slot, responsive sources. */
+.pbmit-slider-bg.vz-hero-slide-1 {
+	background-image: url("/vz-public/images/hero/vz-hero-01.webp");
+}
+.pbmit-slider-bg.vz-hero-slide-2 {
+	background-image: url("/vz-public/images/hero/vz-hero-02.webp");
+}
+.pbmit-slider-bg.vz-hero-slide-3 {
+	background-image: url("/vz-public/images/hero/vz-hero-03.webp");
+}
+
+@media (max-width: 1280px) {
+	.pbmit-slider-bg.vz-hero-slide-1 {
+		background-image: url("/vz-public/images/hero/vz-hero-01-1280.webp");
+	}
+	.pbmit-slider-bg.vz-hero-slide-2 {
+		background-image: url("/vz-public/images/hero/vz-hero-02-1280.webp");
+	}
+	.pbmit-slider-bg.vz-hero-slide-3 {
+		background-image: url("/vz-public/images/hero/vz-hero-03-1280.webp");
+	}
+}
+
+@media (max-width: 767px) {
+	.pbmit-slider-bg.vz-hero-slide-1 {
+		background-image: url("/vz-public/images/hero/vz-hero-01-768.webp");
+	}
+	.pbmit-slider-bg.vz-hero-slide-2 {
+		background-image: url("/vz-public/images/hero/vz-hero-02-768.webp");
+	}
+	.pbmit-slider-bg.vz-hero-slide-3 {
+		background-image: url("/vz-public/images/hero/vz-hero-03-768.webp");
+	}
+}
+
+/* Hero controls stay visible and keyboard reachable. */
+.pbmit-slider-one .swiper-button-next:focus-visible,
+.pbmit-slider-one .swiper-button-prev:focus-visible,
+.pbmit-slider-one .swiper-pagination-bullet:focus-visible {
+	outline: 3px solid #ffffff;
+	outline-offset: 3px;
+}
+
+/* Service-detail document / preparation panel image (500x280 slot). */
+.assessment-one-img {
+	background-image: url("/vz-public/images/pattern/vz-cta-texture.webp");
+	background-position: center center;
+	background-size: cover;
+}
+
+/* Decorative Liviza slots, replaced with neutral VZ patterns. */
+.pbmit-bg-pattern-right,
+.pbmit-service-bg-pattern {
+	background-image: url("/vz-public/images/pattern/vz-pattern-right.svg");
+}
+.pbmit-bg-pattern-left {
+	background-image: url("/vz-public/images/pattern/vz-pattern-left.svg");
+}
+.site-footer .pbmit-footer-widget-area {
+	background-image: url("/vz-public/images/pattern/vz-footer-pattern.svg");
+}
+
+/* Aanvraaghulp — preparation-only wizard (LFB-104). */
+.vz-wizard-live {
+	margin-bottom: 10px;
+	font-weight: 600;
+	color: #6f7174;
+}
+.vz-wizard-choice .pbminfotech-box-content-inner {
+	height: 100%;
+}
+.vz-wizard-btn {
+	background: none;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.vz-wizard-facts {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 25px;
+}
+.vz-wizard-facts li {
+	margin-bottom: 6px;
+}
+.vz-wizard-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	margin-top: 25px;
+}
+.vz-wizard-actions .pbmit-btn {
+	cursor: pointer;
+}
+.vz-wizard h2:focus-visible {
+	outline: 3px solid #0b1e3b;
+	outline-offset: 4px;
+}
+
+/* Long Dutch hero words must wrap inside the slider column. */
+.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+	overflow-wrap: break-word;
+	word-break: normal;
+	hyphens: auto;
+}
+@media (max-width: 1440px) {
+	.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+		font-size: 62px;
+		line-height: 70px;
+	}
+}
+@media (max-width: 1199px) {
+	.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+		font-size: 48px;
+		line-height: 56px;
+	}
+}
+@media (max-width: 767px) {
+	.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+		font-size: 34px;
+		line-height: 42px;
+	}
+}
+
+/* Wizard choice cards have no thumbnail, so the overlapping Liviza icon
+   needs room inside the card instead of hanging above it. */
+.vz-wizard-choice .pbminfotech-box-content {
+	padding-top: 45px;
+}
+.vz-wizard-choice .pbmit-ihbox-icon {
+	position: static;
+	margin: 0 auto 20px;
+}
+/* Step announcements are for assistive technology; the visible step label is
+   already in the heading block. */
+.vz-wizard-live {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}

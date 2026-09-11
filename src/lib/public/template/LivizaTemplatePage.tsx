@@ -39,8 +39,9 @@ export const LIVIZA_JS = [
   "scripts.js",
 ]
   .map((file) => `${LIVIZA_ASSETS}/js/${file}`)
-  // Isolated public polish behaviour (Home/End for Bootstrap tablists).
-  .concat(["/vz-public/js/vz-polish.js"]);
+  // Isolated public behaviour: Home/End for Bootstrap tablists, and the
+  // preparation-only Aanvraaghulp steps. Neither performs any network call.
+  .concat(["/vz-public/js/vz-polish.js", "/vz-public/js/vz-wizard.js"]);
 
 export function livizaHead() {
   return {

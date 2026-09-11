@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="40" viewBox="0 0 360 40" role="img" aria-label="Vreemdelingenzaken">
+  <rect x="0" y="2" width="36" height="36" rx="7" fill="#ffffff"/>
+  <path d="M6 11 h5.2 l4.6 12 4.6-12 h5.2 l-7.3 19h-4.8 z" fill="#0f2346"/>
+  <path d="M24.6 11 h9.6 v3.2 l-5.9 8.6 h5.9 V26 h-9.6 v-3.2 l5.9-8.6 h-5.9 z" fill="#1d4a80"/>
+  <text x="48" y="20" font-family="Mulish, Roboto, Arial, sans-serif" font-size="17" font-weight="700" fill="#ffffff">Vreemdelingenzaken</text>
+  <text x="48" y="34" font-family="Mulish, Roboto, Arial, sans-serif" font-size="11" fill="#dfe5ec">Ministerie van Justitie en Veiligheid</text>
+</svg>
