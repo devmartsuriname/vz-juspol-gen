@@ -273,9 +273,9 @@
 .pbmit-bg-pattern-left {
 	background-image: url("/vz-public/images/pattern/vz-pattern-left.svg");
 }
-.site-footer .pbmit-footer-widget-area {
-	background-image: url("/vz-public/images/pattern/vz-footer-pattern.svg");
-}
+/* LFB-104 REMEDIATION 001 — the extra footer background introduced in LFB-104
+ * stacked on top of the original Liviza `.site-footer:before` pattern and was
+ * removed. The source footer composition is used unchanged. */
 
 /* Aanvraaghulp — preparation-only wizard (LFB-104). */
 .vz-wizard-live {
