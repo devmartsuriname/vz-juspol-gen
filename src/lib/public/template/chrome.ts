@@ -69,11 +69,6 @@ function headerTop(active: string): string {
 										<span>Openingstijden: </span>${identity.hours}
 									</li>
 								</ul>
-								<div class="pbmit-header-button">
-									<span class="pbmit-btn" role="text">
-										<span>Aanvraaghulp</span>
-									</span>
-								</div>
 							</div>
 						</div>
 					</div>
