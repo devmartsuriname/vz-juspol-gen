@@ -34,7 +34,6 @@ function navItems(active: string): string {
 															</ul>
 														</li>
 														${item("/documentenlijsten", "Documentenlijsten")}
-														${item("/veelgestelde-vragen", "Veelgestelde vragen")}
 														${item("/nieuws", "Nieuws")}
 														${item("/contact", "Contact")}
 													</ul>`;
