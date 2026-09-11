@@ -149,7 +149,7 @@ export function homeHeader(): string {
 											<div class="pbmit-slider-content">
 												<h5 class="pbmit-sub-title">Informatie en voorbereiding</h5>
 												<h2 class="pbmit-title">Voorbereid naar <span>Vreemdelingenzaken</span></h2>
-												<p style="color:#ffffff;">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
+												<p class="vz-hero-lead">Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.</p>
 												<div class="pbmit-button">
 													<a class="pbmit-button" href="/diensten">
 														<span class="pbmit-icon"><i class="fa fa-angle-right"></i></span>
