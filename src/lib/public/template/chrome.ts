@@ -82,9 +82,9 @@ function headerTop(active: string): string {
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="site-branding">
 										<span class="site-title">
-											<a href="/" style="display:block;line-height:1.2;text-decoration:none;">
-												<span style="display:block;font-size:22px;font-weight:700;color:#ffffff;">${identity.name}</span>
-												<span style="display:block;font-size:12px;font-weight:400;color:#ffffff;opacity:.85;">${identity.subline}</span>
+											<a class="vz-brand-link" href="/">
+												<span class="vz-brand-name">${identity.name}</span>
+												<span class="vz-brand-sub">${identity.subline}</span>
 											</a>
 										</span>
 									</div>
