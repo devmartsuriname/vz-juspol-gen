@@ -55,13 +55,6 @@ export function buildCategoryHtml(slug: CategorySlug): string {
     )
     .join("\n");
 
-  const switcher = categories
-    .map(
-      (item) =>
-        `											<li${item.slug === slug ? ' class="active"' : ""}><a href="/diensten/${item.slug}">${item.label}</a></li>`,
-    )
-    .join("\n");
-
   return `${pageOpen("/diensten")}
 ${titleBar(category.label, [{ label: "Diensten", href: "/diensten" }, { label: category.label }])}
 ${contentOpen()}
