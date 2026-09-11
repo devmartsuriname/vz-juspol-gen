@@ -263,7 +263,7 @@ ${contentOpen("demo-one")}
 							<p>Bekijk per dienst de vereisten, de documenten en de kosten zoals die in de officiële bron zijn vastgelegd.</p>
 						</div>
 					</div>
-					<div class="swiper-slider swiper-btn-right-dots" data-loop="false" data-autoplay="false" data-dots="true" data-arrows="false"  data-columns="4" data-margin="30" data-effect="slide">
+					<div class="swiper-slider swiper-btn-right-dots vz-equal-slides" data-loop="false" data-autoplay="false" data-dots="true" data-arrows="false"  data-columns="4" data-margin="30" data-effect="slide">
 						<div class="swiper-wrapper">
 ${serviceSlides}
 						</div>
