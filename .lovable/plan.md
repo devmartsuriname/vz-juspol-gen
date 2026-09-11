@@ -49,7 +49,7 @@ Evidence needed to unblock FAQ: question + answer text with named institutional 
 
 ## 5. Route scope of the future batch
 
-Nine existing Liviza-backed patterns — `/`, `/over-ons`, `/diensten`, `/diensten/$categorie`, `/diensten/$categorie/$slug`, `/veelgestelde-vragen`, `/nieuws`, `/nieuws/$slug`, `/contact` — plus three new real routes: `/documentenlijsten`, `/privacy`, `/disclaimer`. These three become real links only after their route files exist in the same batch. `/aanvraaghulp` remains separate custom work and stays a non-linking label; it may never imply official submission.
+Thirteen routes. Nine existing Liviza-backed patterns — `/`, `/over-ons`, `/diensten`, `/diensten/$categorie`, `/diensten/$categorie/$slug`, `/veelgestelde-vragen`, `/nieuws`, `/nieuws/$slug`, `/contact` — plus four new real routes: `/documentenlijsten`, `/instanties`, `/privacy`, `/disclaimer`. These four become real links only after their route files exist in the same batch. `/aanvraaghulp` remains separate custom work and stays a non-linking label; it may never imply official submission.
 
 ## 6. Per-route slot tables
 
@@ -68,7 +68,7 @@ Nine existing Liviza-backed patterns — `/`, `/over-ons`, `/diensten`, `/dienst
 | Intro | `Waarmee kunnen wij u helpen?` / `U krijgt uitleg over stappen, documenten en waar u terechtkunt.`; claims, signature, experience badge REMOVE |
 | Dark service band | Heading `Diensten`; cards populated from the 15 governed service records (category-grouped); autoplay off, controls keyboard-reachable |
 | Guidance panel | `Weet u niet welke dienst past?` + `Start aanvraaghulp` + caption `De aanvraaghulp geeft informatie en helpt u voorbereiden. U dient hier niets in.` |
-| Country chooser | REPURPOSE → `Waarmee kunnen wij u helpen?` journey cards `Verblijf`, `Vestiging`, `Naturalisatie`, `Ingezetenschap`, `Asiel`, `Overig`, each linking to `/diensten/$categorie`; flags removed, geometry unchanged |
+| Country chooser ("Immigration — Choose your country") | REPURPOSE → stakeholder section. Liviza geometry, card styling, typography, spacing, responsive behaviour and section rhythm retained 1:1. Eyebrow `SAMENWERKENDE INSTANTIES`; heading `Belangrijke instanties voor uw aanvraag`; intro `Bekijk welke overheidsinstanties betrokken kunnen zijn bij uw aanvraag of procedure.`; six cards from the governed roster — `Vreemdelingendienst`, `Immigratiedienst`, `Dienst Werkvergunningen`, `Consulaire Zaken`, `Centraal Bureau voor Burgerzaken`, `Afdeling Bedrijfsvergunningen` — each showing only the institution name, a concise role/relationship line and `Meer informatie` → `/instanties`. Flags, country names, country-sales copy and country navigation REMOVE. World-map background may remain temporarily as a template placeholder, recorded in the image register for later replacement by a restrained Suriname/government visual; no redesign in this batch. Names and departmental attribution remain subject to the governed authority register. The six service categories are NOT duplicated here — service discovery stays in the dark service band, the three quick-action cards and `/diensten`. |
 | Testimonials, counters | REMOVE |
 | News block | `Nieuws en mededelingen` + `Er zijn nu geen mededelingen.` in one card-height block |
 | Footer | Col 1 identity + sub-line; col 2 quick links (incl. `Documentenlijsten`); col 3 unit/address/phone/e-mail; col 4 opening hours; bottom bar `Privacy` · `Disclaimer` as real links |
@@ -93,7 +93,13 @@ Liviza services/inner-page geometry reused. Title `Documentenlijsten`; intro `Of
 
 PDF handling during released execution only: copy byte-identically to a dedicated public path (`public/vz-public/documenten/`), keep registered filenames, never edit/rename/compress/watermark/regenerate, verify all 17 SHA-256 hashes and `%PDF-` headers after placement, expose no duplicates or other evidence files. PDFs are attached only at build release; until then this route is planned, not built.
 
-### 6.4 `/privacy` (new) — exact copy
+### 6.4 `/instanties` (new)
+
+Approved Liviza inner-page/grid geometry reused 1:1. Title `Instanties`; intro `Overheidsinstanties die betrokken kunnen zijn bij uw aanvraag of procedure.` One card per roster entry: `Vreemdelingendienst`, `Immigratiedienst`, `Dienst Werkvergunningen`, `Consulaire Zaken`, `Centraal Bureau voor Burgerzaken`, `Afdeling Bedrijfsvergunningen`.
+
+Each card shows the institution name and a concise role/relationship line. Further detail (address, telephone, hours, departmental attribution) appears only where independently current-verified. Any old-site or screenshot-derived detail that is not current-verified is rendered with the label `VERIFY BEFORE PUBLICATION` and never presented as a confirmed current fact; where nothing is verified, the detail block shows `Gegevens worden bevestigd.` in unchanged card geometry. No third-party logos, links or embeds.
+
+### 6.5 `/privacy` (new) — exact copy
 
 Title `Privacyverklaring`. Sections:
 - `Deze website is een informatieve website van Vreemdelingenzaken. U kunt hier informatie lezen en uw bezoek voorbereiden.`
@@ -108,7 +114,7 @@ Title `Privacyverklaring`. Sections:
 
 No server-log, cookie-inventory or retention claim is made.
 
-### 6.5 `/disclaimer` (new) — exact copy
+### 6.6 `/disclaimer` (new) — exact copy
 
 Title `Disclaimer`. Sections:
 - `Deze website geeft informatie en ondersteunt uw voorbereiding.`
@@ -119,8 +125,8 @@ Title `Disclaimer`. Sections:
 
 ## 7. Source module / file impact (future batch)
 
-Edited: `src/lib/public/template/liviza-{home,about,services,category,service-detail,faq,news,news-detail,contact}.html.ts`; matching route files' `head()`; `src/lib/public/routes-map.ts` (nav labels + three new available routes).
-New: `src/routes/documentenlijsten.tsx`, `src/routes/privacy.tsx`, `src/routes/disclaimer.tsx`, three matching HTML modules, `src/content/` catalogue records for services/categories/document groups, and (at release) `public/vz-public/documenten/**`.
+Edited: `src/lib/public/template/liviza-{home,about,services,category,service-detail,faq,news,news-detail,contact}.html.ts`; matching route files' `head()`; `src/lib/public/routes-map.ts` (nav labels + four new available routes).
+New: `src/routes/documentenlijsten.tsx`, `src/routes/instanties.tsx`, `src/routes/privacy.tsx`, `src/routes/disclaimer.tsx`, four matching HTML modules, `src/content/` catalogue records for services/categories/document groups and the stakeholder roster, and (at release) `public/vz-public/documenten/**`.
 Untouched: `LivizaTemplatePage.tsx` behaviour, `public/vz-public/liviza/assets/**`, `src/styles.css`, `src/routes/__root.tsx`, everything under `/admin`.
 
 ## 8. Removal checklist and forbidden-value scan
@@ -131,7 +137,7 @@ Scan on release must return zero visible-text hits for: `liviza|lorem|testimonia
 
 ## 9. Fit method
 
-Per slot: UTF-16 count against the matrix maximum; over-length → documented fallback. After swap: screenshots at 1440/1280/992/768/375 for all twelve routes, DOM checks for `scrollWidth > clientWidth` and clipped text in every card/button. No CSS change as a fit remedy.
+Per slot: UTF-16 count against the matrix maximum; over-length → documented fallback. After swap: screenshots at 1440/1280/992/768/375 for all thirteen routes, DOM checks for `scrollWidth > clientWidth` and clipped text in every card/button. No CSS change as a fit remedy.
 
 ## 10. Metadata
 
@@ -139,20 +145,20 @@ Per the SEO deck, with `Vreemdelingenzaken` as the suffix once identity is appli
 
 ## 11. Acceptance evidence
 
-Before/after screenshots at five widths for all twelve routes; overflow, console, HTTP/404; PDF hash + header verification table for all 17 files; keyboard nav (menu, accordion, carousel), skip link, heading order, alt text; SPA navigation script integrity; forbidden-value scan output; `/admin/*` 200 with zero diff; typecheck; build. Evidence → `docs/vz-juspol-gen/execution-evidence/LFB-103D/` (`REPORT.md`, `MANIFEST.md`, `screenshots/`, `pdf-verification.md`, `image-register.md`).
+Before/after screenshots at five widths for all thirteen routes; overflow, console, HTTP/404; PDF hash + header verification table for all 17 files; keyboard nav (menu, accordion, carousel), skip link, heading order, alt text; SPA navigation script integrity; forbidden-value scan output; `/admin/*` 200 with zero diff; typecheck; build. Evidence → `docs/vz-juspol-gen/execution-evidence/LFB-103D/` (`REPORT.md`, `MANIFEST.md`, `screenshots/`, `pdf-verification.md`, `image-register.md`).
 
 ## 12. Execution shape
 
-One combined Build Mode batch covering all twelve routes plus PDF placement, then at most one material correction round. No microbatches. Requires separate explicit release; PDFs supplied at that time.
+One combined Build Mode batch covering all thirteen routes plus PDF placement, then at most one material correction round. No microbatches. Requires separate explicit release; PDFs supplied at that time.
 
 ## 13. Risk record
 
-- **Weak assumption:** old-site public availability proves a historical publication pattern, not that every statement remains current.
-- **Missing constraint:** a future operational owner must maintain FAQ, news and legal content and review dates.
-- **Material failure risk:** stale old-site claims could appear current and authoritative inside the polished new interface.
+- **Weak assumption:** old-site public availability proves a historical publication pattern, not that every statement remains current; likewise, old-site stakeholder details are assumed current without evidence.
+- **Missing constraint:** a future operational owner must maintain FAQ, news and legal content and review dates; each stakeholder entry needs a named verification owner, source and date.
+- **Material failure risk:** stale old-site claims could appear current and authoritative inside the polished new interface, including obsolete third-party contact or ministry information on `/instanties`.
 
 ## 14. MTB planning status
 
-LFB-103D — sitewide content swap + `/documentenlijsten`, `/privacy`, `/disclaimer`: `PLANNED / NOT RELEASED`. LFB-101, LFB-102, LFB-103A, LFB-103C complete. Image swap, `/aanvraaghulp` wizard, FAQ/news population: separately planned, not in this batch.
+LFB-103D — sitewide content swap + `/documentenlijsten`, `/instanties`, `/privacy`, `/disclaimer`: `PLANNED / NOT RELEASED`. LFB-101, LFB-102, LFB-103A, LFB-103C complete. Image swap (incl. world-map background), `/aanvraaghulp` wizard, FAQ/news population, stakeholder detail verification: separately planned, not in this batch.
 
 **Verdict:** PLAN COMPLETE WITH BLOCKED FAQ/NEWS FIELDS
