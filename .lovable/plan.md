@@ -153,9 +153,9 @@ One combined Build Mode batch covering all thirteen routes plus PDF placement, t
 
 ## 13. Risk record
 
-- **Weak assumption:** old-site public availability proves a historical publication pattern, not that every statement remains current.
-- **Missing constraint:** a future operational owner must maintain FAQ, news and legal content and review dates.
-- **Material failure risk:** stale old-site claims could appear current and authoritative inside the polished new interface.
+- **Weak assumption:** old-site public availability proves a historical publication pattern, not that every statement remains current; likewise, old-site stakeholder details are assumed current without evidence.
+- **Missing constraint:** a future operational owner must maintain FAQ, news and legal content and review dates; each stakeholder entry needs a named verification owner, source and date.
+- **Material failure risk:** stale old-site claims could appear current and authoritative inside the polished new interface, including obsolete third-party contact or ministry information on `/instanties`.
 
 ## 14. MTB planning status
 
