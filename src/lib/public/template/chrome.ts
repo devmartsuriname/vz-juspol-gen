@@ -240,7 +240,7 @@ export function footer(): string {
 										<ul>
 											<li><a href="/over-ons">Over ons</a></li>
 											<li><a href="/diensten">Diensten</a></li>
-											<li><a href="/documenten&shy;lijsten">Documenten&shy;lijsten</a></li>
+											<li><a href="/documentenlijsten">Documenten&shy;lijsten</a></li>
 											<li><a href="/veelgestelde-vragen">Vragen</a></li>
 											<li><a href="/nieuws">Nieuws</a></li>
 											<li><a href="/instanties">Instanties</a></li>
