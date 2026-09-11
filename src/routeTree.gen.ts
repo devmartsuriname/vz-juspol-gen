@@ -9,11 +9,46 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VeelgesteldeVragenRouteImport } from './routes/veelgestelde-vragen'
+import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as NieuwsRouteImport } from './routes/nieuws'
+import { Route as DienstenRouteImport } from './routes/diensten'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NieuwsIndexRouteImport } from './routes/nieuws.index'
+import { Route as DienstenIndexRouteImport } from './routes/diensten.index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as NieuwsSlugRouteImport } from './routes/nieuws.$slug'
 import { Route as AdminAuthSigninRouteImport } from './routes/admin/auth-signin'
+import { Route as DienstenCategorieIndexRouteImport } from './routes/diensten.$categorie.index'
+import { Route as DienstenCategorieSlugRouteImport } from './routes/diensten.$categorie.$slug'
 
+const VeelgesteldeVragenRoute = VeelgesteldeVragenRouteImport.update({
+  id: '/veelgestelde-vragen',
+  path: '/veelgestelde-vragen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OverOnsRoute = OverOnsRouteImport.update({
+  id: '/over-ons',
+  path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NieuwsRoute = NieuwsRouteImport.update({
+  id: '/nieuws',
+  path: '/nieuws',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DienstenRoute = DienstenRouteImport.update({
+  id: '/diensten',
+  path: '/diensten',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -24,50 +59,183 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NieuwsIndexRoute = NieuwsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NieuwsRoute,
+} as any)
+const DienstenIndexRoute = DienstenIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DienstenRoute,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const NieuwsSlugRoute = NieuwsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NieuwsRoute,
 } as any)
 const AdminAuthSigninRoute = AdminAuthSigninRouteImport.update({
   id: '/auth-signin',
   path: '/auth-signin',
   getParentRoute: () => AdminRoute,
 } as any)
+const DienstenCategorieIndexRoute = DienstenCategorieIndexRouteImport.update({
+  id: '/$categorie/',
+  path: '/$categorie/',
+  getParentRoute: () => DienstenRoute,
+} as any)
+const DienstenCategorieSlugRoute = DienstenCategorieSlugRouteImport.update({
+  id: '/$categorie/$slug',
+  path: '/$categorie/$slug',
+  getParentRoute: () => DienstenRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/diensten': typeof DienstenRouteWithChildren
+  '/nieuws': typeof NieuwsRouteWithChildren
+  '/over-ons': typeof OverOnsRoute
+  '/veelgestelde-vragen': typeof VeelgesteldeVragenRoute
   '/admin/auth-signin': typeof AdminAuthSigninRoute
+  '/nieuws/$slug': typeof NieuwsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/diensten/': typeof DienstenIndexRoute
+  '/nieuws/': typeof NieuwsIndexRoute
+  '/diensten/$categorie/$slug': typeof DienstenCategorieSlugRoute
+  '/diensten/$categorie/': typeof DienstenCategorieIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/over-ons': typeof OverOnsRoute
+  '/veelgestelde-vragen': typeof VeelgesteldeVragenRoute
   '/admin/auth-signin': typeof AdminAuthSigninRoute
+  '/nieuws/$slug': typeof NieuwsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/diensten': typeof DienstenIndexRoute
+  '/nieuws': typeof NieuwsIndexRoute
+  '/diensten/$categorie/$slug': typeof DienstenCategorieSlugRoute
+  '/diensten/$categorie': typeof DienstenCategorieIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/diensten': typeof DienstenRouteWithChildren
+  '/nieuws': typeof NieuwsRouteWithChildren
+  '/over-ons': typeof OverOnsRoute
+  '/veelgestelde-vragen': typeof VeelgesteldeVragenRoute
   '/admin/auth-signin': typeof AdminAuthSigninRoute
+  '/nieuws/$slug': typeof NieuwsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/diensten/': typeof DienstenIndexRoute
+  '/nieuws/': typeof NieuwsIndexRoute
+  '/diensten/$categorie/$slug': typeof DienstenCategorieSlugRoute
+  '/diensten/$categorie/': typeof DienstenCategorieIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/admin/auth-signin' | '/admin/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/contact'
+    | '/diensten'
+    | '/nieuws'
+    | '/over-ons'
+    | '/veelgestelde-vragen'
+    | '/admin/auth-signin'
+    | '/nieuws/$slug'
+    | '/admin/'
+    | '/diensten/'
+    | '/nieuws/'
+    | '/diensten/$categorie/$slug'
+    | '/diensten/$categorie/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/auth-signin' | '/admin'
-  id: '__root__' | '/' | '/admin' | '/admin/auth-signin' | '/admin/'
+  to:
+    | '/'
+    | '/contact'
+    | '/over-ons'
+    | '/veelgestelde-vragen'
+    | '/admin/auth-signin'
+    | '/nieuws/$slug'
+    | '/admin'
+    | '/diensten'
+    | '/nieuws'
+    | '/diensten/$categorie/$slug'
+    | '/diensten/$categorie'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/contact'
+    | '/diensten'
+    | '/nieuws'
+    | '/over-ons'
+    | '/veelgestelde-vragen'
+    | '/admin/auth-signin'
+    | '/nieuws/$slug'
+    | '/admin/'
+    | '/diensten/'
+    | '/nieuws/'
+    | '/diensten/$categorie/$slug'
+    | '/diensten/$categorie/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  DienstenRoute: typeof DienstenRouteWithChildren
+  NieuwsRoute: typeof NieuwsRouteWithChildren
+  OverOnsRoute: typeof OverOnsRoute
+  VeelgesteldeVragenRoute: typeof VeelgesteldeVragenRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/veelgestelde-vragen': {
+      id: '/veelgestelde-vragen'
+      path: '/veelgestelde-vragen'
+      fullPath: '/veelgestelde-vragen'
+      preLoaderRoute: typeof VeelgesteldeVragenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/over-ons': {
+      id: '/over-ons'
+      path: '/over-ons'
+      fullPath: '/over-ons'
+      preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nieuws': {
+      id: '/nieuws'
+      path: '/nieuws'
+      fullPath: '/nieuws'
+      preLoaderRoute: typeof NieuwsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diensten': {
+      id: '/diensten'
+      path: '/diensten'
+      fullPath: '/diensten'
+      preLoaderRoute: typeof DienstenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -82,6 +250,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nieuws/': {
+      id: '/nieuws/'
+      path: '/'
+      fullPath: '/nieuws/'
+      preLoaderRoute: typeof NieuwsIndexRouteImport
+      parentRoute: typeof NieuwsRoute
+    }
+    '/diensten/': {
+      id: '/diensten/'
+      path: '/'
+      fullPath: '/diensten/'
+      preLoaderRoute: typeof DienstenIndexRouteImport
+      parentRoute: typeof DienstenRoute
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -89,12 +271,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/nieuws/$slug': {
+      id: '/nieuws/$slug'
+      path: '/$slug'
+      fullPath: '/nieuws/$slug'
+      preLoaderRoute: typeof NieuwsSlugRouteImport
+      parentRoute: typeof NieuwsRoute
+    }
     '/admin/auth-signin': {
       id: '/admin/auth-signin'
       path: '/auth-signin'
       fullPath: '/admin/auth-signin'
       preLoaderRoute: typeof AdminAuthSigninRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/diensten/$categorie/': {
+      id: '/diensten/$categorie/'
+      path: '/$categorie'
+      fullPath: '/diensten/$categorie/'
+      preLoaderRoute: typeof DienstenCategorieIndexRouteImport
+      parentRoute: typeof DienstenRoute
+    }
+    '/diensten/$categorie/$slug': {
+      id: '/diensten/$categorie/$slug'
+      path: '/$categorie/$slug'
+      fullPath: '/diensten/$categorie/$slug'
+      preLoaderRoute: typeof DienstenCategorieSlugRouteImport
+      parentRoute: typeof DienstenRoute
     }
   }
 }
@@ -111,9 +314,43 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface DienstenRouteChildren {
+  DienstenIndexRoute: typeof DienstenIndexRoute
+  DienstenCategorieSlugRoute: typeof DienstenCategorieSlugRoute
+  DienstenCategorieIndexRoute: typeof DienstenCategorieIndexRoute
+}
+
+const DienstenRouteChildren: DienstenRouteChildren = {
+  DienstenIndexRoute: DienstenIndexRoute,
+  DienstenCategorieSlugRoute: DienstenCategorieSlugRoute,
+  DienstenCategorieIndexRoute: DienstenCategorieIndexRoute,
+}
+
+const DienstenRouteWithChildren = DienstenRoute._addFileChildren(
+  DienstenRouteChildren,
+)
+
+interface NieuwsRouteChildren {
+  NieuwsSlugRoute: typeof NieuwsSlugRoute
+  NieuwsIndexRoute: typeof NieuwsIndexRoute
+}
+
+const NieuwsRouteChildren: NieuwsRouteChildren = {
+  NieuwsSlugRoute: NieuwsSlugRoute,
+  NieuwsIndexRoute: NieuwsIndexRoute,
+}
+
+const NieuwsRouteWithChildren =
+  NieuwsRoute._addFileChildren(NieuwsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  ContactRoute: ContactRoute,
+  DienstenRoute: DienstenRouteWithChildren,
+  NieuwsRoute: NieuwsRouteWithChildren,
+  OverOnsRoute: OverOnsRoute,
+  VeelgesteldeVragenRoute: VeelgesteldeVragenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

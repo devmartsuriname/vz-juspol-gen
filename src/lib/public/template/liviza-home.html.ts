@@ -50,7 +50,7 @@ export const LIVIZA_HOME_HTML = `
 									</ul>
 								</div>
 								<div class="pbmit-header-button">
-									<a class="pbmit-btn" href="contacts.html" title="">
+									<a class="pbmit-btn" href="/contact" title="">
 										<span>Book A Consultation</span>
 									</a>
 								</div>
@@ -67,7 +67,7 @@ export const LIVIZA_HOME_HTML = `
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="site-branding">
 										<span class="site-title">
-											<a href="index.html">
+											<a href="/">
 												<img class="logo-img" src="/vz-public/liviza/assets/images/logo-white.png" alt="">
 											</a>
 										</span>
@@ -85,9 +85,9 @@ export const LIVIZA_HOME_HTML = `
 												<div class="pbmit-menu-wrap">
 													<ul class="navigation clearfix">
 														<li class="dropdown active">
-															<a href="index.html">Home</a>
+															<a href="/">Home</a>
 															<ul>
-																<li class="active"><a href="index.html">Homepage 1</a></li>
+																<li class="active"><a href="/">Homepage 1</a></li>
 																<li><a href="homepage-2.html">Homepage 2</a></li>
 																<li><a href="homepage-3.html">Homepage 3</a></li>
 															</ul>
@@ -102,8 +102,8 @@ export const LIVIZA_HOME_HTML = `
 														<li class="dropdown">
 															<a href="#">Visa</a>
 															<ul>
-																<li><a href="visa.html">Visa</a></li>
-																<li><a href="visa-details.html">Visa Details</a></li>
+																<li><a href="/diensten/verblijf">Visa</a></li>
+																<li><a href="/diensten/verblijf/voorbeeld">Visa Details</a></li>
 															</ul>
 														</li>
 														<li class="dropdown">
@@ -116,20 +116,20 @@ export const LIVIZA_HOME_HTML = `
 														<li class="dropdown">
 															<a href="#">Pages</a>
 															<ul>
-																<li><a href="about-us.html">About us</a></li>
-																<li><a href="our-services.html">Our Services</a></li>
+																<li><a href="/over-ons">About us</a></li>
+																<li><a href="/diensten">Our Services</a></li>
 																<li><a href="our-team-member.html">Our Team Member</a></li>
 																<li><a href="team-member-details.html">Team Member Details</a></li>
-																<li><a href="contacts.html">Contacts</a></li>
-																<li><a href="faq.html">Faq</a></li>
+																<li><a href="/contact">Contacts</a></li>
+																<li><a href="/veelgestelde-vragen">Faq</a></li>
 															</ul>
 														</li>
 														<li class="dropdown">
 															<a href="#">Blog</a>
 															<ul>
 																<li><a href="blog-large-image.html">Blog Large Image</a></li>
-																<li><a href="blog-grid-view.html">Blog Grid View</a></li>
-																<li><a href="blog-single-view.html">Blog Single View</a></li>
+																<li><a href="/nieuws">Blog Grid View</a></li>
+																<li><a href="/nieuws/voorbeeld">Blog Single View</a></li>
 															</ul>
 														</li>
 													</ul>
@@ -381,7 +381,7 @@ export const LIVIZA_HOME_HTML = `
 										<i class="pbmit-liviza-business-icon pbmit-liviza-business-icon-check"></i> Find more information our website
 									</li>
 								</ul>
-								<a href="about-us.html" class="pbmit-btn">
+								<a href="/over-ons" class="pbmit-btn">
 									<span>Discover More</span>
 								</a>
 							</div>
@@ -426,7 +426,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Simple Student content Visa to popular Lorem is not belief simply random text</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -451,7 +451,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Business Simple content to popular Visa Lorem is not belief simply random text</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -476,7 +476,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Visa Simple content to popular Business Lorem is not belief simply random text</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -501,7 +501,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Tourist Visa to popular belief, Lorem Ipsum is not simply random text.</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -526,7 +526,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Immigrant Simple content to popular Business Lorem is not belief simply Visa</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -551,7 +551,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Simple Refugee content to popular Visa Lorem is not belief Country random visa</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -576,7 +576,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Family Visa to popular belief, Lorem Ipsum is not simply random text.</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -601,7 +601,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Spousal Visa Simple content to popular Business Lorem is not belief simply Visa</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -626,7 +626,7 @@ export const LIVIZA_HOME_HTML = `
 														<p>Migrate Visa to popular belief, Lorem Ipsum is not simply random text.</p>
 													</div>
 												</div>
-												<a href="visa-details.html" class="pbmit-service-link" tabindex="0"></a>
+												<a href="/diensten/verblijf/voorbeeld" class="pbmit-service-link" tabindex="0"></a>
 											</div>
 										</div>
 									</div>
@@ -650,7 +650,7 @@ export const LIVIZA_HOME_HTML = `
 								<div class="assessment-one-content">
 									<h3>Free Online Visa Assessment</h3>
 									<p>Contact us today by fill up free online visa assessment and we will contact you</p>
-									<a href="our-services.html" class="pbmit-btn">
+									<a href="/diensten" class="pbmit-btn">
 										<span>Discover More</span>
 									</a>
 								</div>
@@ -1025,12 +1025,12 @@ export const LIVIZA_HOME_HTML = `
 										</div>
 										<div class="pbminfotech-box-title">
 											<h2 class="pbminfotech-title">
-												<a href="blog-single-view.html">Top 9 Most Demand Jobs In Canada</a>
+												<a href="/nieuws/voorbeeld">Top 9 Most Demand Jobs In Canada</a>
 											</h2>
 										</div>
 										<div class="pbmit-blogbox-readmore pbminfotech-vc_btn3">
 											<div class="pbminfotech-blogbox-footer-left">
-												<a href="blog-single-view.html">Read More</a>
+												<a href="/nieuws/voorbeeld">Read More</a>
 											</div>
 										</div>
 									</div>
@@ -1073,12 +1073,12 @@ export const LIVIZA_HOME_HTML = `
 										</div>
 										<div class="pbminfotech-box-title">
 											<h2 class="pbminfotech-title">
-												<a href="blog-single-view.html">Ways to immigrate to saskatchewan</a>
+												<a href="/nieuws/voorbeeld">Ways to immigrate to saskatchewan</a>
 											</h2>
 										</div>
 										<div class="pbmit-blogbox-readmore pbminfotech-vc_btn3">
 											<div class="pbminfotech-blogbox-footer-left">
-												<a href="blog-single-view.html">Read More</a>
+												<a href="/nieuws/voorbeeld">Read More</a>
 											</div>
 										</div>
 									</div>
@@ -1121,12 +1121,12 @@ export const LIVIZA_HOME_HTML = `
 										</div>
 										<div class="pbminfotech-box-title">
 											<h2 class="pbminfotech-title">
-												<a href="blog-single-view.html">Independent Of Visa immigration</a>
+												<a href="/nieuws/voorbeeld">Independent Of Visa immigration</a>
 											</h2>
 										</div>
 										<div class="pbmit-blogbox-readmore pbminfotech-vc_btn3">
 											<div class="pbminfotech-blogbox-footer-left">
-												<a href="blog-single-view.html">Read More</a>
+												<a href="/nieuws/voorbeeld">Read More</a>
 											</div>
 										</div>
 									</div>
@@ -1209,15 +1209,15 @@ export const LIVIZA_HOME_HTML = `
 									<h3 class="widget-title">Information</h3>
 									<div class="textwidget">
 										<ul>
-											<li><a href="about-us.html">About Us</a></li>
+											<li><a href="/over-ons">About Us</a></li>
 											<li><a href="our-team-member.html">Our Team</a></li>
-											<li><a href="contacts.html">Contacts Us</a></li>
+											<li><a href="/contact">Contacts Us</a></li>
 											<li><a href="coaching-details.html">Research</a></li>
 											<li><a href="coaching-details.html">Research</a></li>
 											<li><a href="coaching-details.html">Best Seller</a></li>
-											<li><a href="contacts.html">Help</a></li>
+											<li><a href="/contact">Help</a></li>
 											<li><a href="countries.html">Collections</a></li>
-											<li><a href="our-services.html">Services</a></li>
+											<li><a href="/diensten">Services</a></li>
 										</ul>
 									</div>
 								</div>
@@ -1227,11 +1227,11 @@ export const LIVIZA_HOME_HTML = `
 									<h3 class="widget-title">Visa</h3>
 									<div class="menu-visa">
 										<ul>
-											<li><a href="visa-details.html">Students Visa</a></li>
-											<li><a href="visa-details.html">Business Visa</a></li>
-											<li><a href="visa-details.html">Family Visa</a></li>
-											<li><a href="visa-details.html">Travel Visa</a></li>
-											<li><a href="visa-details.html">Work Visa</a></li>
+											<li><a href="/diensten/verblijf/voorbeeld">Students Visa</a></li>
+											<li><a href="/diensten/verblijf/voorbeeld">Business Visa</a></li>
+											<li><a href="/diensten/verblijf/voorbeeld">Family Visa</a></li>
+											<li><a href="/diensten/verblijf/voorbeeld">Travel Visa</a></li>
+											<li><a href="/diensten/verblijf/voorbeeld">Work Visa</a></li>
 										</ul>
 									</div>
 								</div>
@@ -1266,9 +1266,9 @@ export const LIVIZA_HOME_HTML = `
 							<div class="col-md-7">
 								<div class="pbmit-footer-right">
 									<ul class="footer-nav-menu">
-										<li><a href="about-us.html">About Us</a></li>
-										<li><a href="visa.html">Privacy policy</a></li>
-										<li><a href="contacts.html">Customer</a></li>
+										<li><a href="/over-ons">About Us</a></li>
+										<li><a href="/diensten/verblijf">Privacy policy</a></li>
+										<li><a href="/contact">Customer</a></li>
 									</ul>
 								</div>
 							</div>	

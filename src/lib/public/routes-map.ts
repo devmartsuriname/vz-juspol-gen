@@ -35,7 +35,10 @@ export type PublicRouteKey = keyof typeof publicRoutes;
  * Paths for which a public route file exists today. Admin paths are excluded
  * by construction, so the public shell can never link into /admin.
  */
-export type ExistingRoutePath = Exclude<keyof FileRoutesByPath, `/admin${string}`>;
+export type ExistingRoutePath = Exclude<
+  keyof FileRoutesByPath,
+  `/admin${string}` | `${string}/`
+> | "/";
 
 /** A navigation entry whose route file exists and may be linked. */
 export type AvailableNavItem = {
