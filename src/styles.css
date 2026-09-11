@@ -246,7 +246,7 @@
 
   .vz-public h1 { font-size: var(--text-vz-h1); line-height: 3rem; }
   .vz-public h2 { font-size: var(--text-vz-h2); line-height: 2.625rem; }
-  .vz-public h3 { font-size: var(--text-vz-h3); line-height: 2.25rem; }
+  .vz-public h3 { font-size: var(--text-vz-h3); line-height: 2.375rem; }
   .vz-public h4 { font-size: var(--text-vz-h4); line-height: 2rem; }
   .vz-public h5 { font-size: var(--text-vz-h5); line-height: 1.875rem; }
   .vz-public h6 { font-size: var(--text-vz-h6); line-height: 1.625rem; }
