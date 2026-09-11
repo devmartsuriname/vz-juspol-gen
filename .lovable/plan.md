@@ -49,7 +49,7 @@ Evidence needed to unblock FAQ: question + answer text with named institutional 
 
 ## 5. Route scope of the future batch
 
-Nine existing Liviza-backed patterns — `/`, `/over-ons`, `/diensten`, `/diensten/$categorie`, `/diensten/$categorie/$slug`, `/veelgestelde-vragen`, `/nieuws`, `/nieuws/$slug`, `/contact` — plus three new real routes: `/documentenlijsten`, `/privacy`, `/disclaimer`. These three become real links only after their route files exist in the same batch. `/aanvraaghulp` remains separate custom work and stays a non-linking label; it may never imply official submission.
+Thirteen routes. Nine existing Liviza-backed patterns — `/`, `/over-ons`, `/diensten`, `/diensten/$categorie`, `/diensten/$categorie/$slug`, `/veelgestelde-vragen`, `/nieuws`, `/nieuws/$slug`, `/contact` — plus four new real routes: `/documentenlijsten`, `/instanties`, `/privacy`, `/disclaimer`. These four become real links only after their route files exist in the same batch. `/aanvraaghulp` remains separate custom work and stays a non-linking label; it may never imply official submission.
 
 ## 6. Per-route slot tables
 
