@@ -93,7 +93,13 @@ Liviza services/inner-page geometry reused. Title `Documentenlijsten`; intro `Of
 
 PDF handling during released execution only: copy byte-identically to a dedicated public path (`public/vz-public/documenten/`), keep registered filenames, never edit/rename/compress/watermark/regenerate, verify all 17 SHA-256 hashes and `%PDF-` headers after placement, expose no duplicates or other evidence files. PDFs are attached only at build release; until then this route is planned, not built.
 
-### 6.4 `/privacy` (new) — exact copy
+### 6.4 `/instanties` (new)
+
+Approved Liviza inner-page/grid geometry reused 1:1. Title `Instanties`; intro `Overheidsinstanties die betrokken kunnen zijn bij uw aanvraag of procedure.` One card per roster entry: `Vreemdelingendienst`, `Immigratiedienst`, `Dienst Werkvergunningen`, `Consulaire Zaken`, `Centraal Bureau voor Burgerzaken`, `Afdeling Bedrijfsvergunningen`.
+
+Each card shows the institution name and a concise role/relationship line. Further detail (address, telephone, hours, departmental attribution) appears only where independently current-verified. Any old-site or screenshot-derived detail that is not current-verified is rendered with the label `VERIFY BEFORE PUBLICATION` and never presented as a confirmed current fact; where nothing is verified, the detail block shows `Gegevens worden bevestigd.` in unchanged card geometry. No third-party logos, links or embeds.
+
+### 6.5 `/privacy` (new) — exact copy
 
 Title `Privacyverklaring`. Sections:
 - `Deze website is een informatieve website van Vreemdelingenzaken. U kunt hier informatie lezen en uw bezoek voorbereiden.`
