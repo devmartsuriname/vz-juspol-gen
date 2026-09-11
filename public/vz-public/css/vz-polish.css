@@ -301,3 +301,28 @@
 	outline: 3px solid #0b1e3b;
 	outline-offset: 4px;
 }
+
+/* Long Dutch hero words must wrap inside the slider column. */
+.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+	overflow-wrap: break-word;
+	word-break: normal;
+	hyphens: auto;
+}
+@media (max-width: 1440px) {
+	.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+		font-size: 62px;
+		line-height: 70px;
+	}
+}
+@media (max-width: 1199px) {
+	.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+		font-size: 48px;
+		line-height: 56px;
+	}
+}
+@media (max-width: 767px) {
+	.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+		font-size: 34px;
+		line-height: 42px;
+	}
+}
