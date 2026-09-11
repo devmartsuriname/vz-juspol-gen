@@ -1,6 +1,6 @@
-# VZ Juspol Gen — Public Frontend Plan v0.2 (Plan Mode only)
+# VZ Juspol Gen — Public Frontend Plan v0.3 (Plan Mode only)
 
-Remediation of Plan 001 after ACT-CHATGPT review. Planning output only: no implementation, no install, no dependency, no Cloud/Database/Supabase/GitHub/publication, no `/admin/*` change, no Knowledge change, no execution approval requested.
+Remediation of Plan v0.2 after ACT-CHATGPT targeted correction. Planning output only: no implementation, no install, no dependency, no Cloud/Database/Supabase/GitHub/publication, no `/admin/*` change, no Knowledge change, no execution approval requested.
 
 ---
 
@@ -28,17 +28,17 @@ Remediation of Plan 001 after ACT-CHATGPT review. Planning output only: no imple
 
 | Selected page | Inspected | Basis |
 |---|---|---|
-| `index.html` | Yes | section order + class names read (lines 274–1316) |
-| `about-us.html` | Listed and class-scanned; full section read pending | deferred detail, see §13 OPEN |
-| `our-services.html` | Listed and class-scanned; full section read pending | deferred detail |
-| `visa.html` | Listed and class-scanned; full section read pending | deferred detail |
-| `visa-details.html` | Listed and class-scanned; full section read pending | deferred detail |
-| `faq.html` | Listed and class-scanned; full section read pending | deferred detail |
-| `blog-grid-view.html` | Listed and class-scanned; full section read pending | deferred detail |
-| `blog-single-view.html` | Listed and class-scanned; full section read pending | deferred detail |
-| `contacts.html` | Listed and class-scanned; full section read pending | deferred detail |
+| `index.html` | Yes — measured | section order + classes read (lines 274–1316) + shared CSS |
+| `about-us.html` | Yes — measured | section order, grid classes, shared CSS rules (§2.4) |
+| `our-services.html` | Yes — measured | section order, grid classes, shared CSS rules (§2.4) |
+| `visa.html` | Yes — measured | section order, grid classes, shared CSS rules (§2.4) |
+| `visa-details.html` | Yes — measured | sidebar/detail geometry read from `style.css` 479–489 (§2.4) |
+| `faq.html` | Yes — measured | accordion markup + `shortcode.css` 2133–2174 (§2.4) |
+| `blog-grid-view.html` | Yes — measured | 3×3 card grid + `shortcode.css` 962–992 (§2.4) |
+| `blog-single-view.html` | Yes — measured | 9/3 split + sidebar widgets (§2.4) |
+| `contacts.html` | Yes — measured | 3× info box row, form block, map block (§2.4) |
 
-**Honest statement:** only `index.html` plus the shared stylesheets (`base.css`, `style.css`, `shortcode.css`, `responsive.css`) were read at measurement depth in this Plan Mode pass. The eight remaining selected pages were confirmed present and their dependency profile verified, but their per-section geometry is **not yet measured**. Batch-level measurement of those pages is task **LFB-P02** in §12 and must complete before their batches are released.
+**Honest statement:** all nine selected pages plus the shared stylesheets (`base.css`, `style.css`, `shortcode.css`, `responsive.css`) have now been read at measurement depth in Plan Mode, read-only from the archive (`unzip -p`), never extracted, copied or committed. Measurement depth is section order, grid class geometry and the CSS rules those classes resolve to; pixel-perfect per-element padding tables for individual cards remain an implementation-batch detail, not a planning gap.
 
 ---
 
@@ -95,6 +95,95 @@ Motion (FACT): global `a` transition `all .5s ease-out`; buttons `.2–.3s`; AOS
 | 11 | `section-lg` Blog | 1007 | 3-card news row, 8px radius, date badge, meta line, read-more link-btn | ADAPT VISUALLY |
 | 12 | Search box overlay | 1316 | full-screen search | REJECT (no fake search) |
 | 13 | Footer (`pbmit-footer-widget-area`, `pbmit-footer-bottom`) | footer | dark multi-column widget area + bottom bar | REBUILD IN LIVIZA DESIGN LANGUAGE |
+
+### 2.4 Measured tables for the eight remaining selected pages
+
+Shared across all eight: identical header (`105px` nav row, `50px` logo cap), identical inner-page banner `.pbmit-title-bar-wrapper` (background image + `:before` overlay, `.pbmit-breadcrumb` 16/26 white, links `rgba(255,255,255,.72)`), and an identical tail sequence (2-col CTA row `col-md-6`+`col-md-6`, footer widget row `col-md-6 col-lg-4` / `col-lg-3` / `col-lg-2` / `col-lg-3`, bottom bar `col-md-5`+`col-md-7`, plus a full-screen search overlay). Tail classification is uniform: banner ADAPT VISUALLY (VZ image, real breadcrumb), CTA REBUILD (no sales CTA), footer REBUILD IN LIVIZA DESIGN LANGUAGE at the same 4-column widths, search overlay REJECT.
+
+**`about-us.html`**
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | 335/275 band, h1 42/48, breadcrumb 16/26 | image cover, text stacks | ADAPT VISUALLY |
+| 2 | About agency | `section-lg` · `col-md-12 col-lg-6` ×2 | 90/70, 1200 band, 15px gutter, h2 36/42, body 15/1.8 | ≤991 single column | ADAPT VISUALLY |
+| 3 | Counters | `section-lg counter-section-two` · 2× half + 5× `col-md-20percent` | 5-up metric strip | 20% cols wrap ≤991 | REJECT (unsupported claims) |
+| 4 | Team | `section-lg` · `col-md-6 col-lg-3` ×4 | 4-up cards, 6px radius, `0 9px 35px 0 rgba(0,0,0,.07)` | 4→2→1 | REBUILD (no persons unless authorised) |
+| 5 | Testimonials | `col-md-12 col-lg-6` split | quote block | stacks | REJECT |
+| 6 | Counters (2nd) | as #3 | — | — | REJECT |
+| 7 | Blog | `section-lg` · `col-md-6 col-lg-4` ×3 | 3-up cards | 3→2→1 | ADAPT VISUALLY (governed notices) |
+
+**`our-services.html`**
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Service cards | `section-lg pbmit-bg-color-light` · `col-md-6 col-lg-4` ×3 | light band `#f5f8fb`, 90/70, 8px radius cards | 3→2→1 | KEEP VISUALLY (card geometry) |
+| 3 | About agency | `col-md-12 col-lg-6` ×2 | h2 36/42 + body | stacks ≤991 | ADAPT VISUALLY |
+| 4 | Dark CTA | `about-us-two pbmit-bg-color-global` · `col-md-12 col-xl-9` + `col-md-12 col-xl-3` | brand-colour band, 9/3 split | stacks ≤1199 | REBUILD (governed guidance band, no sales CTA) |
+| 5 | Team | `col-md-6 col-lg-3` ×4 | as above | 4→2→1 | REBUILD |
+| 6 | Counters | 5× `col-md-20percent` | — | — | REJECT |
+| 7 | Blog | header `col-md-6` ×2 + `col-md-6 col-lg-4` ×3 | — | 3→2→1 | ADAPT VISUALLY |
+
+**`visa.html`** — the primary source for `/diensten`
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Service grid | `section-lg service-section` · `col-md-6 col-lg-4` ×8+ | 3-up card grid, 90/70, 8px radius, hairline + shadow, title h5 24/30, excerpt 15/1.8 | 3→2→1 | KEEP VISUALLY — canonical grid for the 12 VZ service blocks |
+| 3 | Two-column feature | `row align-items-center` · `col-md-6` ×2 | image/text pair | stacks | ADAPT VISUALLY (text-first) |
+| 4 | Tail (CTA/footer/search) | see shared | — | — | REBUILD / REJECT |
+
+**`visa-details.html`** — the source for `/diensten/$slug`
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Detail layout | `visa-details-section` · `.service-left-col` (flex 0 0 30%, max 30%, margin-top 65px, padding-bottom 40px) + `.service-right-col` (70%, padding-top 65px) | 30/70 desktop split | source uses `order-2 order-lg-1` / `order-1`: on mobile main content precedes sidebar | KEEP VISUALLY (30/70 + mobile order) |
+| 3 | Sidebar widgets | `.service-sidebar .post-list` padding 30px 25px; `.widget_media_image` overlay card | list + contact card | full-width below main | ADAPT VISUALLY (nav list + governed contact card, no phone-sales block) |
+| 4 | Feature blocks | `col-md-4` ×3 | icon/label trio | 3→1 | ADAPT VISUALLY (SVG icons) |
+| 5 | Content pair | `col-md-6` ×2 | body copy | stacks | KEEP VISUALLY |
+| 6 | Related cards | `col-md-6 col-lg-4` ×3 | as service card | 3→2→1 | ADAPT VISUALLY (related services) |
+
+**`faq.html`**
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Accordion A | `section-lg` · `col-md-12` · `.accordion` ×5 items | `.accordion-item` border none, margin-bottom 15px; `.accordion-button` radius 5px, 15px, weight 500, padding 20px; open state = brand background + white text, line-height 20px; `.accordion-body` 14px 20px, colour `#5d6975` | full width all sizes | KEEP VISUALLY / REBUILD BEHAVIOUR (native `<button aria-expanded>`, no Bootstrap JS) |
+| 3 | Accordion B | `section-faq` · `col-12` · second `.accordion` | same rules, second group | — | KEEP VISUALLY |
+
+**`blog-grid-view.html`** — the source for `/nieuws`
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Card grid | `section-lg` · `col-md-6 col-lg-4` ×9 | `.pbminfotech-blogbox-style-1` margin-bottom 35px; image radius 6px; `.pbminfotech-box-content` white, padding-top 15px; meta chip `top:-48px` on white; title `margin-top:-25px` | 3→2→1 | ADAPT VISUALLY — chip carries date only; image slot omitted or governed placeholder, geometry retained |
+| 3 | Tail | shared | — | — | REBUILD / REJECT |
+
+**`blog-single-view.html`** — the source for `/nieuws/$slug`
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Article | `section-lgb` · `col-lg-9 blog-right-col` | prose column, 15/1.8, h2–h4 scale, quote/list blocks in nested `col-12`/`col-md-12` | full width ≤991 | KEEP VISUALLY |
+| 3 | Sidebar | `col-lg-3 blog-left-col blog-details` widgets | search / categories / recent / tags | below article | ADAPT VISUALLY (recent notices only; no search, tags, comments, share) |
+| 4 | Comments / share | in-page blocks | — | — | REJECT |
+
+**`contacts.html`**
+
+| # | Section | Classes / grid | Geometry & type | Responsive | Class |
+|---|---|---|---|---|---|
+| 1 | Banner | `.pbmit-title-bar-wrapper` | as above | — | ADAPT VISUALLY |
+| 2 | Info boxes | `section-lg` · `col-md-4` ×3 · `.pbminfotech-ihbox-style-2` (icon + heading + text) | 3-up icon/label/value, 90/70 band | 3→1 ≤767 | KEEP VISUALLY — governed address / hours / channel, SVG icons |
+| 3 | Form + map | `col-md-6` ×2, form fields `col-md-12 col-lg-6` ×4 + `col-sm-12` + `.message-status` | PHPMailer-backed form | stacks | REJECT (no form, no PHP, no map tracker) — the 6/6 row becomes governed contact text + static institutional info block at the same widths |
+| 4 | Tail | shared | — | — | REBUILD / REJECT |
+
+### 2.5 Reconciliation into the rest of the plan
+
+- Route plan (§3): `/diensten` inherits the `visa.html` 3-up grid; `/diensten/$slug` inherits the 30/70 `service-left-col`/`service-right-col` split with mobile content-first order; `/nieuws` and `/nieuws/$slug` inherit `blog-grid-view` and the 9/3 `blog-single-view` split; `/veelgestelde-vragen` inherits the FAQ accordion; `/contact` inherits the 3× info-box row without form or map.
+- Component mapping (§4): adds `ServiceDetailLayout` (30/70), `SidebarNavList`, `AccordionItem`, `NewsCard` (meta chip offsets), `ArticleLayout` (9/3), `InfoBox` (icon/label/value).
+- Tokens (§5): adds sidebar rhythm 65px top offset / 40px bottom, sidebar list padding 30px 25px, accordion radius 5px, accordion header padding 20px, accordion body padding 14/20, news card bottom margin 35px, media radius 6px, meta-chip offsets −48/−25.
+- Deviation register (§2.3): extended below with the eight-page findings.
 
 ### 2.3 Deviation register
 
