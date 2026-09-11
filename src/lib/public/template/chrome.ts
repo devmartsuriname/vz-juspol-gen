@@ -43,8 +43,8 @@ function navItems(active: string): string {
     )
     .join("\n\t\t\t\t\t\t\t\t\t\t\t\t");
 
-  const item = (href: string, label: string) =>
-    `<li class="${active === href ? "active" : ""}"><a href="${href}">${label}</a></li>`;
+  const item = (href: string, label: string, extra = "") =>
+    `<li class="${[active === href ? "active" : "", extra].filter(Boolean).join(" ")}"><a href="${href}">${label}</a></li>`;
 
   return `
 													<ul class="navigation clearfix">
@@ -59,7 +59,7 @@ function navItems(active: string): string {
 														${item("/aanvraaghulp", "Aanvraaghulp")}
 														${item("/documentenlijsten", "Documentenlijsten")}
 														${item("/nieuws", "Nieuws")}
-														${item("/contact", "Contact")}
+														${item("/contact", "Contact", "vz-nav-contact")}
 													</ul>`;
 }
 
@@ -91,6 +91,11 @@ function headerTop(active: string): string {
 									<li>
 										<i class="pbmit-base-icon-clock"></i>
 										<span>Openingstijden: </span>${identity.hours}
+									</li>
+									<li class="pbmit-header-button vz-header-cta">
+										<a class="pbmit-btn" href="/contact">
+											<span>Contact</span>
+										</a>
 									</li>
 								</ul>
 							</div>
