@@ -4,9 +4,12 @@
  * /vz-public/documenten/ under their registered filenames. Metadata is
  * rendered as text, separate from the unchanged binary.
  *
- * Presentation (LFB-103D POLISH 001): compact accessible category tabs on
- * the Liviza service-box card pattern. One panel per category; every
- * registered PDF link is preserved.
+ * Presentation (LFB-103D POLISH 001 CORRECTION): the category switcher now
+ * uses the bundled Bootstrap 5 tab component that already ships with the
+ * Liviza template (`data-bs-toggle="tab"`), instead of a custom script.
+ * Bootstrap provides pointer, touch and keyboard behaviour (ArrowLeft /
+ * ArrowRight / Home / End / Enter / Space) and keeps exactly one panel
+ * visible. Every registered PDF link is preserved.
  */
 
 import { categories, documents } from "@/content/vz-content";
@@ -25,7 +28,9 @@ const populated = categories.filter((category) =>
 
 const tabs = populated
   .map(
-    (category, index) => `							<button type="button" class="vz-tab" role="tab" id="tab-${category.slug}" aria-controls="panel-${category.slug}" aria-selected="${index === 0 ? "true" : "false"}" tabindex="${index === 0 ? "0" : "-1"}">${category.label}</button>`,
+    (category, index) => `						<li class="nav-item" role="presentation">
+							<button type="button" class="nav-link vz-tab${index === 0 ? " active" : ""}" id="tab-${category.slug}" data-bs-toggle="tab" data-bs-target="#panel-${category.slug}" role="tab" aria-controls="panel-${category.slug}" aria-selected="${index === 0 ? "true" : "false"}">${category.label}</button>
+						</li>`,
   )
   .join("\n");
 
@@ -58,7 +63,7 @@ const panels = populated
       )
       .join("\n");
 
-    return `						<div class="vz-tabpanel" role="tabpanel" id="panel-${category.slug}" aria-labelledby="tab-${category.slug}" tabindex="0"${index === 0 ? "" : " hidden"}>
+    return `						<div class="tab-pane fade${index === 0 ? " show active" : ""}" role="tabpanel" id="panel-${category.slug}" aria-labelledby="tab-${category.slug}" tabindex="0">
 							<div class="pbmit-heading-subheading">
 								<h4 class="pbmit-subtitle">${category.label}</h4>
 								<h2 class="pbmit-title">Documenten <em>${category.label.toLowerCase()}</em></h2>
@@ -77,10 +82,10 @@ ${contentOpen()}
             <section class="section-lg service-section">
 				<div class="container">
 					<p class="pb-2">Officiële documenten en formulieren van Vreemdelingenzaken. Deze documenten zijn de officiële brondocumenten en worden ongewijzigd gepubliceerd.</p>
-					<div class="vz-tabs" role="tablist" aria-label="Documenten per categorie">
+					<ul class="nav nav-tabs vz-tabs" role="tablist" aria-label="Documenten per categorie">
 ${tabs}
-					</div>
-					<div class="vz-tabpanels">
+					</ul>
+					<div class="tab-content vz-tabpanels">
 ${panels}
 					</div>
 				</div>
