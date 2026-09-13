@@ -655,6 +655,17 @@
    pushes the heading and breadcrumb past the viewport. Constrain the nested
    container to its parent; desktop and tablet geometry is untouched. */
 @media (max-width: 400px) {
+	/* `.pbmit-title-bar-content` is `display: table; width: 100%`, so its used
+	   width can never fall below the longest unbreakable word ("toelatings-
+	   beschikking"). Switching the title zone to normal block flow at very
+	   narrow widths lets the existing word-safe wrapping take effect. */
+	.pbmit-title-bar-wrapper .pbmit-title-bar-content {
+		display: block;
+		width: 100%;
+	}
+	.pbmit-title-bar-wrapper .pbmit-title-bar-content-inner {
+		display: block;
+	}
 	.pbmit-title-bar-wrapper .pbmit-tbar-inner.container {
 		width: 100%;
 		max-width: 100%;
