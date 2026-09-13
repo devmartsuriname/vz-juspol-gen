@@ -1,32 +1,122 @@
-# LFB-105 STRUCTURAL REMEDIATION 001 — EVIDENCE MANIFEST
+# LFB-105 REMEDIATION 001 — EVIDENCE MANIFEST
 
-## Screenshots
+Screenshots: 115 files, 12209361 bytes.
+Naming: after_<route>_<viewport-width>.png
 
-- Location: `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/screenshots/`
-- Count: 96 PNG files
-- Total size: 8.8 MB
-- Naming: `<route-slug>_<width>.png` (`home_*` = `/`)
-- Widths captured: 1440 (desktop), 768 (tablet), 320 (smallest supported mobile)
-- Routes captured: 32 public routes —
-  `/`, `/over-ons`, `/diensten`, `/nieuws`, `/instanties`, `/veelgestelde-vragen`,
-  `/contact`, `/privacy`, `/disclaimer`, `/documentenlijsten`, `/aanvraaghulp`,
-  6 category routes (`/diensten/{verblijf,vestiging,naturalisatie,ingezetenschap,asiel,overig}`),
-  15 service-detail routes (`/diensten/{categorie}/{slug}`).
+## Files
 
-## Measurement runs
-
-| Run | Scope | Result |
-| --- | --- | --- |
-| Overflow + overlap audit | 34 entries × 9 widths (320/375/390/430/768/992/1024/1280/1440) | overflow `[]`, overlap `[]` |
-| Console capture | 96 loads + 4 SPA navigations | 0 errors, 0 warnings, 0 hydration messages |
-| Equal-height sampling | `/diensten`, 6 categories, related grids | equal heights per row |
-| Tabs | `/documentenlijsten`, pointer + keyboard | 1 visible panel, 1 selected tab |
-| Registered documents | 17 links | 17 × HTTP 200, no file diff vs baseline |
-| Aanvraaghulp traversal | 6 categories → 15 terminal outcomes | all reachable; Back/Restart verified; 0 inputs/forms; 0 non-GET requests |
-| Protected surface | `/admin` | HTTP 200, 0 diff vs baseline |
-
-## Source references
-
-- Baseline / rollback: `0bcec76dc5638ca457e4057a05dd8ea5f3706196`
-- Plan: `.lovable/plan/lfb-105-structural-remediation-plan-001-rev-002-2026-09-13.md`
-- Report: `./REPORT.md`
+- aanvraaghulp_1440.png
+- aanvraaghulp_320.png
+- aanvraaghulp_768.png
+- after_contact_1440.png
+- after_contact_320.png
+- after_contact_768.png
+- after_diensten_1440.png
+- after_diensten_320.png
+- after_diensten_768.png
+- after_diensten_vestiging_omzetten_toelatingsbeschikking_1440.png
+- after_diensten_vestiging_omzetten_toelatingsbeschikking_320.png
+- after_diensten_vestiging_omzetten_toelatingsbeschikking_768.png
+- after_documentenlijsten_1440.png
+- after_documentenlijsten_320.png
+- after_documentenlijsten_768.png
+- after_documentenlijsten_tabs_1280.png
+- after_hero_dots_1280.png
+- after_hero_dots_1440.png
+- after_hero_dots_375.png
+- after_home_1440.png
+- after_home_320.png
+- after_home_768.png
+- contact_1440.png
+- contact_320.png
+- contact_768.png
+- diensten_1440.png
+- diensten_320.png
+- diensten_768.png
+- diensten_asiel_1440.png
+- diensten_asiel_320.png
+- diensten_asiel_768.png
+- diensten_asiel_asiel-vluchteling_1440.png
+- diensten_asiel_asiel-vluchteling_320.png
+- diensten_asiel_asiel-vluchteling_768.png
+- diensten_ingezetenschap_1440.png
+- diensten_ingezetenschap_320.png
+- diensten_ingezetenschap_768.png
+- diensten_ingezetenschap_ingezetenschap-art-21_1440.png
+- diensten_ingezetenschap_ingezetenschap-art-21_320.png
+- diensten_ingezetenschap_ingezetenschap-art-21_768.png
+- diensten_naturalisatie_1440.png
+- diensten_naturalisatie_320.png
+- diensten_naturalisatie_768.png
+- diensten_naturalisatie_naturalisatie-overige-vreemdelingen_1440.png
+- diensten_naturalisatie_naturalisatie-overige-vreemdelingen_320.png
+- diensten_naturalisatie_naturalisatie-overige-vreemdelingen_768.png
+- diensten_naturalisatie_naturalisatie-surinaamse-origine_1440.png
+- diensten_naturalisatie_naturalisatie-surinaamse-origine_320.png
+- diensten_naturalisatie_naturalisatie-surinaamse-origine_768.png
+- diensten_naturalisatie_optie-art-12_1440.png
+- diensten_naturalisatie_optie-art-12_320.png
+- diensten_naturalisatie_optie-art-12_768.png
+- diensten_naturalisatie_optie-art-5_1440.png
+- diensten_naturalisatie_optie-art-5_320.png
+- diensten_naturalisatie_optie-art-5_768.png
+- diensten_naturalisatie_verklaring-van-naturalisatie_1440.png
+- diensten_naturalisatie_verklaring-van-naturalisatie_320.png
+- diensten_naturalisatie_verklaring-van-naturalisatie_768.png
+- diensten_overig_1440.png
+- diensten_overig_320.png
+- diensten_overig_768.png
+- diensten_overig_duplicaat_1440.png
+- diensten_overig_duplicaat_320.png
+- diensten_overig_duplicaat_768.png
+- diensten_overig_garantstelling_1440.png
+- diensten_overig_garantstelling_320.png
+- diensten_overig_garantstelling_768.png
+- diensten_verblijf_1440.png
+- diensten_verblijf_320.png
+- diensten_verblijf_768.png
+- diensten_verblijf_verblijf-overige_1440.png
+- diensten_verblijf_verblijf-overige_320.png
+- diensten_verblijf_verblijf-overige_768.png
+- diensten_verblijf_verblijf-surinaamse-origine_1440.png
+- diensten_verblijf_verblijf-surinaamse-origine_320.png
+- diensten_verblijf_verblijf-surinaamse-origine_768.png
+- diensten_verblijf_verlenging-verblijf_1440.png
+- diensten_verblijf_verlenging-verblijf_320.png
+- diensten_verblijf_verlenging-verblijf_768.png
+- diensten_vestiging_1440.png
+- diensten_vestiging_320.png
+- diensten_vestiging_768.png
+- diensten_vestiging_omzetten-toelatingsbeschikking_1440.png
+- diensten_vestiging_omzetten-toelatingsbeschikking_320.png
+- diensten_vestiging_omzetten-toelatingsbeschikking_768.png
+- diensten_vestiging_vestiging-overige_1440.png
+- diensten_vestiging_vestiging-overige_320.png
+- diensten_vestiging_vestiging-overige_768.png
+- diensten_vestiging_vestiging-surinaamse-origine_1440.png
+- diensten_vestiging_vestiging-surinaamse-origine_320.png
+- diensten_vestiging_vestiging-surinaamse-origine_768.png
+- disclaimer_1440.png
+- disclaimer_320.png
+- disclaimer_768.png
+- documentenlijsten_1440.png
+- documentenlijsten_320.png
+- documentenlijsten_768.png
+- home_1440.png
+- home_320.png
+- home_768.png
+- instanties_1440.png
+- instanties_320.png
+- instanties_768.png
+- nieuws_1440.png
+- nieuws_320.png
+- nieuws_768.png
+- over-ons_1440.png
+- over-ons_320.png
+- over-ons_768.png
+- privacy_1440.png
+- privacy_320.png
+- privacy_768.png
+- veelgestelde-vragen_1440.png
+- veelgestelde-vragen_320.png
+- veelgestelde-vragen_768.png

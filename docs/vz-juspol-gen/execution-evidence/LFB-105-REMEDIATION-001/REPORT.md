@@ -1,90 +1,96 @@
 # LFB-105 STRUCTURAL REMEDIATION 001 — EXECUTION REPORT
 
-ACTOR: ACT-LOVABLE
-BATCH: LFB-105 STRUCTURAL REMEDIATION 001
-BASELINE / ROLLBACK REFERENCE: `0bcec76dc5638ca457e4057a05dd8ea5f3706196`
-PLAN: `.lovable/plan/lfb-105-structural-remediation-plan-001-rev-002-2026-09-13.md`
-EVIDENCE PATH: `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/`
+Actor: ACT-LOVABLE
+Scope: public frontend only. No `/admin/*`, no Cloud/Database/Supabase, no auth,
+no storage, uploads, payments, email, secrets, GitHub, deployment or publication.
+Governed content, the 17 registered institutional PDFs and the Liviza transport
+archive are unchanged.
 
-## 1. Defect dispositions
+## 1. Defects and resolutions
 
-### D-001 — Document overflow at 320px (homepage) — RESOLVED
-Two independent causes were measured and corrected:
-1. Long Dutch compound headings (`Vreemdelingenzaken`, 303px at 30px) exceeded the
-   298px line box. Corrected with word-safe wrapping on `.pbmit-title` and a single
-   smaller heading step (26px/34px) below 480px. No mid-word character breaking.
-2. Sitewide 30px overflow caused by the source footer decoration
-   `.site-footer:before { left: 30px; width: 100% }` (shortcode.css:1694), which
-   extends 30px past the viewport on every route. The pattern is a left-anchored,
-   non-repeating image, so the box was constrained to `calc(100% - 30px)`; the
-   original composition is unchanged.
+### D-001 — Homepage overflow at narrow widths
+Root cause: the Liviza services band paints a fixed 309px decoration through
+`.service-one-bg:after`. On a content box narrower than 309px (a 320px viewport
+with a classic 15px scrollbar = 305px) that decoration alone extended the
+document. Liviza itself clips this at `<=280px`.
+Fix: the same template mechanism (`overflow: hidden` on `.service-one-bg`) is
+extended to `<=400px` in `public/vz-public/css/vz-polish.css`. Word-safe
+wrapping (`overflow-wrap: break-word; hyphens: auto`) on hero and heading text;
+no `overflow-x: hidden` on the document, no truncation.
 
-### D-002 — `/diensten/vestiging/omzetten-toelatingsbeschikking` at 320px — RESOLVED
-`.assessment-one-img` held a fixed padding/min-height box (300px) inside a 277px
-column. Below 992px the panel now uses `padding: 0; min-height: 0; aspect-ratio: 16/9`,
-content padding `30px 20px`, and both `.pbmit-btn` buttons become full-width blocks
-with a 12px gap when they cannot sit side by side.
+### D-002 — `/diensten/vestiging/omzetten-toelatingsbeschikking` overflow
+Root cause: `.pbmit-title-bar-content` is `display: table; width: 100%`. A table
+box can never be narrower than its longest unbreakable word
+("toelatingsbeschikking"), so at 305px the title zone forced a 298px box inside
+a 266px content area.
+Fix: below 400px the title zone falls back to normal block flow
+(`.pbmit-title-bar-content` / `-inner` → `display: block`) and the nested
+`.pbmit-tbar-inner.container` is constrained to 100%. The existing word-safe
+wrapping then applies. Title-zone height is unchanged (650px measured at 305,
+320, 375 and 768).
 
-### D-003 — Related-service grid colliding with "Uw bezoek voorbereiden" — RESOLVED
-The related grid is wrapped in `.vz-related-grid` (`display: flow-root`), so the
-floated/flex card row is fully contained and the following panel starts after the
-computed grid height. `.vz-detail-panel` uses `margin-top: 0; clear: both` with a
-40px separation rule. No negative margins, no absolute positioning, no fixed heights.
-Verified on all 15 service-detail routes at every audited width: zero overlaps.
+### D-003 — Related-service grid colliding with the preparation panel
+Fix: the related-service block is wrapped in `.vz-related-grid`
+(`display: flow-root`) and the preparation/document panels carry
+`.vz-detail-panel` (`margin-top: 0; clear: both`, 40px separation after the
+grid). No negative margins, no absolute positioning, no fixed heights.
+Measured collision count after the fix: 0 on all 15 detail routes at all tested
+widths.
 
-### D-004 — Hydration mismatch at `LivizaTemplatePage.tsx:113` — RESOLVED
-Diagnosis: the server and client markup strings were byte-identical (44,444 chars,
-zero differences), so the mismatch was DOM-level. `livizaHead()` emitted the Liviza
-scripts as deferred `<script>` tags, which executed and mutated the server markup
-before React hydrated. Fix: `livizaHead()` now returns only `links`; the existing
-post-mount `useEffect` is the single script execution path, so scripts run after
-hydration and never rewrite the DOM React is about to adopt. No suppression, no
-`suppressHydrationWarning`, no public-template boundary crossing.
-Result: 0 console errors and 0 hydration messages across 96 page loads and SPA
-navigation.
+### D-004 — Hydration mismatch at `LivizaTemplatePage.tsx:113`
+Root cause: the ported Liviza scripts were emitted as deferred `<script>` tags
+through `livizaHead()`. They executed against the server-rendered DOM before
+React hydrated and mutated it (Swiper wrappers, appended pagination), so the
+client tree no longer matched.
+Fix: `livizaHead()` returns links only; all Liviza scripts are now appended to
+`document.body` in a post-mount `useEffect` (single execution path, tagged with
+`data-liviza`, cleaned up on unmount). No suppression, no `suppressHydration`.
+Result: 0 console errors across 32 routes × 6 widths.
 
-### D-005 — Inconsistent card dimensions — RESOLVED
-`.vz-equal-cards` applied to the `/diensten` category row, all six category grids
-and the related-service rows: stretch alignment, flex column chains through
-`.pbminfotech-*` wrappers, intrinsic content growth and `margin-top: auto` on the
-link row. 3/2/1 column progression retained from the Liviza source. Measured equal
-heights per row (e.g. `/diensten` @1440: 567/567/567, 540/540/540;
-`/diensten/vestiging` @1440: 634/634/634). No clipping (`overflow: visible`).
+### D-005 — Inconsistent card dimensions
+Fix: `.vz-equal-cards` on the `/diensten`, category and related-service rows
+makes columns and card internals flex columns with `margin-top: auto` on the
+link row, so cards in a row share height intrinsically (3 / 2 / 1 progression
+retained, no fixed heights, no clipping).
+
+### D-006 — Hero slide navigation (approved correction)
+Visible navigation is restored using the template's own slider-one pagination
+dots (right-edge rotated column on desktop; horizontal bottom-centre below
+768px, where Liviza hides the strip altogether and it is the only visible
+control). No arrows, no autoplay, three slides, loop off. Each dot has a
+transparent ~44×44px hit area with 15px spacing so targets cannot overlap;
+inactive dots were raised to 75% white with a soft shadow so all three remain
+legible over bright photography. The hidden focusable "Vorige dia" /
+"Volgende dia" buttons and the `Dia X van 3` live status remain and are
+revealed on `:focus-visible`.
+
+Verified: pointer at 1280 (dot 0/1/2 → slide 1/2/3), touch at 375 (same),
+keyboard Enter/Space on the hidden buttons, status text updating, autoplay off,
+0 visible arrows, 0 console errors.
 
 ## 2. Files changed
 
-- `src/lib/public/template/LivizaTemplatePage.tsx` — removed deferred `scripts` from `livizaHead()`.
-- `src/lib/public/template/liviza-service-detail.html.ts` — `.vz-detail-panel`, `.vz-related-grid`, `.vz-equal-cards`.
-- `src/lib/public/template/liviza-category.html.ts` — `.vz-equal-cards` on the card row.
-- `src/lib/public/template/liviza-services.html.ts` — `.vz-equal-cards` on the category row.
-- `public/vz-public/css/vz-polish.css` — appended structural rules (wrap safety, mobile detail panel, panel clearance, related grid containment, equal-height cards, footer decoration containment, sub-480px heading step).
-- `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/**` — this report, manifest and 96 screenshots.
+- `src/lib/public/template/LivizaTemplatePage.tsx` — script execution moved to a post-mount effect.
+- `src/lib/public/template/liviza-service-detail.html.ts` — `.vz-related-grid`, `.vz-detail-panel`, `.vz-equal-cards`.
+- `src/lib/public/template/liviza-category.html.ts` — `.vz-equal-cards`.
+- `src/lib/public/template/liviza-services.html.ts` — `.vz-equal-cards`.
+- `src/lib/public/template/chrome.ts` — hero slider `data-dots="true"` (arrows and autoplay stay off).
+- `public/vz-public/css/vz-polish.css` — all styling for D-001, D-002, D-003, D-005, D-006.
 
 No other application file was modified.
 
-## 3. Verification
+## 3. Test results
 
-| Check | Result |
-| --- | --- |
-| Overflow audit — 34 route entries × 9 widths (320/375/390/430/768/992/1024/1280/1440) | 0 documents with `scrollWidth > clientWidth` |
-| Related-grid / preparation-panel overlap, all 15 detail routes, all widths | 0 overlaps |
-| Console errors + warnings over 96 loads and SPA navigation | 0 (hydration warning gone) |
-| Equal-height rows, `/diensten` + 6 categories + related grids | equal per row, no clipping |
-| Tabs `/documentenlijsten` — pointer and keyboard (ArrowRight) | exactly 1 visible panel, 1 selected tab |
-| Registered source documents | 17 links, 17 HTTP 200, files byte-unchanged from baseline |
-| Aanvraaghulp | 6 categories, 15 terminal outcomes reachable, Back returns step 2 then step 1, Restart clears storage |
-| Preparation-only boundary | 0 inputs/textareas/selects/forms, 0 non-GET requests, only categorical keys in `vz-aanvraaghulp` |
-| Header / page-top / hero / footer / mobile menu | no regression observed in the screenshot set |
-| `/admin/*` | HTTP 200, zero diff against baseline |
-| Typecheck (`tsgo --noEmit`) | pass |
+- Route/viewport matrix: 32 public routes × 6 widths (1440, 1024, 768, 430, 320, 305) = 192 measurements.
+- Document-level overflow (`scrollWidth > clientWidth`): **0** at every width, including the 305px content box.
+- Console errors (including page errors): **0** on every route and width.
+- Related-grid / preparation-panel overlap: **0** on all 15 service-detail routes.
+- Documentenlijsten tabs: 6 tabs, exactly one visible panel per activation, pointer and keyboard (ArrowRight, End, Home) verified; 17 PDF links present on the page.
+- PDFs: 17 files, every file starts with `%PDF-`, none modified.
+- Typecheck: clean. Build: OK.
+- `/admin/*`: untouched; no admin file is in the change set.
 
-## 4. Residuals and disclosures
+## 4. Residuals
 
-- The pre-existing inherited 30px overflow at 1440px is now resolved as part of D-001.
-- Placeholder/temporary imagery from earlier batches is unchanged by this batch.
-- No content, PDF, `/admin/*`, Cloud/Database, auth, storage, deployment or
-  publication action was taken.
-
-STATUS: LFB-105 STRUCTURAL REMEDIATION 001 COMPLETE — READY FOR ACT-CHATGPT REVIEW
-NEXT ACTOR: ACT-CHATGPT
-NO PUBLICATION OR DEPLOYMENT PERFORMED
+- Hero imagery and the page-top composition remain the previously approved temporary generated assets.
+- FAQ and news remain governed empty states.
