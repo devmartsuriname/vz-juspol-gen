@@ -141,16 +141,19 @@ rather than rationalised. Accepted ACT-CODEX documents are not edited.
 
 | File | Change |
 | --- | --- |
-| `public/vz-public/css/vz-polish.css` | D-006: in-viewport visually-hidden geometry for `.vz-sr-button` / `.vz-sr-status`. D-001: the single causal geometry rule identified by measurement (scoped to the causal selector, no global overflow clipping). |
+| `src/lib/public/template/chrome.ts` | D-006 Option 2: homepage hero slider `data-dots="false"` → `data-dots="true"`, `data-arrows="false"` retained. No other hero or template change. |
+| `public/vz-public/css/vz-polish.css` | D-006: narrow the hero-only pagination suppression so the approved dots appear while arrows stay hidden; style the existing Liviza bullets (small, quiet, subordinate) with ~44 × 44 px effective hit areas and restrained hover/active/focus-visible states; in-viewport visually-hidden geometry for `.vz-sr-button` / `.vz-sr-status`. D-001: the single causal geometry rule identified by measurement (scoped to the causal selector, no global overflow clipping). |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/REPORT.md` | E-001 accounting correction only. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/MANIFEST.md` | E-001 accounting correction only. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-POST-VALIDATION-CORRECTION-001/REPORT.md` | New correction report. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-POST-VALIDATION-CORRECTION-001/MANIFEST.md` | New evidence manifest with complete route-entry-to-viewport index. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-POST-VALIDATION-CORRECTION-001/screenshots/` | Before/after captures for D-001 and D-006 plus the regression sweep. |
 
-If measurement shows the D-001 cause sits in template markup rather than CSS, the affected file
-(`src/lib/public/template/liviza-home.html.ts` or `src/lib/public/template/chrome.ts`) is named and
-approved before it is written; it is not changed silently. `vz-polish.js`, `LivizaTemplatePage.tsx`
+This list is exhaustive. Pagination is not broadly enabled for unrelated carousels.
+`vz-polish.js` is **not** modified; if a later measured failure proves a script change necessary,
+execution STOPS and separate approval is requested first. If measurement shows the D-001 cause sits
+in template markup rather than CSS, the affected file (`src/lib/public/template/liviza-home.html.ts`
+or a further `chrome.ts` change) is named and approved before it is written. `LivizaTemplatePage.tsx`
 and all other application files stay untouched.
 
 ## 5. Protected / preserved
