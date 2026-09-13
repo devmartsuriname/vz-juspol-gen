@@ -64,7 +64,7 @@ ${contentOpen()}
 					<div class="row">
 						<div class="col-12">
 							<p class="pb-2">${category.intro}</p>
-							<div class="row">
+							<div class="row vz-equal-cards">
 ${cards}
 							</div>
 						</div>

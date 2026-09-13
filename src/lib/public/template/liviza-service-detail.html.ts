@@ -102,7 +102,7 @@ export function buildServiceDetailHtml(service: ServiceRecord): string {
     .join("\n");
 
   const documentBlock = doc
-    ? `						<div class="assessment-one">
+    ? `						<div class="assessment-one vz-detail-panel">
 							<div class="row g-0">
 								<div class="col-md-5">
 									<div class="assessment-one-img"></div>
@@ -157,15 +157,17 @@ ${conditions}
 ${documentBlock}
 							${
                 relatedCards
-                  ? `<div class="pbmit-entry-content">
+                  ? `<div class="vz-related-grid">
+							<div class="pbmit-entry-content">
 								<h3>Andere diensten in ${category.label}</h3>
 							</div>
-							<div class="row">
+							<div class="row vz-equal-cards">
 ${relatedCards}
+							</div>
 							</div>`
                   : ""
               }
-							<div class="assessment-one">
+							<div class="assessment-one vz-detail-panel">
 								<div class="row g-0">
 									<div class="col-md-5">
 										<div class="assessment-one-img"></div>

@@ -63,7 +63,7 @@ ${contentOpen()}
 						<h4 class="pbmit-subtitle">Diensten</h4>
 						<h2 class="pbmit-title">Kies een <em> categorie</em></h2>
 					</div>
-					<div class="row">
+					<div class="row vz-equal-cards">
 ${cards}
 					</div>
 				</div>
