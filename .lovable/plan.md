@@ -4,41 +4,96 @@ PLAN MODE ONLY. No application file changed in this turn.
 
 ## 0. Authority, attachments and baseline
 
-All seven attached ACT-CODEX documents were read completely and are treated as the binding
-acceptance evidence: post-execution validation 001, defect-disposition register,
-route × viewport result matrix, residual risk and recommendations, correction contract draft 001,
-post-validation evidence manifest, screenshot index. Where the earlier Lovable self-validation
-conflicts with this package, the Codex evidence governs.
+Each of the seven attached ACT-CODEX documents was opened separately and read in full this turn
+(no combined command, no `head`, no truncation). Per-file proof:
+
+| Attachment | Lines | Bytes | Read completely |
+| --- | ---: | ---: | --- |
+| `CODEX-LFB-105-POST-EXECUTION-VALIDATION-001.md` | 54 | 4193 | yes (1–54) |
+| `DEFECT-DISPOSITION-REGISTER.md` | 12 | 1708 | yes (1–12) |
+| `ROUTE-VIEWPORT-RESULT-MATRIX.md` | 46 | 3262 | yes (1–46) |
+| `RESIDUAL-RISK-AND-RECOMMENDATIONS.md` | 12 | 1303 | yes (1–12) |
+| `LOVABLE-LFB-105-POST-VALIDATION-CORRECTION-CONTRACT-DRAFT-001.md` | 27 | 1644 | yes (1–27) |
+| `CODEX-LFB-105-POST-VALIDATION-EVIDENCE-MANIFEST.md` | 16 | 1888 | yes (1–16) |
+| `SCREENSHOT-INDEX.md` | 21 | 1528 | yes (1–21) |
+
+Where the earlier Lovable self-validation conflicts with this package, the Codex evidence governs.
 
 Baseline verified read-only this turn:
 
-- Current application HEAD: `6572576695ecc1285dc6e1cc75c1df744c8f88e0` ("Fixed LFB-105 overflow issues") — matches the commit under remediation. No later application-code delta. No STOP condition triggered.
+- Current application HEAD: `6572576695ecc1285dc6e1cc75c1df744c8f88e0` ("Fixed LFB-105 overflow issues") — matches the validated commit. No later application-code delta. No STOP condition triggered.
 - Project remains private and unpublished; database remains disabled.
 
 Defect identifiers, corrected as instructed: **D-001 OPEN**, **D-002/D-003/D-004/D-005 RESOLVED**
 (D-004 is the hydration/deferred-script defect and is not reopened), **D-006 OPEN** (hero
 previous/next controls), **E-001 OPEN** (evidence accounting).
 
-## 1. D-006 — hero previous/next controls (causal diagnosis CONFIRMED)
+## 1. D-006 — hero previous/next controls
 
-Measured this turn at 320 px on the running preview:
+### 1.1 Measured facts
 
-- The controls are rendered as `button.vz-sr-button[data-vz-hero]` inside `.vz-hero-carousel`.
-- Computed geometry: `position: absolute`, **x = -1 px**, 1 × 1 px, `clip: rect(0,0,0,0)`.
-  A real pointer activation is refused — Playwright reports "Element is outside of the viewport" —
-  which reproduces the Codex observation that a forced user-visible click does not advance the hero.
-- The JavaScript binding is **not** the fault: a programmatic activation advances the hero
-  correctly (`realIndex` 0 → 1, status "Dia 1 van 3" → "Dia 2 van 3", active slide changes).
-- The wrapper transform Codex measured stays `matrix(1,0,0,1,0,0)` by design: the hero uses
-  `data-effect="fade"`, which animates opacity and never translates the wrapper. Slide state must
-  be asserted on `realIndex` / active slide / live status, not on the wrapper transform.
+- The only hero controls in the markup are two visually hidden buttons
+  `button.vz-sr-button[data-vz-hero="prev"|"next"]` plus a live status
+  `p.vz-sr-status` inside `.vz-hero-controls` (`chrome.ts:243-246`).
+- The hero carousel is declared `data-dots="false" data-arrows="false"` (`chrome.ts:238`), and
+  `vz-polish.css:396-401` additionally forces `.swiper-button-next`, `.swiper-button-prev`,
+  `.swiper-buttons` and `.swiper-pagination` to `display: none !important` on the hero. This is the
+  approved LFB-104 outcome: the intrusive cross-like navigation was deliberately removed.
+- Computed geometry of the hidden buttons at 320 px: `position: absolute`, **x = -1 px**, 1 × 1 px,
+  `clip: rect(0,0,0,0)` — outside the viewport box, so a real pointer activation is refused
+  ("Element is outside of the viewport"), which reproduces the Codex observation.
+- The JavaScript binding is **not** at fault: a programmatic activation advances the hero correctly
+  (`realIndex` 0 → 1, status "Dia 1 van 3" → "Dia 2 van 3", active slide changes).
+- The hero uses `data-effect="fade"`, which animates opacity and never translates
+  `.swiper-wrapper`; the transform stays `matrix(1,0,0,1,0,0)` by design. Slide state must be
+  asserted on `realIndex` / active slide / live status, never on the wrapper transform.
 
-Fix (smallest causal change, CSS only): replace the off-viewport `left: -1px` offset in the
-`.vz-sr-button` / `.vz-sr-status` rule with the standard in-viewport visually-hidden pattern
-(`left: 0`, 1 × 1 px, `clip-path: inset(50%)`, `white-space: nowrap`), keeping the existing
-`:focus-visible` reveal untouched. The buttons stay invisible, no visible slider navigation is
-added, three slides and autoplay-off stay as approved, `livizaHead()` keeps emitting no scripts,
-and `vz-polish.js` is not modified.
+### 1.2 A — visible pointer/touch path: NO APPROVED CONTROL EXISTS — DELROY DECISION REQUIRED
+
+Inventory result: after the approved LFB-104 removal of the cross-like navigation, the hero has
+**no visible pointer or touch control at all** — no arrows, no dots, no thumbnails, no visible
+"volgende" affordance. Drag/swipe on the hero is also not an approved substitute for a fade slider
+and is not assumed here.
+
+This is stated as a user-experience constraint, not solved by invention: a mouse or touch visitor
+currently cannot advance the hero by any intentional means. No new navigation design is proposed in
+this plan. Delroy must choose one of:
+
+- **Option 1 — accept as designed:** the hero stays advance-by-keyboard/assistive-technology only;
+  D-006 is then closed for the pointer path by decision, and only the keyboard path is corrected.
+- **Option 2 — restrained Liviza dots:** re-enable the hero's own
+  `.swiper-pagination`/`swiper-pagination-bullet` pattern already present in the Liviza source and
+  used elsewhere on the homepage (`swiper-btn-right-dots`), styled with the existing template
+  appearance only — small bullets, no arrows, no overlay cross. Implementation would be
+  `data-dots="true"` on the hero plus removal of the hero-only `display: none` for
+  `.swiper-pagination`, keeping the arrow suppression intact.
+- **Option 3 — no hero rotation:** reduce the hero to a single static slide, removing the control
+  question entirely.
+
+Execution of the pointer path does not start until Delroy names the option. Nothing visible is
+changed without that decision.
+
+### 1.3 B — keyboard/accessibility path (correctable now)
+
+The two hidden buttons keep an in-viewport visually-hidden pattern: `left: 0` instead of the current
+off-viewport `-1px` offset, 1 × 1 px, `clip-path: inset(50%)`, `white-space: nowrap`, with the
+existing `:focus-visible` reveal (visible outlined button at the top-left of the hero) untouched.
+They must be reachable with Tab, activate with Enter and Space, change the active slide, and update
+the live status. CSS only; `vz-polish.js` is not modified and `livizaHead()` keeps emitting no
+scripts.
+
+### 1.4 C — acceptance distinction
+
+- Visible arrows/dots: tested with genuine pointer and touch activation **only if** Delroy releases
+  Option 2; not applicable under Option 1 or 3.
+- Hidden accessibility controls: tested with keyboard focus plus Enter and Space — never with a
+  pointer click against a hidden 1 × 1 target.
+- Screen-reader labels ("Vorige dia", "Volgende dia") and the `role="status"` live region are
+  verified separately.
+- Assertions use Swiper `realIndex`, the active slide element and the status text; the wrapper
+  transform is explicitly not used.
+- Three slides and autoplay-off are preserved; no scripts are reintroduced into `livizaHead()`.
+
 
 ## 2. D-001 — homepage document overflow at 320 px (diagnosis UNCONFIRMED — measure first)
 
@@ -111,7 +166,8 @@ change, no unrelated styling or redesign, no edit to accepted ACT-CODEX document
 ## 7. Validation required after the future execution
 
 - D-001: before/after `documentElement.scrollWidth` vs `clientWidth` at 320 and 375 px, with the causal element named and its measured geometry recorded.
-- D-006: hero previous and next at desktop and mobile — real pointer activation and keyboard activation, asserting `realIndex`, active slide and the live status text ("Dia 1 van 3" → "Dia 2 van 3" → "Dia 3 van 3"), plus focus-visible reveal; wrapper transform is explicitly not used as the assertion.
+- D-006 keyboard path: Tab to "Vorige dia" / "Volgende dia", activate with Enter and Space at desktop and mobile widths, asserting `realIndex`, active slide and the live status text ("Dia 1 van 3" → "Dia 2 van 3" → "Dia 3 van 3"), plus the focus-visible reveal; no pointer click is asserted against a hidden control and the wrapper transform is not used as an assertion.
+- D-006 pointer/touch path: only if Delroy releases Option 2 (restrained Liviza dots) — genuine pointer and touch activation with the same `realIndex` / active-slide / status assertions.
 - Console clean on direct load and after SPA navigation, including zero hydration messages.
 - Regression sweep at 320, 375, 768, 1024 and 1440 px across all 32 governed public routes.
 - Preservation checks for D-002 through D-005, tabs, mobile menu and Aanvraaghulp.
@@ -124,18 +180,21 @@ Stop and report if: HEAD differs from `6572576695ecc1285dc6e1cc75c1df744c8f88e0`
 D-001 cannot be tied to a specific causal element and property; a hero fix would require restoring
 pre-hydration script execution; any fix would require global overflow hiding; a protected surface
 must change; the evidence counts cannot be reconciled without guessing; or new authority, secrets or
-external actions are required.
+external actions are required. **Already triggered:** the hero has no approved visible pointer/touch
+control, so the D-006 pointer path is halted pending Delroy's choice between Option 1, 2 and 3 in
+section 1.2. No new navigation design is invented.
 
 ## 9. Residual assumptions
 
 - D-001 is assumed reproducible under a 305 px content box; if it is not reproducible at execution
   time, the finding is recorded with measurements rather than "fixed" by a speculative rule.
-- D-006 is assumed to be solely the off-viewport control geometry; the click-path is re-verified
-  with a genuine pointer event after the change.
+- D-006 keyboard path is assumed to be solely the off-viewport control geometry; it is re-verified
+  with genuine keyboard focus and Enter/Space after the change.
+- D-006 pointer path remains blocked on the Delroy decision above.
 
 ---
 
-PLAN STATUS: PLAN UPDATED / BUILD NOT RELEASED
+PLAN STATUS: PLAN CORRECTED / BUILD NOT RELEASED
 NEXT ACTOR: ACT-CHATGPT
 NO LOVABLE BUILD EXECUTION RELEASED
 NO PUBLICATION OR DEPLOYMENT RELEASED
