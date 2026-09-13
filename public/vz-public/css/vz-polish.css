@@ -536,3 +536,28 @@
 .vz-equal-cards .pbminfotech-box-link {
 	margin-top: auto;
 }
+
+/* D-001 continued — sitewide heading wrap safety and a slightly smaller
+   heading step below 480px so long Dutch compounds ("Vreemdelingenzaken")
+   fit the line box instead of breaking inside the word. */
+.pbmit-title,
+.pbmit-title em,
+.pbmit-title span,
+.pbmit-subtitle {
+	overflow-wrap: break-word;
+	word-break: normal;
+}
+@media (max-width: 479px) {
+	.pbmit-title {
+		font-size: 26px;
+		line-height: 34px;
+	}
+}
+
+/* Sitewide 30px document overflow: the source footer decoration is declared
+   as `left: 30px; width: 100%`, so it extends 30px past the viewport. The
+   pattern is a left-anchored, non-repeating image, so constraining the box to
+   the remaining width keeps the original composition and removes the overflow. */
+.site-footer:before {
+	width: calc(100% - 30px);
+}
