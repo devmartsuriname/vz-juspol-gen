@@ -173,7 +173,9 @@ const heroSlides: readonly HeroSlide[] = [
   {
     slot: "vz-hero-slide-1",
     eyebrow: "Informatie en voorbereiding",
-    title: "Voorbereid naar <span>Vreemdelingenzaken</span>",
+    // LFB-105 D-007: the soft hyphen is a rendering hint only. The wording is
+    // unchanged and the character is invisible unless a line break is needed.
+    title: "Voorbereid naar <span>Vreemdelingen&shy;zaken</span>",
     lead: "Vind informatie over diensten, documenten en voorbereiding. Dit is geen aanvraag.",
     ctaHref: "/diensten",
     ctaLabel: "Bekijk diensten",
