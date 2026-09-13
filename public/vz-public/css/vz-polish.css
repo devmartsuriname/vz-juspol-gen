@@ -409,7 +409,8 @@
    the dots are also shown on narrow widths where Liviza hides them, because
    they are the only visible slide control. Geometry is otherwise untouched. */
 /* Spacing so the enlarged 44px hit areas cannot overlap each other. */
-.pbmit-slider-one .swiper-pagination-bullet {
+.pbmit-slider-one .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.pbmit-slider-one .swiper-pagination-bullets .swiper-pagination-bullet {
 	margin: 0 15px;
 }
 .pbmit-slider-one .swiper-pagination-bullet:before {
