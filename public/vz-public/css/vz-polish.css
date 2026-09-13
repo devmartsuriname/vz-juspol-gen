@@ -676,3 +676,50 @@
 		padding-right: 0;
 	}
 }
+
+/* =====================================================================
+   LFB-105 FINAL FRONTEND CORRECTION 001
+   D-007 hero title word-safe wrapping · D-008 hero pagination 768-991px.
+   Public layer only; no admin impact; no other carousel is touched.
+   ===================================================================== */
+
+/* D-007 — the hero title may only break between words or at the authored
+   soft hyphen inside the compound. Never at an arbitrary character. */
+.pbmit-slider-area .pbmit-slider-content .pbmit-title,
+.pbmit-slider-area .pbmit-slider-content .pbmit-title em,
+.pbmit-slider-area .pbmit-slider-content .pbmit-title span,
+.pbmit-slider-one .pbmit-slider-content .pbmit-title {
+	overflow-wrap: normal;
+	word-break: normal;
+	hyphens: manual;
+}
+
+/* D-008 — Liviza hides the slider-one dots up to 991px, so the tablet band
+   had no visible slide control. The already-approved bottom-centre strip is
+   extended to that band. Desktop (>991px) keeps the template's right-edge
+   rotated column untouched. Arrows stay removed; autoplay and loop stay off. */
+@media (max-width: 991px) {
+	.pbmit-slider-area .swiper-horizontal > .swiper-pagination-bullets,
+	.pbmit-slider-one .swiper-pagination-bullets {
+		display: table;
+	}
+	.pbmit-slider-one .swiper-horizontal > .swiper-pagination-bullets {
+		top: auto;
+		right: 0;
+		bottom: 20px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		transform: none;
+	}
+}
+
+/* D-008 (tablet band only): between 768px and 991px the following section's
+   heading overlaps the bottom of the hero, so the dot strip is raised clear
+   of it. Position only; geometry, count and behaviour are unchanged. */
+@media (min-width: 768px) and (max-width: 991px) {
+	.pbmit-slider-one .swiper-horizontal > .swiper-pagination-bullets {
+		top: 508px;
+		bottom: auto;
+	}
+}
