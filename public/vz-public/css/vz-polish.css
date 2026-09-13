@@ -422,6 +422,19 @@
 	outline: 3px solid #ffffff;
 	outline-offset: 6px;
 }
+
+/* All three dots must stay legible over light photography; the template's
+   inactive dot (30% white) disappears on bright slides. Contrast only. */
+.pbmit-slider-one .swiper-pagination-bullet:after {
+	background-color: rgba(255, 255, 255, 0.75);
+	box-shadow: 0 0 6px rgba(8, 20, 40, 0.55);
+}
+.pbmit-slider-one .swiper-pagination-bullet-active:after {
+	background-color: #ffffff;
+}
+.pbmit-slider-one .swiper-pagination-bullet-active {
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 1), 0 0 8px rgba(8, 20, 40, 0.55);
+}
 @media (max-width: 767px) {
 	.pbmit-slider-area .swiper-horizontal > .swiper-pagination-bullets {
 		display: table;
