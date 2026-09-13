@@ -187,11 +187,10 @@ change, no unrelated styling or redesign, no edit to accepted ACT-CODEX document
 
 Stop and report if: HEAD differs from `6572576695ecc1285dc6e1cc75c1df744c8f88e0` at execution time;
 D-001 cannot be tied to a specific causal element and property; a hero fix would require restoring
-pre-hydration script execution; any fix would require global overflow hiding; a protected surface
-must change; the evidence counts cannot be reconciled without guessing; or new authority, secrets or
-external actions are required. **Already triggered:** the hero has no approved visible pointer/touch
-control, so the D-006 pointer path is halted pending Delroy's choice between Option 1, 2 and 3 in
-section 1.2. No new navigation design is invented.
+pre-hydration script execution or a `vz-polish.js` change; the approved Liviza dots cannot be exposed
+without also exposing arrows or the rejected cross-like navigation; any fix would require global
+overflow hiding; a protected surface must change; the evidence counts cannot be reconciled without
+guessing; or new authority, secrets or external actions are required.
 
 ## 9. Residual assumptions
 
@@ -199,11 +198,12 @@ section 1.2. No new navigation design is invented.
   time, the finding is recorded with measurements rather than "fixed" by a speculative rule.
 - D-006 keyboard path is assumed to be solely the off-viewport control geometry; it is re-verified
   with genuine keyboard focus and Enter/Space after the change.
-- D-006 pointer path remains blocked on the Delroy decision above.
+- The hero dots are assumed to be exposable through the template's own configuration and CSS alone;
+  if not, execution stops rather than adding script behaviour.
 
 ---
 
-PLAN STATUS: PLAN CORRECTED / BUILD NOT RELEASED
+PLAN STATUS: PLAN READY FOR DELROY APPROVAL / BUILD NOT RELEASED
 NEXT ACTOR: ACT-CHATGPT
 NO LOVABLE BUILD EXECUTION RELEASED
 NO PUBLICATION OR DEPLOYMENT RELEASED
