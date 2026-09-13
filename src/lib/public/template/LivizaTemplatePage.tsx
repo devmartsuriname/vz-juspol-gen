@@ -44,9 +44,13 @@ export const LIVIZA_JS = [
   .concat(["/vz-public/js/vz-polish.js", "/vz-public/js/vz-wizard.js"]);
 
 export function livizaHead() {
+  // LFB-105 D-004: only the stylesheets are emitted from `head()`. The template
+  // scripts used to be emitted here with `defer`, so jQuery/Swiper/Bootstrap ran
+  // at DOMContentLoaded and mutated the server markup before React hydrated,
+  // producing a hydration mismatch on every template route. The post-mount
+  // effect below is now the single script execution path.
   return {
     links: LIVIZA_CSS.map((href) => ({ rel: "stylesheet", href })),
-    scripts: LIVIZA_JS.map((src) => ({ src, defer: true })),
   };
 }
 

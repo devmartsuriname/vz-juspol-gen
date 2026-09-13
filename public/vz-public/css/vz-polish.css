@@ -434,3 +434,130 @@
 .vz-sr-button[data-vz-hero="next"]:focus-visible {
 	left: 170px;
 }
+
+/* =====================================================================
+   LFB-105 STRUCTURAL REMEDIATION 001
+   D-001 hero wrap · D-002 narrow-width panel · D-003 detail flow ·
+   D-005 equal-height card grids. Public layer only; no admin impact.
+   ===================================================================== */
+
+/* D-001 / D-002 — long Dutch compounds must wrap at safe boundaries.
+   No `overflow-x: hidden` is used anywhere: the content itself is repaired. */
+.pbmit-slider-area .pbmit-slider-content .pbmit-title,
+.pbmit-slider-area .pbmit-slider-content .pbmit-title em,
+.pbmit-slider-area .pbmit-slider-content .pbmit-title span,
+.pbmit-title-bar-wrapper .pbmit-tbar-title,
+.pbmit-title-bar-wrapper h1,
+.pbmit-entry-content h3,
+.pbminfotech-des h3,
+.vz-meta {
+	overflow-wrap: break-word;
+	word-break: normal;
+	hyphens: auto;
+}
+
+/* D-002 — the source panel image relies on 127px/150px padding for its height,
+   which forces a 300px minimum box inside a 277px column at 320px. Below the
+   two-column breakpoint the panel stacks and the image gets an intrinsic
+   aspect-ratio box instead of padding. */
+@media (max-width: 991px) {
+	.assessment-one-img {
+		padding: 0;
+		min-height: 0;
+		aspect-ratio: 16 / 9;
+	}
+	.assessment-one-content {
+		padding: 30px 20px;
+	}
+	.assessment-one-content .pbmit-btn {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	.assessment-one-content .pbmit-btn + .pbmit-btn {
+		margin-top: 12px;
+	}
+}
+
+/* D-003 — `.assessment-one { margin-top: -150px }` is a homepage-only overlap
+   device. On service details the panel follows a normal grid, so the negative
+   margin pulls it up into the related-service cards. Detail panels use the
+   same visual card in normal document flow. */
+.vz-detail-panel {
+	margin-top: 0;
+	position: relative;
+	z-index: auto;
+	clear: both;
+}
+.pbmit-entry-content + .vz-detail-panel,
+.vz-related-grid + .vz-detail-panel {
+	margin-top: 40px;
+}
+
+/* The related grid is a closed wrapper: the panel after it starts below the
+   grid's computed bottom edge at every width. */
+.vz-related-grid {
+	display: flow-root;
+	margin-top: 40px;
+}
+.vz-related-grid .row {
+	margin-bottom: 0;
+}
+
+/* D-005 — Liviza-compatible equal-height rows. Cards stretch to the tallest
+   card in the row; text keeps its intrinsic flow and is never clipped, and the
+   3 / 2 / 1 column progression of the source grid is untouched. */
+.vz-equal-cards {
+	align-items: stretch;
+}
+.vz-equal-cards > [class*="col-"] {
+	display: flex;
+	margin-bottom: 30px;
+}
+.vz-equal-cards > [class*="col-"] > .pbminfotech-servicebox-style-2 {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.vz-equal-cards .pbminfotech-post-item,
+.vz-equal-cards .pbminfotech-box-content,
+.vz-equal-cards .pbminfotech-box-content-inner,
+.vz-equal-cards .pbminfotech-des {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	height: auto;
+	overflow: visible;
+}
+.vz-equal-cards .pbminfotech-service-content {
+	flex: 1 1 auto;
+}
+/* CTA sits on the card baseline without a fixed card height. */
+.vz-equal-cards .pbminfotech-box-link {
+	margin-top: auto;
+}
+
+/* D-001 continued — sitewide heading wrap safety and a slightly smaller
+   heading step below 480px so long Dutch compounds ("Vreemdelingenzaken")
+   fit the line box instead of breaking inside the word. */
+.pbmit-title,
+.pbmit-title em,
+.pbmit-title span,
+.pbmit-subtitle {
+	overflow-wrap: break-word;
+	word-break: normal;
+}
+@media (max-width: 479px) {
+	.pbmit-title {
+		font-size: 26px;
+		line-height: 34px;
+	}
+}
+
+/* Sitewide 30px document overflow: the source footer decoration is declared
+   as `left: 30px; width: 100%`, so it extends 30px past the viewport. The
+   pattern is a left-anchored, non-repeating image, so constraining the box to
+   the remaining width keeps the original composition and removes the overflow. */
+.site-footer:before {
+	width: calc(100% - 30px);
+}
