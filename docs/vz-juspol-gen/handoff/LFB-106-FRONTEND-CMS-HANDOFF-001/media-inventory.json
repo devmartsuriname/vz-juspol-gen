@@ -1,0 +1,52 @@
+{
+  "package": "LFB-106-FRONTEND-CMS-HANDOFF-001",
+  "generated_by": "Lovable (documentation-only)",
+  "note": "Inventory of current public media references. No image was changed. Resolver fields are a proposal and are not implemented.",
+  "roots": {
+    "vz_owned": "public/vz-public/images/",
+    "ported_template": "public/vz-public/liviza/assets/images/"
+  },
+  "reference_style_today": [
+    "src/lib/public/template/chrome.ts (VZ_IMAGES, categoryImage, stakeholderImages)",
+    "public/vz-public/css/vz-polish.css (background-image declarations)"
+  ],
+  "assets": [
+    { "proposed_id": "hero.slide-1", "path": "/vz-public/images/hero/vz-hero-01.webp", "type": "photo", "width": 1920, "height": 900, "bytes": 19968, "format": "webp", "variants": [{ "width": 1280, "path": "/vz-public/images/hero/vz-hero-01-1280.webp", "bytes": 10320 }, { "width": 768, "path": "/vz-public/images/hero/vz-hero-01-768.webp", "bytes": 5354 }], "used_by": [{ "route": "/", "component": "chrome.ts homeHeader + vz-polish.css .vz-hero-slide-1" }], "status": "temporary" },
+    { "proposed_id": "hero.slide-2", "path": "/vz-public/images/hero/vz-hero-02.webp", "type": "photo", "width": 1920, "height": 900, "bytes": 30736, "format": "webp", "variants": [{ "width": 1280, "path": "/vz-public/images/hero/vz-hero-02-1280.webp", "bytes": 15248 }, { "width": 768, "path": "/vz-public/images/hero/vz-hero-02-768.webp", "bytes": 7722 }], "used_by": [{ "route": "/", "component": "vz-polish.css .vz-hero-slide-2" }], "status": "temporary" },
+    { "proposed_id": "hero.slide-3", "path": "/vz-public/images/hero/vz-hero-03.webp", "type": "photo", "width": 1920, "height": 900, "bytes": 38704, "format": "webp", "variants": [{ "width": 1280, "path": "/vz-public/images/hero/vz-hero-03-1280.webp", "bytes": 16656 }, { "width": 768, "path": "/vz-public/images/hero/vz-hero-03-768.webp", "bytes": 7428 }], "used_by": [{ "route": "/", "component": "vz-polish.css .vz-hero-slide-3" }], "status": "temporary" },
+
+    { "proposed_id": "category.verblijf", "path": "/vz-public/images/category/verblijf.webp", "type": "photo", "width": 800, "height": 535, "bytes": 11790, "format": "webp", "used_by": [{ "route": "/diensten", "component": "chrome.ts categoryImage" }], "status": "temporary" },
+    { "proposed_id": "category.vestiging", "path": "/vz-public/images/category/vestiging.webp", "type": "photo", "width": 800, "height": 535, "bytes": 8772, "format": "webp", "used_by": [{ "route": "/diensten", "component": "chrome.ts categoryImage" }], "status": "temporary" },
+    { "proposed_id": "category.naturalisatie", "path": "/vz-public/images/category/naturalisatie.webp", "type": "photo", "width": 800, "height": 535, "bytes": 15070, "format": "webp", "used_by": [{ "route": "/diensten", "component": "chrome.ts categoryImage" }], "status": "temporary" },
+    { "proposed_id": "category.ingezetenschap", "path": "/vz-public/images/category/ingezetenschap.webp", "type": "photo", "width": 800, "height": 535, "bytes": 14214, "format": "webp", "used_by": [{ "route": "/diensten", "component": "chrome.ts categoryImage" }], "status": "temporary" },
+    { "proposed_id": "category.asiel", "path": "/vz-public/images/category/asiel.webp", "type": "photo", "width": 800, "height": 535, "bytes": 13108, "format": "webp", "used_by": [{ "route": "/diensten", "component": "chrome.ts categoryImage" }], "status": "temporary" },
+    { "proposed_id": "category.overig", "path": "/vz-public/images/category/overig.webp", "type": "photo", "width": 800, "height": 535, "bytes": 11922, "format": "webp", "used_by": [{ "route": "/diensten", "component": "chrome.ts categoryImage" }], "status": "temporary" },
+
+    { "proposed_id": "stakeholder.vreemdelingendienst", "path": "/vz-public/images/instantie/vreemdelingendienst.webp", "type": "photo", "width": 800, "height": 650, "bytes": 9868, "format": "webp", "used_by": [{ "route": "/instanties", "component": "chrome.ts stakeholderImages" }], "status": "temporary" },
+    { "proposed_id": "stakeholder.immigratiedienst", "path": "/vz-public/images/instantie/immigratiedienst.webp", "type": "photo", "width": 800, "height": 650, "bytes": 13978, "format": "webp", "used_by": [{ "route": "/instanties", "component": "chrome.ts stakeholderImages" }], "status": "temporary" },
+    { "proposed_id": "stakeholder.werkvergunningen", "path": "/vz-public/images/instantie/werkvergunningen.webp", "type": "photo", "width": 800, "height": 650, "bytes": 18544, "format": "webp", "used_by": [{ "route": "/instanties", "component": "chrome.ts stakeholderImages" }], "status": "temporary" },
+    { "proposed_id": "stakeholder.consulaire-zaken", "path": "/vz-public/images/instantie/consulaire-zaken.webp", "type": "photo", "width": 800, "height": 650, "bytes": 10398, "format": "webp", "used_by": [{ "route": "/instanties", "component": "chrome.ts stakeholderImages" }], "status": "temporary" },
+    { "proposed_id": "stakeholder.burgerzaken", "path": "/vz-public/images/instantie/burgerzaken.webp", "type": "photo", "width": 800, "height": 650, "bytes": 14520, "format": "webp", "used_by": [{ "route": "/instanties", "component": "chrome.ts stakeholderImages" }], "status": "temporary" },
+    { "proposed_id": "stakeholder.bedrijfsvergunningen", "path": "/vz-public/images/instantie/bedrijfsvergunningen.webp", "type": "photo", "width": 800, "height": 650, "bytes": 7076, "format": "webp", "used_by": [{ "route": "/instanties", "component": "chrome.ts stakeholderImages" }], "status": "temporary" },
+
+    { "proposed_id": "editorial.about-01", "path": "/vz-public/images/about/vz-about-01.webp", "type": "photo", "width": 530, "height": 540, "bytes": 9792, "format": "webp", "used_by": [{ "route": "/over-ons", "component": "liviza-about.html.ts" }], "status": "temporary" },
+    { "proposed_id": "editorial.home-01", "path": "/vz-public/images/home/vz-home-01.webp", "type": "photo", "width": 512, "height": 512, "bytes": 8692, "format": "webp", "used_by": [{ "route": "/", "component": "liviza-home.html.ts" }], "status": "temporary" },
+    { "proposed_id": "editorial.home-02", "path": "/vz-public/images/home/vz-home-02.webp", "type": "photo", "width": 740, "height": 550, "bytes": 8370, "format": "webp", "used_by": [{ "route": "/", "component": "liviza-home.html.ts" }], "status": "temporary" },
+
+    { "proposed_id": "pattern.cta-texture", "path": "/vz-public/images/pattern/vz-cta-texture.webp", "type": "pattern", "width": 1024, "height": 573, "bytes": 6708, "format": "webp", "used_by": [{ "route": "*", "component": "vz-polish.css CTA band" }], "status": "temporary" },
+    { "proposed_id": "pattern.page-top-left", "path": "/vz-public/images/pattern/vz-pattern-left.svg", "type": "pattern", "format": "svg", "bytes": 448, "used_by": [{ "route": "*", "component": "vz-polish.css page-top" }], "status": "approved-composition" },
+    { "proposed_id": "pattern.page-top-right", "path": "/vz-public/images/pattern/vz-pattern-right.svg", "type": "pattern", "format": "svg", "bytes": 2545, "used_by": [{ "route": "*", "component": "vz-polish.css page-top" }], "status": "approved-composition" },
+    { "proposed_id": "pattern.page-top-legacy", "path": "/vz-public/images/pattern/vz-page-top.svg", "type": "pattern", "format": "svg", "bytes": 1841, "used_by": [], "status": "superseded-by-LFB-104" },
+    { "proposed_id": "pattern.border", "path": "/vz-public/images/pattern/vz-pattern-border.svg", "type": "pattern", "format": "svg", "bytes": 885, "used_by": [], "status": "present" },
+    { "proposed_id": "pattern.footer", "path": "/vz-public/images/pattern/vz-footer-pattern.svg", "type": "pattern", "format": "svg", "bytes": 672, "used_by": [], "status": "present" },
+    { "proposed_id": "pattern.stakeholder-field", "path": "/vz-public/images/pattern/vz-stakeholder-field.svg", "type": "pattern", "format": "svg", "bytes": 684, "used_by": [], "status": "present" },
+
+    { "proposed_id": "brand.mark", "path": "/vz-public/images/brand/vz-mark.svg", "type": "logo", "format": "svg", "bytes": 345, "used_by": [], "status": "not-rendered-in-live-chrome" },
+    { "proposed_id": "brand.wordmark-dark", "path": "/vz-public/images/brand/vz-wordmark-dark.svg", "type": "logo", "format": "svg", "bytes": 664, "used_by": [], "status": "not-rendered-in-live-chrome" },
+    { "proposed_id": "brand.wordmark-light", "path": "/vz-public/images/brand/vz-wordmark-light.svg", "type": "logo", "format": "svg", "bytes": 664, "used_by": [], "status": "not-rendered-in-live-chrome" },
+    { "proposed_id": "brand.og-image", "path": "/vz-public/images/brand/og-image.png", "type": "og", "format": "png", "bytes": 71032, "used_by": [], "status": "present-not-referenced-by-head-metadata" },
+
+    { "proposed_id": "template.bg-pattarn", "path": "/vz-public/liviza/assets/images/homepage-1/bg/bg-pattarn.png", "type": "pattern", "format": "png", "used_by": [{ "route": "*", "component": "vz-polish.css" }], "status": "ported-template-licensed" },
+    { "proposed_id": "template.bg-pattarn-left", "path": "/vz-public/liviza/assets/images/homepage-1/bg/bg-pattarn-left.png", "type": "pattern", "format": "png", "used_by": [{ "route": "*", "component": "vz-polish.css" }], "status": "ported-template-licensed" }
+  ]
+}
