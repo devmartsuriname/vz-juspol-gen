@@ -166,7 +166,8 @@ change, no unrelated styling or redesign, no edit to accepted ACT-CODEX document
 ## 7. Validation required after the future execution
 
 - D-001: before/after `documentElement.scrollWidth` vs `clientWidth` at 320 and 375 px, with the causal element named and its measured geometry recorded.
-- D-006: hero previous and next at desktop and mobile — real pointer activation and keyboard activation, asserting `realIndex`, active slide and the live status text ("Dia 1 van 3" → "Dia 2 van 3" → "Dia 3 van 3"), plus focus-visible reveal; wrapper transform is explicitly not used as the assertion.
+- D-006 keyboard path: Tab to "Vorige dia" / "Volgende dia", activate with Enter and Space at desktop and mobile widths, asserting `realIndex`, active slide and the live status text ("Dia 1 van 3" → "Dia 2 van 3" → "Dia 3 van 3"), plus the focus-visible reveal; no pointer click is asserted against a hidden control and the wrapper transform is not used as an assertion.
+- D-006 pointer/touch path: only if Delroy releases Option 2 (restrained Liviza dots) — genuine pointer and touch activation with the same `realIndex` / active-slide / status assertions.
 - Console clean on direct load and after SPA navigation, including zero hydration messages.
 - Regression sweep at 320, 375, 768, 1024 and 1440 px across all 32 governed public routes.
 - Preservation checks for D-002 through D-005, tabs, mobile menu and Aanvraaghulp.
