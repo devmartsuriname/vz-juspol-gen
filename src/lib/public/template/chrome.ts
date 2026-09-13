@@ -235,7 +235,7 @@ export function homeHeader(): string {
   return `${headerTop("/")}
 			<div class="pbmit-slider-area pbmit-slider-one">
 				<div class="vz-hero-carousel">
-					<div class="swiper-slider" data-autoplay="false" data-loop="false" data-dots="false" data-arrows="false" data-columns="1" data-margin="0" data-effect="fade" aria-roledescription="carrousel" aria-label="Uitgelichte informatie">
+					<div class="swiper-slider" data-autoplay="false" data-loop="false" data-dots="true" data-arrows="false" data-columns="1" data-margin="0" data-effect="fade" aria-roledescription="carrousel" aria-label="Uitgelichte informatie">
 						<div class="swiper-wrapper">
 ${heroSlides.map(heroSlide).join("\n")}
 						</div>
