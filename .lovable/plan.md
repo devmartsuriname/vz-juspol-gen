@@ -180,14 +180,17 @@ Stop and report if: HEAD differs from `6572576695ecc1285dc6e1cc75c1df744c8f88e0`
 D-001 cannot be tied to a specific causal element and property; a hero fix would require restoring
 pre-hydration script execution; any fix would require global overflow hiding; a protected surface
 must change; the evidence counts cannot be reconciled without guessing; or new authority, secrets or
-external actions are required.
+external actions are required. **Already triggered:** the hero has no approved visible pointer/touch
+control, so the D-006 pointer path is halted pending Delroy's choice between Option 1, 2 and 3 in
+section 1.2. No new navigation design is invented.
 
 ## 9. Residual assumptions
 
 - D-001 is assumed reproducible under a 305 px content box; if it is not reproducible at execution
   time, the finding is recorded with measurements rather than "fixed" by a speculative rule.
-- D-006 is assumed to be solely the off-viewport control geometry; the click-path is re-verified
-  with a genuine pointer event after the change.
+- D-006 keyboard path is assumed to be solely the off-viewport control geometry; it is re-verified
+  with genuine keyboard focus and Enter/Space after the change.
+- D-006 pointer path remains blocked on the Delroy decision above.
 
 ---
 
