@@ -648,3 +648,17 @@
 	word-break: normal;
 	hyphens: auto;
 }
+
+/* LFB-105 D-002 (residual): the Liviza title bar nests a second `.container`
+   (`.pbmit-tbar-inner`) inside the page container. Below 400px the inner
+   container keeps a wider computed width than its parent's content box and
+   pushes the heading and breadcrumb past the viewport. Constrain the nested
+   container to its parent; desktop and tablet geometry is untouched. */
+@media (max-width: 400px) {
+	.pbmit-title-bar-wrapper .pbmit-tbar-inner.container {
+		width: 100%;
+		max-width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
