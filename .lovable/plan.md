@@ -48,51 +48,56 @@ previous/next controls), **E-001 OPEN** (evidence accounting).
   `.swiper-wrapper`; the transform stays `matrix(1,0,0,1,0,0)` by design. Slide state must be
   asserted on `realIndex` / active slide / live status, never on the wrapper transform.
 
-### 1.2 A — visible pointer/touch path: NO APPROVED CONTROL EXISTS — DELROY DECISION REQUIRED
+### 1.2 A — visible pointer/touch path: DELROY DECIDED — OPTION 2, RESTRAINED LIVIZA DOTS
 
-Inventory result: after the approved LFB-104 removal of the cross-like navigation, the hero has
-**no visible pointer or touch control at all** — no arrows, no dots, no thumbnails, no visible
-"volgende" affordance. Drag/swipe on the hero is also not an approved substitute for a fade slider
-and is not assumed here.
+Inventory result: after the approved LFB-104 removal of the cross-like navigation, the hero had no
+visible pointer or touch control at all — no arrows, no dots, no thumbnails. Delroy has resolved
+this by selecting **Option 2 — restrained Liviza dots**.
 
-This is stated as a user-experience constraint, not solved by invention: a mouse or touch visitor
-currently cannot advance the hero by any intentional means. No new navigation design is proposed in
-this plan. Delroy must choose one of:
+Approved hero design for the future correction:
 
-- **Option 1 — accept as designed:** the hero stays advance-by-keyboard/assistive-technology only;
-  D-006 is then closed for the pointer path by decision, and only the keyboard path is corrected.
-- **Option 2 — restrained Liviza dots:** re-enable the hero's own
-  `.swiper-pagination`/`swiper-pagination-bullet` pattern already present in the Liviza source and
-  used elsewhere on the homepage (`swiper-btn-right-dots`), styled with the existing template
-  appearance only — small bullets, no arrows, no overlay cross. Implementation would be
-  `data-dots="true"` on the hero plus removal of the hero-only `display: none` for
-  `.swiper-pagination`, keeping the arrow suppression intact.
-- **Option 3 — no hero rotation:** reduce the hero to a single static slide, removing the control
-  question entirely.
+- All three hero slides are retained; autoplay stays off; the fade effect, copy, images, CTAs,
+  overlay, layout and approved responsive composition are unchanged.
+- The hero's **native Liviza pagination** (`.swiper-pagination` / `.swiper-pagination-bullet`,
+  the same pattern already used by the homepage service carousels) becomes the visible
+  pointer/touch navigation. Configuration change: `data-dots="true"` on the homepage hero slider
+  only, `data-arrows="false"` retained.
+- All hero arrows stay disabled, and the previously rejected cross-like navigation is not restored.
+  The hero-specific `display: none` suppression in `vz-polish.css` is narrowed so that it keeps
+  hiding `.swiper-button-next`, `.swiper-button-prev` and `.swiper-buttons` while no longer hiding
+  `.swiper-pagination`.
+- Bullets stay small, quiet and visually subordinate to the hero content, in the existing Liviza
+  visual language; no new navigation design is invented.
+- Each bullet gets an effective pointer/touch target of at least ~44 × 44 px through padding,
+  margin or a transparent hit area — the visible dot itself is not enlarged.
+- Restrained hover, active (current slide) and `:focus-visible` states, using the existing hero
+  focus outline treatment already defined for the slider controls.
+- Pagination is enabled for the homepage hero only; no other carousel's pagination configuration is
+  changed.
 
-Execution of the pointer path does not start until Delroy names the option. Nothing visible is
-changed without that decision.
-
-### 1.3 B — keyboard/accessibility path (correctable now)
+### 1.3 B — keyboard/accessibility path
 
 The two hidden buttons keep an in-viewport visually-hidden pattern: `left: 0` instead of the current
 off-viewport `-1px` offset, 1 × 1 px, `clip-path: inset(50%)`, `white-space: nowrap`, with the
 existing `:focus-visible` reveal (visible outlined button at the top-left of the hero) untouched.
 They must be reachable with Tab, activate with Enter and Space, change the active slide, and update
 the live status. CSS only; `vz-polish.js` is not modified and `livizaHead()` keeps emitting no
-scripts.
+scripts. If a measured failure later proves a script change is unavoidable, execution STOPS and
+separate approval is requested before `vz-polish.js` is touched.
 
 ### 1.4 C — acceptance distinction
 
-- Visible arrows/dots: tested with genuine pointer and touch activation **only if** Delroy releases
-  Option 2; not applicable under Option 1 or 3.
-- Hidden accessibility controls: tested with keyboard focus plus Enter and Space — never with a
-  pointer click against a hidden 1 × 1 target.
+- Visible Liviza dots: genuine pointer activation of every dot, touch activation at mobile width,
+  and keyboard focus/activation where the bullet exposes it.
+- Hidden accessibility controls: keyboard focus plus Enter and Space — never a pointer click against
+  a hidden 1 × 1 target.
 - Screen-reader labels ("Vorige dia", "Volgende dia") and the `role="status"` live region are
   verified separately.
-- Assertions use Swiper `realIndex`, the active slide element and the status text; the wrapper
-  transform is explicitly not used.
-- Three slides and autoplay-off are preserved; no scripts are reintroduced into `livizaHead()`.
+- Synchronisation is asserted across active dot, active slide, Swiper `realIndex` and the live
+  status text; the wrapper transform is explicitly not used, because the hero fades.
+- Three slides, autoplay-off, no visible arrows and no cross-like navigation are all re-verified;
+  no scripts are reintroduced into `livizaHead()`.
+
 
 
 ## 2. D-001 — homepage document overflow at 320 px (diagnosis UNCONFIRMED — measure first)
@@ -136,16 +141,19 @@ rather than rationalised. Accepted ACT-CODEX documents are not edited.
 
 | File | Change |
 | --- | --- |
-| `public/vz-public/css/vz-polish.css` | D-006: in-viewport visually-hidden geometry for `.vz-sr-button` / `.vz-sr-status`. D-001: the single causal geometry rule identified by measurement (scoped to the causal selector, no global overflow clipping). |
+| `src/lib/public/template/chrome.ts` | D-006 Option 2: homepage hero slider `data-dots="false"` → `data-dots="true"`, `data-arrows="false"` retained. No other hero or template change. |
+| `public/vz-public/css/vz-polish.css` | D-006: narrow the hero-only pagination suppression so the approved dots appear while arrows stay hidden; style the existing Liviza bullets (small, quiet, subordinate) with ~44 × 44 px effective hit areas and restrained hover/active/focus-visible states; in-viewport visually-hidden geometry for `.vz-sr-button` / `.vz-sr-status`. D-001: the single causal geometry rule identified by measurement (scoped to the causal selector, no global overflow clipping). |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/REPORT.md` | E-001 accounting correction only. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-REMEDIATION-001/MANIFEST.md` | E-001 accounting correction only. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-POST-VALIDATION-CORRECTION-001/REPORT.md` | New correction report. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-POST-VALIDATION-CORRECTION-001/MANIFEST.md` | New evidence manifest with complete route-entry-to-viewport index. |
 | `docs/vz-juspol-gen/execution-evidence/LFB-105-POST-VALIDATION-CORRECTION-001/screenshots/` | Before/after captures for D-001 and D-006 plus the regression sweep. |
 
-If measurement shows the D-001 cause sits in template markup rather than CSS, the affected file
-(`src/lib/public/template/liviza-home.html.ts` or `src/lib/public/template/chrome.ts`) is named and
-approved before it is written; it is not changed silently. `vz-polish.js`, `LivizaTemplatePage.tsx`
+This list is exhaustive. Pagination is not broadly enabled for unrelated carousels.
+`vz-polish.js` is **not** modified; if a later measured failure proves a script change necessary,
+execution STOPS and separate approval is requested first. If measurement shows the D-001 cause sits
+in template markup rather than CSS, the affected file (`src/lib/public/template/liviza-home.html.ts`
+or a further `chrome.ts` change) is named and approved before it is written. `LivizaTemplatePage.tsx`
 and all other application files stay untouched.
 
 ## 5. Protected / preserved
@@ -167,7 +175,8 @@ change, no unrelated styling or redesign, no edit to accepted ACT-CODEX document
 
 - D-001: before/after `documentElement.scrollWidth` vs `clientWidth` at 320 and 375 px, with the causal element named and its measured geometry recorded.
 - D-006 keyboard path: Tab to "Vorige dia" / "Volgende dia", activate with Enter and Space at desktop and mobile widths, asserting `realIndex`, active slide and the live status text ("Dia 1 van 3" → "Dia 2 van 3" → "Dia 3 van 3"), plus the focus-visible reveal; no pointer click is asserted against a hidden control and the wrapper transform is not used as an assertion.
-- D-006 pointer/touch path: only if Delroy releases Option 2 (restrained Liviza dots) — genuine pointer and touch activation with the same `realIndex` / active-slide / status assertions.
+- D-006 pointer/touch path: genuine pointer activation of every visible hero dot, touch activation at mobile width, and keyboard focus/activation of the visible dots, asserting active dot, active slide, `realIndex` and status synchronisation.
+- Hero composition: no visible arrows, no cross-like navigation, no autoplay, three slides retained, hero copy/images/CTAs/overlay unchanged.
 - Console clean on direct load and after SPA navigation, including zero hydration messages.
 - Regression sweep at 320, 375, 768, 1024 and 1440 px across all 32 governed public routes.
 - Preservation checks for D-002 through D-005, tabs, mobile menu and Aanvraaghulp.
@@ -178,11 +187,10 @@ change, no unrelated styling or redesign, no edit to accepted ACT-CODEX document
 
 Stop and report if: HEAD differs from `6572576695ecc1285dc6e1cc75c1df744c8f88e0` at execution time;
 D-001 cannot be tied to a specific causal element and property; a hero fix would require restoring
-pre-hydration script execution; any fix would require global overflow hiding; a protected surface
-must change; the evidence counts cannot be reconciled without guessing; or new authority, secrets or
-external actions are required. **Already triggered:** the hero has no approved visible pointer/touch
-control, so the D-006 pointer path is halted pending Delroy's choice between Option 1, 2 and 3 in
-section 1.2. No new navigation design is invented.
+pre-hydration script execution or a `vz-polish.js` change; the approved Liviza dots cannot be exposed
+without also exposing arrows or the rejected cross-like navigation; any fix would require global
+overflow hiding; a protected surface must change; the evidence counts cannot be reconciled without
+guessing; or new authority, secrets or external actions are required.
 
 ## 9. Residual assumptions
 
@@ -190,11 +198,12 @@ section 1.2. No new navigation design is invented.
   time, the finding is recorded with measurements rather than "fixed" by a speculative rule.
 - D-006 keyboard path is assumed to be solely the off-viewport control geometry; it is re-verified
   with genuine keyboard focus and Enter/Space after the change.
-- D-006 pointer path remains blocked on the Delroy decision above.
+- The hero dots are assumed to be exposable through the template's own configuration and CSS alone;
+  if not, execution stops rather than adding script behaviour.
 
 ---
 
-PLAN STATUS: PLAN CORRECTED / BUILD NOT RELEASED
+PLAN STATUS: PLAN READY FOR DELROY APPROVAL / BUILD NOT RELEASED
 NEXT ACTOR: ACT-CHATGPT
 NO LOVABLE BUILD EXECUTION RELEASED
 NO PUBLICATION OR DEPLOYMENT RELEASED
