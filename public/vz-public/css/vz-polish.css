@@ -439,8 +439,17 @@
 	.pbmit-slider-area .swiper-horizontal > .swiper-pagination-bullets {
 		display: table;
 	}
+	/* Narrow widths have no free right margin next to the hero text, so the
+	   dot strip returns to the horizontal bottom-centre position the template
+	   uses for its other sliders. */
 	.pbmit-slider-one .swiper-horizontal > .swiper-pagination-bullets {
-		right: 6%;
+		top: auto;
+		right: 0;
+		bottom: 20px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		transform: none;
 	}
 }
 
