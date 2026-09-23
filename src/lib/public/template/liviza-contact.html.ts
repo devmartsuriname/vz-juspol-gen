@@ -7,13 +7,7 @@
 
 import { identity } from "@/content/vz-content";
 
-import {
-  contentClose,
-  contentOpen,
-  footer,
-  pageOpen,
-  titleBar,
-} from "./chrome";
+import { contentClose, contentOpen, footer, pageOpen, titleBar } from "./chrome";
 
 function infoCard(icon: string, heading: string, body: string): string {
   return `						<div class="col-md-4">
@@ -52,7 +46,7 @@ ${contentOpen()}
 					<div class="row">
 ${infoCard("placeholder", "Adres", `${identity.unit}<br>${identity.address}`)}
 ${infoCard("call", "Telefoon", identity.phone)}
-${infoCard("envelope", "E-mail", identity.email)}
+${infoCard("envelope", "E-mail", `<a href="mailto:${identity.email}">${identity.email}</a>`)}
 					</div>
 					<div class="row">
 ${infoCard("test", "Openingstijden", `${identity.hours}<br>${identity.hoursClosed}`)}

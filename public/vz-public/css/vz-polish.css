@@ -366,8 +366,10 @@
    LFB-104 REMEDIATION 001 — header CTA and hero controls
    ===================================================================== */
 
-/* Contact lives in the original Liviza top-right CTA slot on desktop and in
-   the ordinary menu on mobile, so it is reachable exactly once per viewport. */
+/* Structural show/hide only, no visual token. `Contact` occupies the original
+   Liviza top-right CTA slot on desktop; below 1200px Liviza hides that slot
+   itself, so the same entry is carried by an ordinary menu item. Exactly one
+   contact entry is reachable per viewport (Track A: no login entry). */
 .header-style-1 .pbmit-pre-header-content .top-contact li.vz-header-cta {
 	padding-right: 0;
 	vertical-align: middle;
@@ -459,9 +461,66 @@
 }
 
 
-/* Hidden hero controls: in-viewport visually-hidden pattern so keyboard focus
-   and assistive technology can reach them (LFB-105 D-006). */
-.vz-sr-button,
+/* Hero controls (D-107-001, MAIN-RELEASE-BASELINE-TRACK-A-001). Visible
+   navigation stays the template's pagination dots (LFB-105 D-006 Option 2).
+   "Vorige dia" / "Volgende dia" are real buttons for keyboard and assistive
+   technology. They are visually hidden WITHOUT clip/clip-path (clipping also
+   removes an element from hit-testing, which is why the deployed controls
+   accepted no activation), each in its own box at the left edge, halfway down
+   the hero (inside the first viewport, clear of the absolutely positioned
+   header bar, z-index 10). On keyboard focus they become a visible labelled
+   button. */
+.vz-hero-controls {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 320px;
+	height: 1px;
+	z-index: 20;
+	pointer-events: none;
+}
+.vz-sr-button {
+	position: absolute;
+	top: 0;
+	pointer-events: auto;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	border: 0;
+	background: transparent;
+	color: transparent;
+	opacity: 0.01;
+	cursor: pointer;
+}
+.vz-sr-button[data-vz-hero="prev"] {
+	left: 0;
+}
+.vz-sr-button[data-vz-hero="next"] {
+	left: 2px;
+}
+.vz-sr-button[aria-disabled="true"] {
+	cursor: default;
+}
+.vz-sr-button:focus-visible {
+	top: 0;
+	left: 20px;
+	width: max-content;
+	height: auto;
+	padding: 10px 18px;
+	overflow: visible;
+	opacity: 1;
+	background: #ffffff;
+	color: var(--pbmit-blackish-color);
+	font-weight: 600;
+	outline: 3px solid var(--pbmit-global-color);
+	outline-offset: 2px;
+}
+.vz-sr-button[data-vz-hero="next"]:focus-visible {
+	left: 170px;
+}
 .vz-sr-status {
 	position: absolute;
 	top: 0;
@@ -474,26 +533,6 @@
 	clip-path: inset(50%);
 	white-space: nowrap;
 	border: 0;
-}
-.vz-sr-button:focus-visible {
-	position: absolute;
-	z-index: 20;
-	top: 20px;
-	left: 20px;
-	width: auto;
-	height: auto;
-	margin: 0;
-	padding: 10px 18px;
-	overflow: visible;
-	clip-path: none;
-	background: #ffffff;
-	color: var(--pbmit-blackish-color);
-	font-weight: 600;
-	outline: 3px solid var(--pbmit-global-color);
-	outline-offset: 2px;
-}
-.vz-sr-button[data-vz-hero="next"]:focus-visible {
-	left: 170px;
 }
 
 
@@ -660,14 +699,21 @@
 @media (max-width: 400px) {
 	/* `.pbmit-title-bar-content` is `display: table; width: 100%`, so its used
 	   width can never fall below the longest unbreakable word ("toelatings-
-	   beschikking"). Switching the title zone to normal block flow at very
-	   narrow widths lets the existing word-safe wrapping take effect. */
+	   beschikking"). Switching the title zone out of table layout at very
+	   narrow widths lets the existing word-safe wrapping take effect.
+	   FE-001 V-001: block flow lost the table-cell vertical centring, so the
+	   title and breadcrumb rendered at the top of the zone, underneath the
+	   absolutely positioned header. A flex column restores the centring. */
 	.pbmit-title-bar-wrapper .pbmit-title-bar-content {
-		display: block;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		width: 100%;
+		min-width: 0;
 	}
 	.pbmit-title-bar-wrapper .pbmit-title-bar-content-inner {
 		display: block;
+		min-width: 0;
 	}
 	.pbmit-title-bar-wrapper .pbmit-tbar-inner.container {
 		width: 100%;
@@ -722,4 +768,152 @@
 		top: 508px;
 		bottom: auto;
 	}
+}
+
+/* =====================================================================
+   FE-001 — FRONTEND CORRECTION BATCH (AUDIT-001 defects)
+   V-001 title bar below the header at ≤400px · V-002 home services heading
+   above its decoration · V-003 detail panels stack on tablet · V-009 phone
+   title-bar height · V-010 skip link + main landmark · V-012/D-107-001
+   visible hero controls · D-107-002/V-011 menu open state · V-013 footer
+   tap targets · focus visibility. Public layer only; no admin impact.
+   ===================================================================== */
+
+/* V-010 — skip link: hidden until focused, then a solid pill at the top. */
+.vz-skip-link {
+	position: absolute;
+	top: -100px;
+	left: 16px;
+	z-index: 10000;
+	padding: 10px 18px;
+	background: #ffffff;
+	color: var(--pbmit-blackish-color);
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 4px;
+}
+.vz-skip-link:focus,
+.vz-skip-link:focus-visible {
+	top: 16px;
+	outline: 3px solid var(--pbmit-global-color);
+	outline-offset: 2px;
+}
+main#vz-main {
+	display: block;
+	outline: none;
+}
+
+/* V-005 — visually hidden page heading (home). */
+.vz-visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* V-009 — phones: the Liviza 650px title zone leaves a full screen of empty
+   dark space above the content. Tablet keeps the template's 350px value;
+   phones get the same. Desktop (>991px) is untouched. */
+@media (max-width: 991px) {
+	.pbmit-title-bar-wrapper .pbmit-title-bar-content {
+		height: auto;
+		min-height: 350px;
+		padding-top: 105px; /* header height at ≤1199px */
+		padding-bottom: 40px;
+	}
+}
+
+/* V-002 — the section decoration (`.service-one-bg:after`) paints above the
+   heading at desktop widths. Lift the heading and intro into the same
+   stacking context as the cards. */
+.service-one-bg .pbmit-heading-subheading,
+.service-one-bg .row.align-items-center > [class*="col-"] {
+	position: relative;
+	z-index: 2;
+}
+
+/* V-003 — the two-column detail panel already stacks at ≤767px in Liviza;
+   between 768 and 991px the image column still ran under the text. Stack the
+   panel across the whole tablet band. */
+@media (max-width: 991px) {
+	.vz-detail-panel .col-md-5,
+	.vz-detail-panel .col-md-7 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+}
+
+/* Hero controls and slide status: see the D-107-001 block above. */
+
+/* D-107-002 / V-011 — the panel is no longer a Bootstrap `collapse`; its
+   geometry follows `header.active` exactly as the template intends, and the
+   collapse box itself now takes the height of the open panel so the menu
+   region is measurable and clickable. */
+@media (max-width: 1199px) {
+	.main-menu .navbar-collapse.vz-menu-panel {
+		display: block;
+		min-height: 0;
+	}
+	/* While open, the panel takes part in the collapse box's layout so the
+	   region has a real, measurable height (the template kept it at 0px). */
+	.site-header.vz-menu-open .main-menu .navbar-collapse.vz-menu-panel .pbmit-menu-wrap {
+		position: relative;
+		top: auto;
+	}
+	.navbar-toggler:focus-visible {
+		outline: 3px solid #ffffff;
+		outline-offset: 2px;
+	}
+}
+
+/* V-008 — wizard: selected choice state. */
+.vz-wizard-choice-selected .pbminfotech-post-item {
+	box-shadow: 0 0 0 3px var(--pbmit-global-color);
+}
+.vz-wizard-btn[aria-pressed="true"] span::after {
+	content: " ✓";
+}
+
+/* V-013 — footer and legal links: 24px minimum tap height. */
+.site-footer .textwidget ul li a,
+.site-footer .menu-visa ul li a,
+.footer-nav-menu li a {
+	display: inline-block;
+	min-height: 24px;
+	line-height: 24px;
+}
+
+/* Focus visibility on the header CTA and primary buttons. */
+.pbmit-btn:focus-visible,
+.vz-nav-contact a:focus-visible,
+.pbmit-header-button a:focus-visible,
+.pbminfotech-vc_general:focus-visible {
+	outline: 3px solid var(--pbmit-global-color);
+	outline-offset: 3px;
+}
+
+/* V-016 — the footer e-mail is now a mailto link; keep the widget's text colour. */
+.site-footer .pbmit_contact_widget_wrapper a {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+.site-footer .pbmit_contact_widget_wrapper a:hover,
+.site-footer .pbmit_contact_widget_wrapper a:focus-visible {
+	color: #ffffff;
+}
+
+/* FE-002 — portal shell layout necessity (no visual token). Liviza positions
+   `.header-style-1 .site-header-menu` absolutely over the page title bar; the
+   citizen portal renders no title bar, so the bar would overlap the content.
+   Restoring normal flow prevents the overlap. Colours, geometry, typography
+   and spacing all come from the template classes on the element. */
+.vz-portal .site-header-menu {
+	position: relative;
 }

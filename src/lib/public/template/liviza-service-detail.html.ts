@@ -16,13 +16,7 @@ import {
   type ServiceRecord,
 } from "@/content/vz-content";
 
-import {
-  contentClose,
-  contentOpen,
-  footer,
-  pageOpen,
-  titleBar,
-} from "./chrome";
+import { contentClose, contentOpen, footer, pageOpen, titleBar } from "./chrome";
 
 function factCard(icon: string, heading: string, body: string): string {
   return `							<div class="col-md-6 col-lg-4">
@@ -65,11 +59,10 @@ export function buildServiceDetailHtml(service: ServiceRecord): string {
     .join("\n");
 
   const factCards: string[] = [];
-  if (service.fee) factCards.push(factCard("file", "Kosten", service.fee));
+  if (service.fee) factCards.push(factCard("document", "Kosten", service.fee));
   if (service.legalBasis)
     factCards.push(factCard("open-book", "Wettelijke grondslag", service.legalBasis));
-  if (service.processing)
-    factCards.push(factCard("test", "Doorlooptijd", service.processing));
+  if (service.processing) factCards.push(factCard("test", "Doorlooptijd", service.processing));
 
   const relatedServices = servicesInCategory(service.category)
     .filter((item) => item.id !== service.id)

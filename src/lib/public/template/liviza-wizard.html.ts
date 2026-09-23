@@ -41,7 +41,7 @@ function choiceCard(
 													<p>${body}</p>
 												</div>
 												<div class="pbminfotech-box-link pbminfotech-vc_btn3">
-													<button type="button" class="pbminfotech-vc_general vz-wizard-btn" ${attr}="${value}">
+													<button type="button" class="pbminfotech-vc_general vz-wizard-btn" ${attr}="${value}" aria-label="Kies ${title}" aria-pressed="false">
 														<span>Kies</span>
 													</button>
 												</div>

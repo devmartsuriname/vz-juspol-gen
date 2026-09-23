@@ -37,10 +37,7 @@ export const stakeholderImages: readonly string[] = [
 
 function navItems(active: string): string {
   const categoryItems = categories
-    .map(
-      (category) =>
-        `<li><a href="/diensten/${category.slug}">${category.label}</a></li>`,
-    )
+    .map((category) => `<li><a href="/diensten/${category.slug}">${category.label}</a></li>`)
     .join("\n\t\t\t\t\t\t\t\t\t\t\t\t");
 
   const item = (href: string, label: string, extra = "") =>
@@ -65,6 +62,7 @@ function navItems(active: string): string {
 
 function headerTop(active: string): string {
   return `
+		<a class="vz-skip-link" href="#vz-main">Naar de inhoud</a>
 		<header class="site-header header-style-1">
 			<div class="pre-header">
 				<div class="container-fluid">
@@ -121,12 +119,12 @@ function headerTop(active: string): string {
 										<nav class="main-menu navbar-expand-xl navbar-light">
 											<div class="navbar-header">
 												<!-- Toggle Button -->
-												<button class="navbar-toggler" type="button" aria-label="Menu openen">
+												<button class="navbar-toggler" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="pbmit-menu" data-vz-menu-toggle>
 													<i class="pbmit-liviza-icon-bars"></i>
 												</button>
 											</div>
 											<div class="pbmit-mobile-menu-bg"></div>
-											<div class="collapse navbar-collapse clearfix show" id="pbmit-menu">
+											<div class="navbar-collapse clearfix vz-menu-panel" id="pbmit-menu">
 												<div class="pbmit-menu-wrap">${navItems(active)}
 												</div>
 											</div>
@@ -228,14 +226,20 @@ function heroSlide(slide: HeroSlide): string {
  * Home header including the hero area. Three governed slides on the original
  * Liviza slider geometry (LFB-104 REMEDIATION 001).
  *
- * No visible slider controls: dots and arrows are off and autoplay stays off.
- * The carousel is drag/swipe operable and additionally exposes visually hidden
- * but focusable previous/next buttons plus a polite "Dia X van 3" status, so
- * every slide and CTA stays keyboard reachable.
+ * Visible navigation is the template's own pagination dots only (LFB-105
+ * D-006 Option 2: no visible arrows). The "Vorige dia" / "Volgende dia"
+ * controls (D-107-001, MAIN-RELEASE-BASELINE-TRACK-A-001) are real buttons
+ * for keyboard and assistive technology: visually hidden without clipping so
+ * they stay pointer-reachable, shown on keyboard focus, `aria-disabled` at the
+ * first/last slide (the carousel does not loop). Autoplay stays off: neither
+ * Liviza nor the bundled Swiper build provides a pause/resume control, and
+ * moving content without one is not accessible (WCAG 2.2.2). A polite
+ * "Dia X van 3" status announces the active slide.
  */
 export function homeHeader(): string {
   return `${headerTop("/")}
 			<div class="pbmit-slider-area pbmit-slider-one">
+				<h1 class="vz-visually-hidden">${identity.name} — informatie en voorbereiding</h1>
 				<div class="vz-hero-carousel">
 					<div class="swiper-slider" data-autoplay="false" data-loop="false" data-dots="true" data-arrows="false" data-columns="1" data-margin="0" data-effect="fade" aria-roledescription="carrousel" aria-label="Uitgelichte informatie">
 						<div class="swiper-wrapper">
@@ -243,10 +247,10 @@ ${heroSlides.map(heroSlide).join("\n")}
 						</div>
 					</div>
 					<div class="vz-hero-controls">
-						<button type="button" class="vz-sr-button" data-vz-hero="prev">Vorige dia</button>
+						<button type="button" class="vz-sr-button" data-vz-hero="prev" aria-disabled="true">Vorige dia</button>
 						<button type="button" class="vz-sr-button" data-vz-hero="next">Volgende dia</button>
-						<p class="vz-sr-status" data-vz-hero-status role="status" aria-live="polite">Dia 1 van ${heroSlides.length}</p>
 					</div>
+					<p class="vz-sr-status" data-vz-hero-status role="status" aria-live="polite">Dia 1 van ${heroSlides.length}</p>
 				</div>
 			</div>
 		</header>
@@ -255,7 +259,10 @@ ${heroSlides.map(heroSlide).join("\n")}
 }
 
 /** Inner-page title bar with breadcrumb, geometry unchanged. */
-export function titleBar(title: string, crumbs: readonly { label: string; href?: string }[]): string {
+export function titleBar(
+  title: string,
+  crumbs: readonly { label: string; href?: string }[],
+): string {
   const trail = crumbs
     .map((crumb, index) => {
       const last = index === crumbs.length - 1;
@@ -354,7 +361,7 @@ export function footer(): string {
 											<strong>Telefoon</strong><br>${identity.phone}
 										</li>
 										<li class="pbmit-contact-envelope pbmit-base-icon-envelope">
-											<strong>E-mail</strong><br>${identity.email}
+											<strong>E-mail</strong><br><a href="mailto:${identity.email}">${identity.email}</a>
 										</li>
 										<li class="pbmit-contact-address pbmit-base-icon-clock">
 											<strong>Openingstijden</strong><br>${identity.hours}<br>${identity.hoursClosed}
@@ -406,11 +413,13 @@ export function contentOpen(extraClass = ""): string {
   return `
 		<!-- Page Content -->
 		<div class="page-content${extraClass ? ` ${extraClass}` : ""}">
+		<main id="vz-main" tabindex="-1">
 `;
 }
 
 export function contentClose(): string {
   return `
+		</main>
 		</div>
 		<!-- Page Content End -->
 `;

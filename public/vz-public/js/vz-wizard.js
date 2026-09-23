@@ -68,11 +68,26 @@
     function show(selector, message, moveFocus) {
       var target = root.querySelector(selector);
       if (!target) return false;
-      for (var i = 0; i < steps.length; i += 1) steps[i].hidden = true;
+      for (var i = 0; i < steps.length; i += 1) {
+        steps[i].hidden = true;
+        steps[i].removeAttribute("aria-current");
+      }
       target.hidden = false;
+      target.setAttribute("aria-current", "step");
       if (message) announce(message);
       if (moveFocus) focusStep(target);
       return true;
+    }
+
+    /* FE-001 V-008: reflect the chosen category/service on the choice buttons. */
+    function markPressed(attr, value) {
+      var buttons = root.querySelectorAll("[" + attr + "]");
+      for (var i = 0; i < buttons.length; i += 1) {
+        var pressed = buttons[i].getAttribute(attr) === value;
+        buttons[i].setAttribute("aria-pressed", pressed ? "true" : "false");
+        var card = buttons[i].closest(".vz-wizard-choice");
+        if (card) card.classList.toggle("vz-wizard-choice-selected", pressed);
+      }
     }
 
     function showStart(moveFocus) {
@@ -81,6 +96,7 @@
 
     function showCategory(category, moveFocus) {
       state.category = category;
+      markPressed("data-vz-category", category);
       var ok = show(
         '[data-vz-panel="' + category + '"]',
         "Stap 2 van 3.",
@@ -92,6 +108,8 @@
     function showResult(category, service, moveFocus) {
       state.category = category;
       state.service = service;
+      markPressed("data-vz-category", category);
+      markPressed("data-vz-service", category + "/" + service);
       var ok = show(
         '[data-vz-result="' + category + "/" + service + '"]',
         "Stap 3 van 3. Uw voorbereiding.",
@@ -132,6 +150,8 @@
         clear();
         state.category = null;
         state.service = null;
+        markPressed("data-vz-category", "");
+        markPressed("data-vz-service", "");
         showStart(true);
       }
     });

@@ -58,10 +58,11 @@ type Props = {
   html: string;
 };
 
-export function LivizaTemplatePage({ html }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Re-execute the template scripts in source order on every mount.
+/**
+ * Re-execute the template scripts in source order on every mount (FE-001:
+ * extracted so the citizen shell can reuse the same single execution path).
+ */
+export function useLivizaScripts() {
   useEffect(() => {
     const added: HTMLScriptElement[] = [];
 
@@ -82,6 +83,12 @@ export function LivizaTemplatePage({ html }: Props) {
       added.forEach((script) => script.remove());
     };
   }, []);
+}
+
+export function LivizaTemplatePage({ html }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLivizaScripts();
 
   // Neutralise template network actions: demo forms and links to pages that
   // are not ported yet must not navigate or submit.
