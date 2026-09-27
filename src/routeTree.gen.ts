@@ -28,6 +28,7 @@ import { Route as NieuwsSlugRouteImport } from './routes/nieuws.$slug'
 import { Route as AdminAuthSigninRouteImport } from './routes/admin/auth-signin'
 import { Route as DienstenCategorieIndexRouteImport } from './routes/diensten.$categorie.index'
 import { Route as DienstenCategorieSlugRouteImport } from './routes/diensten.$categorie.$slug'
+import { Route as ApiV1HealthRouteImport } from './routes/api/v1/health'
 
 const VeelgesteldeVragenRoute = VeelgesteldeVragenRouteImport.update({
   id: '/veelgestelde-vragen',
@@ -124,6 +125,11 @@ const DienstenCategorieSlugRoute = DienstenCategorieSlugRouteImport.update({
   path: '/$categorie/$slug',
   getParentRoute: () => DienstenRoute,
 } as any)
+const ApiV1HealthRoute = ApiV1HealthRouteImport.update({
+  id: '/api/v1/health',
+  path: '/api/v1/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/diensten/': typeof DienstenIndexRoute
   '/nieuws/': typeof NieuwsIndexRoute
+  '/api/v1/health': typeof ApiV1HealthRoute
   '/diensten/$categorie/$slug': typeof DienstenCategorieSlugRoute
   '/diensten/$categorie/': typeof DienstenCategorieIndexRoute
 }
@@ -161,6 +168,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/diensten': typeof DienstenIndexRoute
   '/nieuws': typeof NieuwsIndexRoute
+  '/api/v1/health': typeof ApiV1HealthRoute
   '/diensten/$categorie/$slug': typeof DienstenCategorieSlugRoute
   '/diensten/$categorie': typeof DienstenCategorieIndexRoute
 }
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/diensten/': typeof DienstenIndexRoute
   '/nieuws/': typeof NieuwsIndexRoute
+  '/api/v1/health': typeof ApiV1HealthRoute
   '/diensten/$categorie/$slug': typeof DienstenCategorieSlugRoute
   '/diensten/$categorie/': typeof DienstenCategorieIndexRoute
 }
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/diensten/'
     | '/nieuws/'
+    | '/api/v1/health'
     | '/diensten/$categorie/$slug'
     | '/diensten/$categorie/'
   fileRoutesByTo: FileRoutesByTo
@@ -224,6 +234,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/diensten'
     | '/nieuws'
+    | '/api/v1/health'
     | '/diensten/$categorie/$slug'
     | '/diensten/$categorie'
   id:
@@ -245,6 +256,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/diensten/'
     | '/nieuws/'
+    | '/api/v1/health'
     | '/diensten/$categorie/$slug'
     | '/diensten/$categorie/'
   fileRoutesById: FileRoutesById
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   OverOnsRoute: typeof OverOnsRoute
   PrivacyRoute: typeof PrivacyRoute
   VeelgesteldeVragenRoute: typeof VeelgesteldeVragenRoute
+  ApiV1HealthRoute: typeof ApiV1HealthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -399,6 +412,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DienstenCategorieSlugRouteImport
       parentRoute: typeof DienstenRoute
     }
+    '/api/v1/health': {
+      id: '/api/v1/health'
+      path: '/api/v1/health'
+      fullPath: '/api/v1/health'
+      preLoaderRoute: typeof ApiV1HealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -456,6 +476,7 @@ const rootRouteChildren: RootRouteChildren = {
   OverOnsRoute: OverOnsRoute,
   PrivacyRoute: PrivacyRoute,
   VeelgesteldeVragenRoute: VeelgesteldeVragenRoute,
+  ApiV1HealthRoute: ApiV1HealthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
